@@ -23,7 +23,6 @@ class tree(object):
             self._addNode(self.root, data)
 
     def _addNode(self, node, data):
-        print(type(node))
         if data < node.data:
             if node.left is not None:
                 self._addNode(node.left, data)
