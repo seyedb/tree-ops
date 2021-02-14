@@ -65,13 +65,13 @@ class tree(object):
     def pre_order_traversal(self, node):
         if node is not None:
             self._setStatus(node, node_status.VISITED)
-            self.in_order_traversal(node.left)
-            self.in_order_traversal(node.right)
+            self.pre_order_traversal(node.left)
+            self.pre_order_traversal(node.right)
 
     def post_order_traversal(self, node):
         if node is not None:
-            self.in_order_traversal(node.left)
-            self.in_order_traversal(node.right)
+            self.post_order_traversal(node.left)
+            self.post_order_traversal(node.right)
             self._setStatus(node, node_status.VISITED)
 
 
