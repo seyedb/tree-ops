@@ -1,16 +1,16 @@
+from enum import Enum
+
+class node_status(Enum):
+    UNVISITED = 0
+    VISITED = 1
+    VISITING = 2
 
 class tree(object):
-
     def __init__(self, root=None):
         self.root = root
 
     class treeNode(object):
-        # visit status
-        UNVISITED = 0
-        VISITED = 1
-        VISITING = 2
-
-        def __init__(self, data, left=None, right=None, visited=UNVISITED):
+        def __init__(self, data, left=None, right=None, visited=node_status.UNVISITED):
             self.data = data
             self.left = left
             self.right = right
@@ -43,3 +43,35 @@ class tree(object):
             self._printTree(node.left)
             print(node.data)
             self._printTree(node.right)
+
+    def _getStatus(self, node):
+        if node is not None:
+            return node.visited
+        else:
+            print('Hit null node!')
+
+    def _setStatus(self, node, visited):
+        if node is not None:
+            node.visited = visited
+        else:
+            print('Hit null node!')
+
+    def in_order_traversal(self, node):
+        if node is not None:
+            self.in_order_traversal(node.left)
+            self._setStatus(node, node_status.VISITED)
+            self.in_order_traversal(node.right)
+
+    def pre_order_traversal(self, node):
+        if node is not None:
+            self._setStatus(node, node_status.VISITED)
+            self.in_order_traversal(node.left)
+            self.in_order_traversal(node.right)
+
+    def post_order_traversal(self, node):
+        if node is not None:
+            self.in_order_traversal(node.left)
+            self.in_order_traversal(node.right)
+            self._setStatus(node, node_status.VISITED)
+
+
