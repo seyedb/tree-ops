@@ -32,6 +32,25 @@ class tree(object):
             self.right = right
             self.visited = visited
 
+    def __str__(self):
+        '''
+        A function to print a tree starting from its root
+        '''
+        if self.root is not None:
+            self._printTree(self.root)
+
+    def _printTree(self, node):
+        '''
+        A helper function for printing a tree starting from a given node
+
+        args:
+            node (treeNode): the tree node at which the printing starts 
+        '''
+        if node is not None:
+            self._printTree(node.left)
+            print(node.data)
+            self._printTree(node.right)
+
     def add_node(self, data):
         '''
         Adds a node to a tree.
@@ -66,25 +85,6 @@ class tree(object):
                 self._addNode(node.right, data)
             else:
                 node.right = self.treeNode(data)
-
-    def print_tree(self):
-        '''
-        A function to print a tree starting from its root
-        '''
-        if self.root is not None:
-            self._printTree(self.root)
-
-    def _printTree(self, node):
-        '''
-        A helper function for printing a tree starting from a given node
-
-        args:
-            node (treeNode): the tree node at which the printing starts 
-        '''
-        if node is not None:
-            self._printTree(node.left)
-            print(node.data)
-            self._printTree(node.right)
 
     def _getStatus(self, node):
         '''
@@ -159,5 +159,37 @@ class tree(object):
             self.postorder_traversal(node.left)
             self.postorder_traversal(node.right)
             self._setStatus(node, node_status.VISITED)
+
+    def find_node(self, data):
+        '''
+        Finds a node in a tree
+        
+        args:
+            data (any type): the data to be found in the tree
+        returns:
+            (treeNode) the tree node that contains the given data          
+        '''
+        if self.root is not None:
+            return self._findNode(data, self.root)
+        else:
+            return None
+
+    def _findNode(self, data, node):
+        '''
+        A helper function to find a given data in a tree
+        
+        args:
+            data (any type): the data to be found in the tree
+            node (treeNode): the node at which the recursive search begins
+        returns:
+            (treeNode) the tree node that contains the given data
+        '''
+        print(data, node.data)
+        if node.data == data:
+            return node
+        elif (data < node.data and node.left is not None):
+            return self._findNode(data, node.left)
+        elif (data > node.data and node.right is not None):
+            return self._findNode(data, node.right)
 
 
