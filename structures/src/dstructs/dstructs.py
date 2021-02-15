@@ -184,7 +184,6 @@ class tree(object):
         returns:
             (treeNode) the tree node that contains the given data
         '''
-        print(data, node.data)
         if node.data == data:
             return node
         elif (data < node.data and node.left is not None):
