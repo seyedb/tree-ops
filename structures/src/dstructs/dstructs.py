@@ -188,4 +188,30 @@ class tree(object):
         elif (data > node.data and node.right is not None):
             return self._findNode(data, node.right)
 
+    def DFS(self, start, path):
+        '''
+        Depth-First Search (DFS)
+
+        args:
+            start        (any type): the key value of the node where the search starts
+            path (list of treeNode): the DFS path (empty path to be filled with nodes)
+        returns:
+            (list) the full DFS path
+        '''
+        s = self.find_node(start)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        children = []
+        if s.left is not None: children.append(s.left)
+        if s.right is not None: children.append(s.right)
+
+        for child in children:
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                self.DFS(child.data, path)
 
