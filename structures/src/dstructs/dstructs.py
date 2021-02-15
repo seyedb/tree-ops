@@ -32,6 +32,32 @@ class tree(object):
             self.right = right
             self.visited = visited
 
+        def _getStatus(self):
+            '''
+            A function to get the visit status of a tree node
+            
+            returns:
+                (node_status) visit status of the given node
+            '''
+            if self is not None:
+                return self.visited
+            else:
+                print('Hit null node!')
+    
+        def _setStatus(self, visited):
+            '''
+            A function to set the visit status of a tree node
+    
+            args:
+                visited (visit_status): the new visit status to be assigned to the node
+            returns:
+                (treeNode) the input tree node with its visit status updated
+            '''
+            if self is not None:
+                self.visited = visited
+            else:
+                print('Hit null node!')
+
     def __str__(self):
         '''
         A function to print a tree starting from its root
@@ -86,35 +112,6 @@ class tree(object):
             else:
                 node.right = self.treeNode(data)
 
-    def _getStatus(self, node):
-        '''
-        A function to get the visit status of a tree node
-        
-        args:
-            node (treeNode): a tree node
-        returns:
-            (node_status) visit status of the given node
-        '''
-        if node is not None:
-            return node.visited
-        else:
-            print('Hit null node!')
-
-    def _setStatus(self, node, visited):
-        '''
-        A function to set the visit status of a tree node
-
-        args:
-            node        (treeNode): a tree node
-            visited (visit_status): the new visit status to be assigned to the node
-        returns:
-            (treeNode) the input tree node with its visit status updated
-        '''
-        if node is not None:
-            node.visited = visited
-        else:
-            print('Hit null node!')
-
     def inorder_traversal(self, node):
         '''
         Inorder Traversal 
@@ -127,7 +124,7 @@ class tree(object):
         '''
         if node is not None:
             self.inorder_traversal(node.left)
-            self._setStatus(node, node_status.VISITED)
+            node._setStatus(node_status.VISITED)
             self.inorder_traversal(node.right)
 
     def preorder_traversal(self, node):
@@ -141,7 +138,7 @@ class tree(object):
                    all nodes have visit status VISITED at this point
         '''
         if node is not None:
-            self._setStatus(node, node_status.VISITED)
+            node._setStatus(node_status.VISITED)
             self.preorder_traversal(node.left)
             self.preorder_traversal(node.right)
 
@@ -158,7 +155,7 @@ class tree(object):
         if node is not None:
             self.postorder_traversal(node.left)
             self.postorder_traversal(node.right)
-            self._setStatus(node, node_status.VISITED)
+            node._setStatus(node_status.VISITED)
 
     def find_node(self, data):
         '''
