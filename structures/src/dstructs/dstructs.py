@@ -1,4 +1,5 @@
 from enum import Enum
+from collections import deque
 
 class node_status(Enum):
     '''
@@ -82,7 +83,7 @@ class tree(object):
         Adds a node to a tree.
 
         args:
-            data (any type): the value to be assigned to the new tree node
+            data (node val data type): the value to be assigned to the new tree node
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
@@ -96,8 +97,8 @@ class tree(object):
         A helper function that finds the right location for the new node according to BST rule.
 
         args:
-            data (any type): the value to be assigned to the new node
-            node (treeNode): the node at which the recursive approach to insert a new node starts
+            data (node val data type): the value to be assigned to the new node
+            node           (treeNode): the node at which the recursive approach to insert a new node starts
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
@@ -162,7 +163,7 @@ class tree(object):
         Finds a node in a tree
         
         args:
-            data (any type): the data to be found in the tree
+            data (node val data type): the data to be found in the tree
         returns:
             (treeNode) the tree node that contains the given data          
         '''
@@ -176,8 +177,8 @@ class tree(object):
         A helper function to find a given data in a tree
         
         args:
-            data (any type): the data to be found in the tree
-            node (treeNode): the node at which the recursive search begins
+            data (node val data type): the data to be found in the tree
+            node           (treeNode): the node at which the recursive search begins
         returns:
             (treeNode) the tree node that contains the given data
         '''
@@ -193,10 +194,10 @@ class tree(object):
         Depth-First Search (DFS)
 
         args:
-            start        (any type): the key value of the node where the search starts
-            path (list of treeNode): the DFS path (empty path to be filled with nodes)
+            start (node val data type): the key value of the node where the search starts
+            path    (list of treeNode): the DFS path (empty path to be filled with nodes)
         returns:
-            (list) the full DFS path
+            (list of treeNode) the full DFS path
         '''
         s = self.find_node(start)
         if s is None:
@@ -215,3 +216,35 @@ class tree(object):
                 path.append(child)
                 self.DFS(child.data, path)
 
+    def BFS(self, start):
+        '''
+        Breadth-First Search (BFS)
+
+        args:
+            start (node val data type): the key value of the node where the search starts
+        returns:
+            (list of treeNode) the full BFS path
+        '''
+        s = self.find_node(start)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            children = []
+            if k.left is not None: children.append(k.left)
+            if k.right is not None: children.append(k.right)
+            for child in children:
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path
