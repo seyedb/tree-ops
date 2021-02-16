@@ -248,3 +248,38 @@ class tree(object):
             path.append(k)
 
         return path
+
+    def is_balanced(self):
+        '''
+        checks whether or not a BST is balanced
+
+        returns:
+            (bool) True is the tree is balanced, False otherwise
+        '''
+        return self._isBalanced(self.root) > -1
+
+    def _isBalanced(self, node):
+        '''
+        helper function to check if a BST is balanced
+        
+        args:
+            node (treeNode): the tree node where the recursive procedure starts
+        returns:
+            (int) -1 if the tree (subtree) is not balanced, otherwise returns the height of the tree (subtree)
+        '''
+        if node is None:
+            return 0
+
+        lheight = self._isBalanced(node.left)
+        if lheight == -1:
+            return -1
+
+        rheight = self._isBalanced(node.right)
+        if rheight == -1:
+            return -1
+
+        if abs(lheight - rheight) > 1:
+            return -1
+
+        return max(lheight, rheight) + 1
+
