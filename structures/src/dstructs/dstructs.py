@@ -50,7 +50,7 @@ class tree(object):
             A function to set the visit status of a tree node
     
             args:
-                status (visit_status): the new visit status to be assigned to the node
+                status (node_status): the new visit status to be assigned to the node
             returns:
                 (treeNode) the input tree node with its visit status updated
             '''
