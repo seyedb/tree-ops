@@ -214,7 +214,7 @@ class tree(object):
         elif (data > node.data and node.right is not None):
             return self._findNode(data, node.right)
 
-    def DFS(self, start, path):
+    def DFS(self, start, path=None):
         '''
         Depth-First Search (DFS)
 
@@ -224,6 +224,9 @@ class tree(object):
         returns:
             (list of treeNode) the full DFS path
         '''
+        if path is None:
+            path = []
+
         s = self.find_node(start)
         if s is None:
             return
@@ -239,8 +242,10 @@ class tree(object):
         for child in children:
             if child._getStatus() == node_status.UNVISITED:
                 path.append(child)
-                self.DFS(child.data, path)
+                path = self.DFS(child.data, path)
 
+        return path
+        
     def BFS(self, start):
         '''
         Breadth-First Search (BFS)
