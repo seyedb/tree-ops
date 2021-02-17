@@ -251,7 +251,7 @@ class tree(object):
 
     def is_balanced(self):
         '''
-        checks whether or not a BST is balanced
+        Checks whether or not a BST is balanced
 
         returns:
             (bool) True is the tree is balanced, False otherwise
@@ -260,7 +260,7 @@ class tree(object):
 
     def _isBalanced(self, node):
         '''
-        helper function to check if a BST is balanced
+        A helper function to check if a BST is balanced
         
         args:
             node (treeNode): the tree node where the recursive procedure starts
