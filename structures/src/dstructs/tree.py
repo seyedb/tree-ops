@@ -113,59 +113,74 @@ class tree(object):
             else:
                 node.right = self.treeNode(data)
 
-    def inorder_traversal(self, node, path):
+    def inorder_traversal(self, node, path=None):
         '''
         Inorder Traversal 
 
         args:
             node (treeNode): the tree node at with the inorder traversal starts
-            path (list of treeNode): the traversal path (passed as an empty path)
+            path (list of treeNode): the traversal path 
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
             (list of treeNode) the full traversal path 
         '''
+        if path is None:
+            path = []
+
         if node is not None:
-            self.inorder_traversal(node.left)
+            path = self.inorder_traversal(node.left, path)
             node._setStatus(node_status.VISITED)
             path.append(node)
-            self.inorder_traversal(node.right)
+            path = self.inorder_traversal(node.right, path)
 
-    def preorder_traversal(self, node, path):
+        return path
+
+    def preorder_traversal(self, node, path=None):
         '''
         Preorder Traversal 
 
         args:
             node (treeNode): the tree node at with the preorder traversal starts
-            path (list of treeNode): the traversal path (passed as an empty path)
+            path (list of treeNode): the traversal path
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
             (list of treeNode) the full traversal path 
         '''
+        if path is None:
+            path = []
+
         if node is not None:
             node._setStatus(node_status.VISITED)
             path.append(node)
-            self.preorder_traversal(node.left)
-            self.preorder_traversal(node.right)
+            path = self.preorder_traversal(node.left, path)
+            path = self.preorder_traversal(node.right, path)
 
-    def postorder_traversal(self, node, path):
+        return path
+
+    def postorder_traversal(self, node, path=None):
         '''
         Postorder Traversal 
 
         args:
             node (treeNode): the tree node at with the postorder traversal starts
-            path (list of treeNode): the traversal path (passed as an empty path)
+            path (list of treeNode): the traversal path
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
             (list of treeNode) the full traversal path 
         '''
+        if path is None:
+            path = []
+
         if node is not None:
-            self.postorder_traversal(node.left)
-            self.postorder_traversal(node.right)
+            path = self.postorder_traversal(node.left, path)
+            path = self.postorder_traversal(node.right, path)
             node._setStatus(node_status.VISITED)
             path.append(node)
+
+        return path
 
     def find_node(self, data):
         '''
