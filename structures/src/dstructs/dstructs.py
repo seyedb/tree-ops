@@ -98,7 +98,7 @@ class tree(object):
 
         args:
             data (node val data type): the value to be assigned to the new node
-            node           (treeNode): the node at which the recursive approach to insert a new node starts
+            node (treeNode): the node at which the recursive approach to insert a new node starts
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
@@ -113,33 +113,39 @@ class tree(object):
             else:
                 node.right = self.treeNode(data)
 
-    def inorder_traversal(self, node):
+    def inorder_traversal(self, node, path):
         '''
         Inorder Traversal 
 
         args:
             node (treeNode): the tree node at with the inorder traversal starts
+            path (list of treeNode): the traversal path (passed as an empty path)
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
+            (list of treeNode) the full traversal path 
         '''
         if node is not None:
             self.inorder_traversal(node.left)
             node._setStatus(node_status.VISITED)
+            path.append(node)
             self.inorder_traversal(node.right)
 
-    def preorder_traversal(self, node):
+    def preorder_traversal(self, node, path):
         '''
         Preorder Traversal 
 
         args:
             node (treeNode): the tree node at with the preorder traversal starts
+            path (list of treeNode): the traversal path (passed as an empty path)
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
+            (list of treeNode) the full traversal path 
         '''
         if node is not None:
             node._setStatus(node_status.VISITED)
+            path.append(node)
             self.preorder_traversal(node.left)
             self.preorder_traversal(node.right)
 
@@ -149,14 +155,17 @@ class tree(object):
 
         args:
             node (treeNode): the tree node at with the postorder traversal starts
+            path (list of treeNode): the traversal path (passed as an empty path)
         returns:
             (tree) the input tree with all its nodes visited once while traversing 
                    all nodes have visit status VISITED at this point
+            (list of treeNode) the full traversal path 
         '''
         if node is not None:
             self.postorder_traversal(node.left)
             self.postorder_traversal(node.right)
             node._setStatus(node_status.VISITED)
+            path.append(node)
 
     def find_node(self, data):
         '''
@@ -178,7 +187,7 @@ class tree(object):
         
         args:
             data (node val data type): the data to be found in the tree
-            node           (treeNode): the node at which the recursive search begins
+            node (treeNode): the node at which the recursive search begins
         returns:
             (treeNode) the tree node that contains the given data
         '''
@@ -195,7 +204,7 @@ class tree(object):
 
         args:
             start (node val data type): the key value of the node where the search starts
-            path    (list of treeNode): the DFS path (empty path to be filled with nodes)
+            path (list of treeNode): the DFS path (empty path to be filled with nodes)
         returns:
             (list of treeNode) the full DFS path
         '''
