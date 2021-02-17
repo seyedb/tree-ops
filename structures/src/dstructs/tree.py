@@ -149,7 +149,7 @@ class tree(object):
             self.preorder_traversal(node.left)
             self.preorder_traversal(node.right)
 
-    def postorder_traversal(self, node):
+    def postorder_traversal(self, node, path):
         '''
         Postorder Traversal 
 
