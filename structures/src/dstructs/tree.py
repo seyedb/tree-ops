@@ -87,7 +87,7 @@ class tree(object):
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
-        if self.root == None:
+        if self.root is None:
             self.root = self.treeNode(data)
         else:
             self._addNode(self.root, data)
@@ -280,15 +280,12 @@ class tree(object):
             return 0
 
         lheight = self._isBalanced(node.left)
-        if lheight == -1:
-            return -1
+        if lheight == -1: return -1
 
         rheight = self._isBalanced(node.right)
-        if rheight == -1:
-            return -1
+        if rheight == -1: return -1
 
-        if abs(lheight - rheight) > 1:
-            return -1
+        if abs(lheight - rheight) > 1: return -1
 
         return max(lheight, rheight) + 1
 
