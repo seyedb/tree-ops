@@ -65,6 +65,7 @@ class tree(object):
         '''
         if self.root is not None:
             self._printTree(self.root)
+        print("\n")
 
     def _printTree(self, node):
         '''
@@ -75,7 +76,7 @@ class tree(object):
         '''
         if node is not None:
             self._printTree(node.left)
-            print(node.data)
+            print("{} ".format(node.data),end="")
             self._printTree(node.right)
 
     def add_node(self, data):
