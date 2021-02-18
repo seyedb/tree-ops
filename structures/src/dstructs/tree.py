@@ -310,3 +310,26 @@ class tree(object):
 
         return max(lheight, rheight) + 1
 
+
+def list_to_BST(dlist, rootdata):
+    '''
+    Constructs a BST from a given list of node data
+
+    args:
+        dlist (list): list of node data
+        rootdata (node val data type): data of the root node, may or may not be from dlist
+    returns:
+        (tree) a BST from the given data list
+    '''
+    t = tree()
+    t.add_node(rootdata)
+
+    try:
+        dlist.remove(rootdata)
+    except ValueError:
+        pass
+
+    for data in dlist:
+        t.add_node(data)
+
+    return t
