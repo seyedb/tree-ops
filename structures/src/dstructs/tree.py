@@ -79,6 +79,20 @@ class tree(object):
             print("{} ".format(node.data),end="")
             self._printTree(node.right)
 
+    def _resetStatus(self, node):
+        '''
+        A helper function to reset the visit status of each node below the give node to UNVISITED after 
+        a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively following an 
+        in-order fashion
+
+        args:
+            node (treeNode): the tree node at which the procedure starts
+        '''
+        if node is not None:
+            self._resetStatus(node.left)
+            node._setStatus(node_status.UNVISITED)
+            self._resetStatus(node.right)
+
     def add_node(self, data):
         '''
         Adds a node to a tree.
