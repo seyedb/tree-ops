@@ -95,7 +95,7 @@ class tree(object):
 
     def _addNode(self, node, data):
         '''
-        A helper function that finds the right location for the new node according to BST rule.
+        A helper function that finds the right location for the new node according to the BST-property.
 
         args:
             data (node val data type): the value to be assigned to the new node
@@ -113,6 +113,51 @@ class tree(object):
                 self._addNode(node.right, data)
             else:
                 node.right = self.treeNode(data)
+
+    def insert_node(self, data):
+        '''
+        Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
+        (see documentation of _insertNode for more details)
+
+        args:
+            data (node val data type): the value to be assigned to the new tree node
+        returns:
+            (tree) tree updated with a new node
+        '''
+        if self.root is None:
+            self.root = self.treeNode(data)
+        else:
+            self._insertNode(self.root, data)
+
+    def _insertNode(self, node, data):
+        '''
+        A helper function that inserts a node in a binary tree (not necessarily BST) in level order (breadth-first):
+            traversing down the tree from the given starting point, if a node N is found whose left node is empty, a new node with the 
+            given data is created as N.left, else if a node N is found whose right node is empty, the new node is created as the N.right. 
+
+        args:
+            data (node val data type): the value to be assigned to the new node
+            node (treeNode): the node at which the traversal to insert a new node starts
+        returns:
+            (tree) tree updated with a new node 
+        '''
+        Q = deque()
+        Q.append(node)
+
+        while Q:
+            node = Q.popleft()
+
+            if node.left is None:
+                node.left = self.treeNode(data)
+                break
+            else:
+                Q.append(node.left)
+
+            if node.right is None:
+                node.right = self.treeNode(data)
+                break
+            else:
+                Q.append(node.right)
 
     def inorder_traversal(self, node, path=None):
         '''
