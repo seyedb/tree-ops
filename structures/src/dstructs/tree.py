@@ -81,9 +81,9 @@ class tree(object):
 
     def _resetStatus(self, node):
         '''
-        A helper function to reset the visit status of each node below the give node to UNVISITED after 
-        a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively following an 
-        in-order fashion
+        A helper function to reset the visit status of each node below the give node to UNVISITED 
+        after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
+        following an in-order fashion
 
         args:
             node (treeNode): the tree node at which the procedure starts
@@ -145,9 +145,11 @@ class tree(object):
 
     def _insertNode(self, node, data):
         '''
-        A helper function that inserts a node in a binary tree (not necessarily BST) in level order (breadth-first):
-            traversing down the tree from the given starting point, if a node N is found whose left node is empty, a new node with the 
-            given data is created as N.left, else if a node N is found whose right node is empty, the new node is created as the N.right. 
+        A helper function that inserts a node in a binary tree (not necessarily BST) in level order 
+        (breadth-first):
+            traversing down the tree from the given starting point, if a node N is found whose left 
+            node is empty, a new node with the given data is created as N.left, else if a node N is 
+            found whose right node is empty, the new node is created as the N.right. 
 
         args:
             data (node val data type): the value to be assigned to the new node
@@ -354,7 +356,8 @@ class tree(object):
         args:
             node (treeNode): the tree node where the recursive procedure starts
         returns:
-            (int) -1 if the tree (subtree) is not balanced, otherwise returns the height of the tree (subtree)
+            (int) -1 if the tree (subtree) is not balanced, otherwise returns the height of the 
+                  tree (subtree)
         '''
         if node is None:
             return 0
@@ -371,7 +374,8 @@ class tree(object):
 
     def balance_by_recursion(self):
         '''
-        Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion in following steps:
+        Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion 
+        in following steps:
             - creates a sorted list of nodes from the input tree using an inorder traversal path
             - constructs a balanced tree recursively from a sorted list of nodes:
                 1- find the middle of the list and make it the root 
@@ -394,12 +398,15 @@ class tree(object):
 
     def _balanceByRecursion(self, nodes, start, end):
         '''
-        A helper function to convert a binary tree to a balanced binary tree by recursion. Performs the recursive step.
+        A helper function to convert a binary tree to a balanced binary tree by recursion. Performs
+        the recursive step.
 
         args:
             nodes (treeNode): the portion of the node list over which a recursion step is taken
-            start (int): the index of the left-most element of the list over which the currect step of recursion is performed
-            end (int): the index of the right-most element of the list over which the current step of recursion is performed
+            start (int): the index of the left-most element of the list over which the currect step 
+            of recursion is performed
+            end (int): the index of the right-most element of the list over which the current step 
+            of recursion is performed
         returns:
             (treeNode) the root node of the constructed balanced tree after recursion is completed
         '''
