@@ -369,6 +369,51 @@ class tree(object):
 
         return max(lheight, rheight) + 1
 
+    def balance_by_recursion(self):
+        '''
+        Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion in following steps:
+            - creates a sorted list of nodes from the input tree using an inorder traversal path
+            - constructs a balanced tree recursively from a sorted list of nodes:
+                1- find the middle of the list and make it the root 
+                2- get the middle left half of the list and make it the left node of the step 1
+                3- get the middle right half of the list and make it the right node of the step 1
+
+        returns:
+            (tree) a balanced binary tree contating the data from a given binary tree
+        '''
+        balancedt = tree()
+        path = self.inorder_traversal(self.root)
+        # reset the visit status (can be avoided if visit status is removed as a node attribute) 
+        for node in path:
+            node._setStatus(node_status.UNVISITED)
+
+        rnode = self._balanceByRecursion(path, 0, len(path) - 1)
+        balancedt.root = rnode
+
+        return balancedt
+
+    def _balanceByRecursion(self, nodes, start, end):
+        '''
+        A helper function to convert a binary tree to a balanced binary tree by recursion. Performs the recursive step.
+
+        args:
+            nodes (treeNode): the portion of the node list over which a recursion step is taken
+            start (int): the index of the left-most element of the list over which the currect step of recursion is performed
+            end (int): the index of the right-most element of the list over which the current step of recursion is performed
+        returns:
+            (treeNode) the root node of the constructed balanced tree after recursion is completed
+        '''
+        if start > end:
+            return None
+
+        mid = (start + end) // 2
+
+        node = nodes[mid]
+        node.left = self._balanceByRecursion(nodes, start, mid - 1)
+        node.right = self._balanceByRecursion(nodes, mid + 1, end)
+
+        return node
+
 
 def list_to_BST(dlist, rootdata):
     '''
