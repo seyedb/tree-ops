@@ -23,15 +23,17 @@ class tree(object):
         '''
         The main tree node class (defined as an inner class of the tree class)
         '''
-        def __init__(self, data, left=None, right=None, status=node_status.UNVISITED):
+        def __init__(self, data=None, left=None, right=None, status=node_status.UNVISITED,\
+                    parent = None):
             '''
             Initializes a tree node
-            A tree node has a value, a left child, a right child, and a visit status
+            A tree node has a value, a left child, a right child, a visit status, parent node
             '''
             self.data = data
             self.left = left
             self.right = right
             self.status = status
+            self.parent = parent
 
         def _getStatus(self):
             '''
@@ -105,7 +107,7 @@ class tree(object):
         if self.root is None:
             self.root = self.treeNode(data)
         else:
-            self._addNode(self.root, data)
+            self.root = self._addNode(self.root, data)
 
     def _addNode(self, node, data):
         '''
@@ -119,14 +121,22 @@ class tree(object):
         '''
         if data < node.data:
             if node.left is not None:
-                self._addNode(node.left, data)
+                lnode = self._addNode(node.left, data)
             else:
-                node.left = self.treeNode(data)
+                lnode = self.treeNode(data)
+
+            node.left = lnode
+            lnode.parent = node
         else:
             if node.right is not None:
-                self._addNode(node.right, data)
+                rnode = self._addNode(node.right, data)
             else:
-                node.right = self.treeNode(data)
+                rnode = self.treeNode(data)
+
+            node.right = rnode
+            rnode.parent = node
+        
+        return node
 
     def insert_node(self, data):
         '''
@@ -164,16 +174,22 @@ class tree(object):
             node = Q.popleft()
 
             if node.left is None:
-                node.left = self.treeNode(data)
+                lnode = self.treeNode(data)
+                node.left = lnode
+                lnode.parent = node
                 break
             else:
                 Q.append(node.left)
 
             if node.right is None:
-                node.right = self.treeNode(data)
+                rnode = self.treeNode(data)
+                node.right = rnode
+                rnode.parent = node
                 break
             else:
                 Q.append(node.right)
+
+        return node
 
     def inorder_traversal(self, node, path=None):
         '''
