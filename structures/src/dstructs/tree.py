@@ -26,13 +26,15 @@ class tree(object):
         def __init__(self, data=None, status=node_status.UNVISITED):
             '''
             Initializes a tree node
-            A tree node has a value, a left child, a right child, a visit status, parent node
+            A tree node has a value, a left child, a right child, a visit status, parent node, 
+            height of the tree rooted at the node
             '''
             self.data = data
             self.left = None
             self.right = None
             self.status = status
             self.parent = None
+            self.height = 1
 
         def _getStatus(self):
             '''
@@ -61,6 +63,18 @@ class tree(object):
         if self.root is not None:
             self._printTree(self.root)
         print("\n")
+
+    def _getHeight(self, node):
+        '''
+        A function to get the height of the tree rooted at a given node
+
+        returns:
+            (int) tree height
+        '''
+        if node is not None:
+            return node.height
+        else:
+            return 0
 
     def _printTree(self, node):
         '''
@@ -129,6 +143,10 @@ class tree(object):
             node.right = rnode
             rnode.parent = node
         
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.height = max(lheight, rheight) + 1
+
         return node
 
     def insert_node(self, data):
@@ -181,6 +199,10 @@ class tree(object):
                 break
             else:
                 Q.append(node.right)
+
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.height = max(lheight, rheight) + 1
 
         return node
 
