@@ -23,11 +23,12 @@ class tree(object):
         '''
         The main tree node class (defined as an inner class of the tree class)
         '''
-        def __init__(self, data=None, status=node_status.UNVISITED):
+        def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
             '''
             Initializes a tree node
             A tree node has a value, a left child, a right child, a visit status, parent node, 
-            height of the tree rooted at the node
+            height of the tree rooted at the node, and balance factor (difference between the
+            height of the left and the right subtrees)
             '''
             self.data = data
             self.left = None
@@ -35,6 +36,7 @@ class tree(object):
             self.status = status
             self.parent = None
             self.height = 1
+            self.balance_factor = balance_factor
 
         def _getStatus(self):
             '''
@@ -146,6 +148,7 @@ class tree(object):
         lheight = self._getHeight(node.left)
         rheight = self._getHeight(node.right)
         node.height = max(lheight, rheight) + 1
+        node.balance_factor = lheight - rheight
 
         return node
 
@@ -170,7 +173,7 @@ class tree(object):
         (breadth-first):
             traversing down the tree from the given starting point, if a node N is found whose left 
             node is empty, a new node with the given data is created as N.left, else if a node N is 
-            found whose right node is empty, the new node is created as the N.right. 
+            found whose right node is empty, the new node is created as N.right. 
 
         args:
             data (node val data type): the value to be assigned to the new node
@@ -203,6 +206,7 @@ class tree(object):
         lheight = self._getHeight(node.left)
         rheight = self._getHeight(node.right)
         node.height = max(lheight, rheight) + 1
+        node.balance_factor = lheight - rheight
 
         return node
 
@@ -406,7 +410,7 @@ class tree(object):
     def balance_by_recursion(self):
         '''
         Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion 
-        in following steps:
+        in the following steps:
             - creates a sorted list of nodes from the input tree using an inorder traversal path
             - constructs a balanced tree recursively from a sorted list of nodes:
                 1- find the middle of the list and make it the root 
