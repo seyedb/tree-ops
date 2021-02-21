@@ -23,17 +23,16 @@ class tree(object):
         '''
         The main tree node class (defined as an inner class of the tree class)
         '''
-        def __init__(self, data=None, left=None, right=None, status=node_status.UNVISITED,\
-                    parent = None):
+        def __init__(self, data=None, status=node_status.UNVISITED):
             '''
             Initializes a tree node
             A tree node has a value, a left child, a right child, a visit status, parent node
             '''
             self.data = data
-            self.left = left
-            self.right = right
+            self.left = None
+            self.right = None
             self.status = status
-            self.parent = parent
+            self.parent = None
 
         def _getStatus(self):
             '''
@@ -42,10 +41,7 @@ class tree(object):
             returns:
                 (node_status) visit status of the given node
             '''
-            if self is not None:
-                return self.status
-            else:
-                print('Hit null node!')
+            return self.status
     
         def _setStatus(self, status):
             '''
@@ -56,10 +52,7 @@ class tree(object):
             returns:
                 (treeNode) the input tree node with its visit status updated
             '''
-            if self is not None:
-                self.status = status
-            else:
-                print('Hit null node!')
+            self.status = status
 
     def __str__(self):
         '''
