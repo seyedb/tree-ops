@@ -456,6 +456,37 @@ class tree(object):
 
         return node
 
+    def _rotateRight(self, node):
+        '''
+        A helper function to perform right rotation of subtree rooted at node
+
+        args:
+            node (treeNode): the parent node of the subtree to rotate
+        returns:
+            (treeNode) root of the new tree
+        '''
+        pivot = node.left
+        node.left = pivot.right
+        pivot.right.parent = node
+        pivot.right = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        nlheight = self._getHeight(node.left)
+        nrheight = self._getHeight(node.right)
+        node.height = max(nlheight, nrheight) + 1
+        node.balance_factor = nlheight - nrheight
+
+        plheight = self._getHeight(pivot.left)
+        prheight = self._getHeight(pivot.right)
+        pivot.height = max(plheight, prheight) + 1
+        pivot.balance_factor = plheight - prheight
+
+        return pivot
 
 def list_to_BST(dlist, rootdata):
     '''
