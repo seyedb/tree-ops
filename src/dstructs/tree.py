@@ -35,7 +35,7 @@ class tree(object):
             self.right = None
             self.status = status
             self.parent = None
-            self.height = 1
+            self.height = 0
             self.balance_factor = balance_factor
 
         def _getStatus(self):
