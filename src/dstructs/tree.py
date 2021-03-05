@@ -85,9 +85,9 @@ class tree(object):
         returns:
             (treeNode) the imput tree node with updated height
         '''
-        nlheight = self._getHeight(node.left)
-        nrheight = self._getHeight(node.right)
-        node.height = max(nlheight, nrheight) + 1
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.height = max(lheight, rheight) + 1
 
     def _updateBalanceFactor(self, node):
         '''
@@ -96,9 +96,9 @@ class tree(object):
         returns:
             (treeNode) the imput tree node with updated balance factor
         '''
-        nlheight = self._getHeight(node.left)
-        nrheight = self._getHeight(node.right)
-        node.balance_factor = nlheight - nrheight
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.balance_factor = lheight - rheight
 
     def _printTree(self, node):
         '''
@@ -167,10 +167,8 @@ class tree(object):
             node.right = rnode
             rnode.parent = node
         
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.height = max(lheight, rheight) + 1
-        node.balance_factor = lheight - rheight
+        self._updateHeight(node)
+        self._updateBalanceFactor(node)
 
         return node
 
@@ -225,10 +223,8 @@ class tree(object):
             else:
                 Q.append(node.right)
 
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.height = max(lheight, rheight) + 1
-        node.balance_factor = lheight - rheight
+        self._updateHeight(node)
+        self._updateBalanceFactor(node)
 
         return node
 
