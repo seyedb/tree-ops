@@ -467,7 +467,8 @@ class tree(object):
         '''
         pivot = node.left
         node.left = pivot.right
-        pivot.right.parent = node
+        if pivot.right is not None:
+            pivot.right.parent = node
         pivot.right = node
 
         pivot.parent = node.parent
