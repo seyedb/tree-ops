@@ -474,6 +474,13 @@ class tree(object):
         pivot.parent = node.parent
         node.parent = pivot
 
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
         if self.root == node:
             self.root = pivot
 
