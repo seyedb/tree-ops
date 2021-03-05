@@ -78,6 +78,28 @@ class tree(object):
         else:
             return -1
 
+    def _updateHeight(self, node):
+        '''
+        A function to update the height of a given tree node
+
+        returns:
+            (treeNode) the imput tree node with updated height
+        '''
+        nlheight = self._getHeight(node.left)
+        nrheight = self._getHeight(node.right)
+        node.height = max(nlheight, nrheight) + 1
+
+    def _updateBalanceFactor(self, node):
+        '''
+        A function to update the balance factor of a given tree node
+
+        returns:
+            (treeNode) the imput tree node with updated balance factor
+        '''
+        nlheight = self._getHeight(node.left)
+        nrheight = self._getHeight(node.right)
+        node.balance_factor = nlheight - nrheight
+
     def _printTree(self, node):
         '''
         A helper function for printing a tree starting from a given node
@@ -484,15 +506,10 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        nlheight = self._getHeight(node.left)
-        nrheight = self._getHeight(node.right)
-        node.height = max(nlheight, nrheight) + 1
-        node.balance_factor = nlheight - nrheight
-
-        plheight = self._getHeight(pivot.left)
-        prheight = self._getHeight(pivot.right)
-        pivot.height = max(plheight, prheight) + 1
-        pivot.balance_factor = plheight - prheight
+        self._updateHeight(node)
+        self._updateBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._updateBalanceFactor(pivot)
 
         return pivot
 
@@ -524,15 +541,10 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        nlheight = self._getHeight(node.left)
-        nrheight = self._getHeight(node.right)
-        node.height = max(nlheight, nrheight) + 1
-        node.balance_factor = nlheight - nrheight
-
-        plheight = self._getHeight(pivot.left)
-        prheight = self._getHeight(pivot.right)
-        pivot.height = max(plheight, prheight) + 1
-        pivot.balance_factor = plheight - prheight
+        self._updateHeight(node)
+        self._updateBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._updateBalanceFactor(pivot)
 
         return pivot
 
