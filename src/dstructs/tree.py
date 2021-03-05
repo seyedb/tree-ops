@@ -76,7 +76,7 @@ class tree(object):
         if node is not None:
             return node.height
         else:
-            return 0
+            return -1
 
     def _printTree(self, node):
         '''
