@@ -496,6 +496,46 @@ class tree(object):
 
         return pivot
 
+    def _rotateLeft(self, node):
+        '''
+        A helper function to perform left rotation of subtree rooted at node
+
+        args:
+            node (treeNode): the parent node of the subtree to rotate
+        returns:
+            (treeNode) root of the new tree
+        '''
+        pivot = node.right
+        node.right = pivot.left
+        if pivot.left is not None:
+            pivot.left.parent = node
+        pivot.left = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        nlheight = self._getHeight(node.left)
+        nrheight = self._getHeight(node.right)
+        node.height = max(nlheight, nrheight) + 1
+        node.balance_factor = nlheight - nrheight
+
+        plheight = self._getHeight(pivot.left)
+        prheight = self._getHeight(pivot.right)
+        pivot.height = max(plheight, prheight) + 1
+        pivot.balance_factor = plheight - prheight
+
+        return pivot
+
 def list_to_BST(dlist, rootdata):
     '''
     Constructs a BST from a given list of node data
