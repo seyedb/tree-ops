@@ -637,18 +637,19 @@ class tree(object):
 
         return pivot
 
-def list_to_BST(dlist, rootdata):
+def list_to_BST(dlist, rootdata, balanced=False):
     '''
     Constructs a BST from a given list of node data
 
     args:
         dlist (list): list of node data
         rootdata (node val data type): data of the root node, may or may not be from dlist
+        balanced (boolean): if True rebalance the result will be a balanced tree
     returns:
         (tree) a BST from the given data list
     '''
     t = tree()
-    t.add_node(rootdata)
+    t.add_node(rootdata, balanced)
 
     try:
         dlist.remove(rootdata)
@@ -656,6 +657,6 @@ def list_to_BST(dlist, rootdata):
         pass
 
     for data in dlist:
-        t.add_node(data)
+        t.add_node(data, balanced)
 
     return t
