@@ -174,27 +174,29 @@ class tree(object):
             node._setStatus(node_status.UNVISITED)
             self._resetStatus(node.right)
 
-    def add_node(self, data):
+    def add_node(self, data, balanced=False):
         '''
         Adds a node to a tree.
 
         args:
             data (node val data type): the value to be assigned to the new tree node
+            balanced (boolean): if True rebalance the current root after adding the new node
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
         if self.root is None:
             self.root = self.treeNode(data)
         else:
-            self.root = self._addNode(self.root, data)
+            self.root = self._addNode(self.root, data, balanced)
 
-    def _addNode(self, node, data):
+    def _addNode(self, node, data, balanced=False):
         '''
         (helper function) Finds the right location for the new node according to the BST-property.
 
         args:
             data (node val data type): the value to be assigned to the new node
             node (treeNode): the node at which the recursive approach to insert a new node starts
+            balanced (boolean): if True rebalance the current root after adding the new node
         returns:
             (tree) tree updated with the new node inserted at one of its leaves
         '''
@@ -218,24 +220,28 @@ class tree(object):
         self._calcHeight(node)
         self._calcBalanceFactor(node)
 
-        return node
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
 
-    def insert_node(self, data):
+    def insert_node(self, data, balanced=False):
         '''
         Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
         (see documentation of _insertNode for more details)
 
         args:
             data (node val data type): the value to be assigned to the new tree node
+            balanced (boolean): if True rebalance the current root after adding the new node
         returns:
             (tree) tree updated with a new node
         '''
         if self.root is None:
             self.root = self.treeNode(data)
         else:
-            self._insertNode(self.root, data)
+            self._insertNode(self.root, data, balanced)
 
-    def _insertNode(self, node, data):
+    def _insertNode(self, node, data, balanced=False):
         '''
         (helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
         (breadth-first):
@@ -246,6 +252,7 @@ class tree(object):
         args:
             data (node val data type): the value to be assigned to the new node
             node (treeNode): the node at which the traversal to insert a new node starts
+            balanced (boolean): if True rebalance the current root after adding the new node
         returns:
             (tree) tree updated with a new node 
         '''
@@ -274,7 +281,10 @@ class tree(object):
         self._calcHeight(node)
         self._calcBalanceFactor(node)
 
-        return node
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
 
     def inorder_traversal(self, node, path=None):
         '''
