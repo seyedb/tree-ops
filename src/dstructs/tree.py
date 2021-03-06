@@ -202,7 +202,7 @@ class tree(object):
         '''
         if data < node.data:
             if node.left is not None:
-                lnode = self._addNode(node.left, data)
+                lnode = self._addNode(node.left, data, balanced)
             else:
                 lnode = self.treeNode(data)
 
@@ -210,7 +210,7 @@ class tree(object):
             lnode.parent = node
         else:
             if node.right is not None:
-                rnode = self._addNode(node.right, data)
+                rnode = self._addNode(node.right, data, balanced)
             else:
                 rnode = self.treeNode(data)
 
