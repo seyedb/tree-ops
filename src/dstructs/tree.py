@@ -66,40 +66,6 @@ class tree(object):
             self._printTree(self.root)
         print("\n")
 
-    def _getHeight(self, node):
-        '''
-        A function to get the height of the tree rooted at a given node
-
-        returns:
-            (int) tree height
-        '''
-        if node is not None:
-            return node.height
-        else:
-            return -1
-
-    def _updateHeight(self, node):
-        '''
-        A function to update the height of a given tree node
-
-        returns:
-            (treeNode) the imput tree node with updated height
-        '''
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.height = max(lheight, rheight) + 1
-
-    def _updateBalanceFactor(self, node):
-        '''
-        A function to update the balance factor of a given tree node
-
-        returns:
-            (treeNode) the imput tree node with updated balance factor
-        '''
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.balance_factor = lheight - rheight
-
     def _printTree(self, node):
         '''
         A helper function for printing a tree starting from a given node all the way down
@@ -111,6 +77,46 @@ class tree(object):
             self._printTree(node.left)
             print("{} ".format(node.data),end="")
             self._printTree(node.right)
+
+    def _getHeight(self, node):
+        '''
+        A helper function to get the height of the tree rooted at a given node
+
+        returns:
+            (int) tree height
+        '''
+        if node is not None:
+            return node.height
+        else:
+            return -1
+
+    def _updateHeight(self, node):
+        '''
+        A helper function to update the height of a given tree node
+
+        returns:
+            (treeNode) the imput tree node with updated height
+        '''
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.height = max(lheight, rheight) + 1
+
+    def _updateBalanceFactor(self, node):
+        '''
+        A helper function to update the balance factor of a given tree node
+
+        returns:
+            (treeNode) the imput tree node with updated balance factor
+        '''
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.balance_factor = lheight - rheight
+
+    def reset_status(self):
+        '''
+        A function to reset the visit status of all the nodes in a tree to UNVISITED
+        '''
+        self._resetStatus(self.root)
 
     def _resetStatus(self, node):
         '''
