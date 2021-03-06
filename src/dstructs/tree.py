@@ -494,7 +494,7 @@ class tree(object):
                 3- get the middle right half of the list and make it the right node of the step 1
 
         returns:
-            (tree) a balanced binary tree contating the data from a given binary tree
+            (tree) a balanced binary tree containing the data from a given binary tree
         '''
         balancedt = tree()
         path = self.inorder_traversal(self.root)
