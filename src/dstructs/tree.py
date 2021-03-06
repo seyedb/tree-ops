@@ -102,7 +102,7 @@ class tree(object):
 
     def _printTree(self, node):
         '''
-        A helper function for printing a tree starting from a given node
+        A helper function for printing a tree starting from a given node all the way down
 
         args:
             node (treeNode): the tree node at which the printing starts 
@@ -114,7 +114,7 @@ class tree(object):
 
     def _resetStatus(self, node):
         '''
-        A helper function to reset the visit status of each node below the give node to UNVISITED 
+        A helper function to reset the visit status of each node below the given node to UNVISITED 
         after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
         following an in-order fashion
 
