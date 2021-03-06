@@ -40,7 +40,7 @@ class tree(object):
 
         def _getStatus(self):
             '''
-            A function to get the visit status of a tree node
+            Gets the visit status of a tree node
             
             returns:
                 (node_status) visit status of the given node
@@ -49,7 +49,7 @@ class tree(object):
     
         def _setStatus(self, status):
             '''
-            A function to set the visit status of a tree node
+            Sets the visit status of a tree node
     
             args:
                 status (node_status): the new visit status to be assigned to the node
@@ -60,7 +60,7 @@ class tree(object):
 
     def __str__(self):
         '''
-        A function to print a tree starting from its root
+        Prints a tree starting from its root
         '''
         if self.root is not None:
             self._printTree(self.root)
@@ -68,7 +68,7 @@ class tree(object):
 
     def _printTree(self, node):
         '''
-        A helper function for printing a tree starting from a given node all the way down
+        (helper function) Prints a tree starting from a given node all the way down
 
         args:
             node (treeNode): the tree node at which the printing starts 
@@ -80,19 +80,19 @@ class tree(object):
 
     def update_height(self):
         '''
-        A function to update the height of every node of a given tree
+        Updates the height of every node of a given tree
         '''
         self._updateHeight(self.root)
 
     def update_balance_factor(self):
         '''
-        A function to update the balance factor of every node of a given tree
+        Updates the balance factor of every node of a given tree
         '''
         self._updateBalanceFactor(self.root)
 
     def _getHeight(self, node):
         '''
-        A helper function that returns the height attribute of a given node
+        (helper function) Returns the height attribute of a given node
 
         returns:
             (int) tree height
@@ -104,7 +104,7 @@ class tree(object):
 
     def _calcHeight(self, node):
         '''
-        A helper function to calculate the height of the tree rooted at a given node
+        (helper function) Calculates the height of the tree rooted at a given node
 
         returns:
             (treeNode) the imput tree node with updated height
@@ -115,7 +115,7 @@ class tree(object):
 
     def _calcBalanceFactor(self, node):
         '''
-        A helper function to calculate the balance factor of the tree rooted a given tree node
+        (helper function) Calculates the balance factor of the tree rooted a given tree node
 
         returns:
             (treeNode) the imput tree node with updated balance factor
@@ -126,7 +126,7 @@ class tree(object):
 
     def _updateHeight(self, node):
         '''
-        A helper function to recursively update the height of each node starting from the given node 
+        (helper function) Recursively updates the height of each node starting from the given node 
         all the way down
         
         args:
@@ -141,7 +141,7 @@ class tree(object):
 
     def _updateBalanceFactor(self, node):
         '''
-        A helper function to recursively update the balance factor of each node starting from the given node 
+        (helper function) Recursively updates the balance factor of each node starting from the given node 
         all the way down
         
         args:
@@ -156,13 +156,13 @@ class tree(object):
 
     def reset_status(self):
         '''
-        A function to reset the visit status of all the nodes in a tree to UNVISITED
+        Resets the visit status of all the nodes in a tree to UNVISITED
         '''
         self._resetStatus(self.root)
 
     def _resetStatus(self, node):
         '''
-        A helper function to reset the visit status of each node below the given node to UNVISITED 
+        (helper function) Resets the visit status of each node below the given node to UNVISITED 
         after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
         following an in-order fashion
 
@@ -190,7 +190,7 @@ class tree(object):
 
     def _addNode(self, node, data):
         '''
-        A helper function that finds the right location for the new node according to the BST-property.
+        (helper function) Finds the right location for the new node according to the BST-property.
 
         args:
             data (node val data type): the value to be assigned to the new node
@@ -237,7 +237,7 @@ class tree(object):
 
     def _insertNode(self, node, data):
         '''
-        A helper function that inserts a node in a binary tree (not necessarily BST) in level order 
+        (helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
         (breadth-first):
             traversing down the tree from the given starting point, if a node N is found whose left 
             node is empty, a new node with the given data is created as N.left, else if a node N is 
@@ -361,7 +361,7 @@ class tree(object):
 
     def _findNode(self, data, node):
         '''
-        A helper function to find a given data in a tree
+        (helper function) Finds a given data in a tree
         
         args:
             data (node val data type): the data to be found in the tree
@@ -443,7 +443,7 @@ class tree(object):
 
     def is_balanced(self):
         '''
-        Checks whether or not a BST is balanced
+        Checks whether or not a tree (BST or not) is balanced
 
         returns:
             (bool) True is the tree is balanced, False otherwise
@@ -452,7 +452,7 @@ class tree(object):
 
     def _isBalanced(self, node):
         '''
-        A helper function to check if a BST is balanced
+        (helper function) Checks if a BST is balanced
         
         args:
             node (treeNode): the tree node where the recursive procedure starts
@@ -499,7 +499,7 @@ class tree(object):
 
     def _balanceByRecursion(self, nodes, start, end):
         '''
-        A helper function to convert a binary tree to a balanced binary tree by recursion. Performs
+        (helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
         the recursive step.
 
         args:
@@ -522,9 +522,40 @@ class tree(object):
 
         return node
 
+    def _rebalanceSubtree(self, node):
+        '''
+        (helper function) Rebalances a subtree rooted at a given node using rotation operations
+
+        args:
+            node (treeNode): root of the subtree to be rebalanced
+        returns:
+            (treeNode) the root of the rebalanced subtree
+        '''
+        # left imbalance
+        if node.balance_factor > 1:
+            # left-right imbalance
+            if node.left.balance_factor < 0:
+                node.left = self._rotateLeft(node.left)
+                return self._rotateRight(node)
+            # left-left imbalance
+            else:
+                return self._rotateRight(node)
+        # right imbalance
+        elif node.balance_factor < -1:
+            # right-left imbalance
+            if node.right.balance_factor > 0:
+                node.right = self._rotateRight(node.right)
+                return self._rotateLeft(node)
+            # right-right imbalance
+            else:
+                return self._rotateLeft(node)
+        # balance_factor is in {-1, 0, 1}, the node is already balanced
+        else:
+            return node
+
     def _rotateRight(self, node):
         '''
-        A helper function to perform right rotation of subtree rooted at node
+        (helper function) Performs right rotation of subtree rooted at node
 
         args:
             node (treeNode): the parent node of the subtree to rotate
@@ -561,7 +592,7 @@ class tree(object):
 
     def _rotateLeft(self, node):
         '''
-        A helper function to perform left rotation of subtree rooted at node
+        (helper function) Performs left rotation of subtree rooted at node
 
         args:
             node (treeNode): the parent node of the subtree to rotate
