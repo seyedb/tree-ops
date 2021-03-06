@@ -90,9 +90,9 @@ class tree(object):
         else:
             return -1
 
-    def _updateHeight(self, node):
+    def _calcHeight(self, node):
         '''
-        A helper function to update the height of a given tree node
+        A helper function to calculate the height of a given tree node
 
         returns:
             (treeNode) the imput tree node with updated height
@@ -101,9 +101,9 @@ class tree(object):
         rheight = self._getHeight(node.right)
         node.height = max(lheight, rheight) + 1
 
-    def _updateBalanceFactor(self, node):
+    def _calcBalanceFactor(self, node):
         '''
-        A helper function to update the balance factor of a given tree node
+        A helper function to calculate the balance factor of a given tree node
 
         returns:
             (treeNode) the imput tree node with updated balance factor
@@ -173,8 +173,8 @@ class tree(object):
             node.right = rnode
             rnode.parent = node
         
-        self._updateHeight(node)
-        self._updateBalanceFactor(node)
+        self._calcHeight(node)
+        self._calcBalanceFactor(node)
 
         return node
 
@@ -229,8 +229,8 @@ class tree(object):
             else:
                 Q.append(node.right)
 
-        self._updateHeight(node)
-        self._updateBalanceFactor(node)
+        self._calcHeight(node)
+        self._calcBalanceFactor(node)
 
         return node
 
@@ -510,10 +510,10 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        self._updateHeight(node)
-        self._updateBalanceFactor(node)
-        self._updateHeight(pivot)
-        self._updateBalanceFactor(pivot)
+        self._calcHeight(node)
+        self._calcBalanceFactor(node)
+        self._calcHeight(pivot)
+        self._calcBalanceFactor(pivot)
 
         return pivot
 
@@ -547,10 +547,10 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        self._updateHeight(node)
-        self._updateBalanceFactor(node)
-        self._updateHeight(pivot)
-        self._updateBalanceFactor(pivot)
+        self._calcHeight(node)
+        self._calcBalanceFactor(node)
+        self._calcHeight(pivot)
+        self._calcBalanceFactor(pivot)
 
         return pivot
 
