@@ -483,6 +483,8 @@ class tree(object):
         returns:
             (treeNode) root of the new tree
         '''
+        assert(node.left is not None)
+
         pivot = node.left
         node.left = pivot.right
         if pivot.right is not None:
@@ -518,6 +520,8 @@ class tree(object):
         returns:
             (treeNode) root of the new tree
         '''
+        assert(node.right is not None)
+
         pivot = node.right
         node.right = pivot.left
         if pivot.left is not None:
