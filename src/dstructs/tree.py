@@ -508,6 +508,25 @@ class tree(object):
 
         return node
 
+    def _convertToAVL(self, node, res):
+        '''
+        (helper function) Converts a tree rooted at node into an AVL tree
+            - perform an inorder traversal of the tree
+            - insert the visited node into another (AVL) tree preserving balance 
+
+        args:
+            node (treeNode): the root node of the (sub)tree to be traversed/converted
+            res (tree): the resulted AVL tree (can be non-empty but must be balanced) 
+        returns:
+            (tree) res (a balanced tree) with nodes imported from the input tree
+        '''
+        if node is not None:
+            self._convertToAVL(node.left, res)
+            res.add_node(node.data, balanced=True)
+            self._convertToAVL(node.right, res)
+
+        return res
+
     def _rebalanceSubtree(self, node):
         '''
         (helper function) Rebalances a subtree rooted at a given node using rotation operations
@@ -650,7 +669,7 @@ def balance_by_recursion(intree):
     args:
         intree (tree) input tree
     returns:
-        (tree) a balanced binary tree containing the data from a given binary tree
+        (tree) a balanced binary tree containing the data/nodes from the given binary tree
     '''
     balancedt = tree()
     path = intree.inorder_traversal(intree.root)
@@ -662,4 +681,19 @@ def balance_by_recursion(intree):
     balancedt.root = rnode
 
     return balancedt
+
+def convert_to_AVL(intree):
+    '''
+    Converts a given tree (may or may not be BST) to a balanced (AVL) tree
+    
+    args: 
+        intree (tree) input tree
+    returns:
+        (tree) a balanced (AVL) tree containing the data/nodes from the given tree
+    '''
+    avlTree = tree()
+    intree._convertToAVL(intree.root, avlTree)
+
+    return avlTree
+
 
