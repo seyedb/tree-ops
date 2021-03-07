@@ -456,7 +456,7 @@ class tree(object):
         Checks whether or not a tree (BST or not) is balanced
 
         returns:
-            (bool) True is the tree is balanced, False otherwise
+            (bool) True when the tree is balanced, False otherwise
         '''
         return self._isBalanced(self.root) > -1
 
@@ -500,7 +500,7 @@ class tree(object):
         if start > end:
             return None
 
-        mid = (start + end) // 2
+        mid = start + (end - start)//2
 
         node = nodes[mid]
         node.left = self._balanceByRecursion(nodes, start, mid - 1)
