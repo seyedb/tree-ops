@@ -656,7 +656,7 @@ def list_to_BST(dlist, rootdata, balanced=False):
 
     return t
 
-def balance_by_recursion(intree):
+def balance_by_recursion(inTree):
     '''
     Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion 
     in the following steps:
@@ -667,32 +667,32 @@ def balance_by_recursion(intree):
             3- get the middle right half of the list and make it the right node of the step 1
 
     args:
-        intree (tree) input tree
+        inTree (tree) input tree
     returns:
         (tree) a balanced binary tree containing the data/nodes from the given binary tree
     '''
     balancedt = tree()
-    path = intree.inorder_traversal(intree.root)
+    path = inTree.inorder_traversal(inTree.root)
     # reset the visit status (can be avoided if visit status is removed as a node attribute) 
     for node in path:
         node._setStatus(node_status.UNVISITED)
 
-    rnode = intree._balanceByRecursion(path, 0, len(path) - 1)
+    rnode = inTree._balanceByRecursion(path, 0, len(path) - 1)
     balancedt.root = rnode
 
     return balancedt
 
-def convert_to_AVL(intree):
+def convert_to_AVL(inTree):
     '''
     Converts a given tree (may or may not be BST) to a balanced (AVL) tree
     
     args: 
-        intree (tree) input tree
+        inTree (tree) input tree
     returns:
         (tree) a balanced (AVL) tree containing the data/nodes from the given tree
     '''
     avlTree = tree()
-    intree._convertToAVL(intree.root, avlTree)
+    inTree._convertToAVL(inTree.root, avlTree)
 
     return avlTree
 
