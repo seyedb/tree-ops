@@ -483,30 +483,6 @@ class tree(object):
 
         return max(lheight, rheight) + 1
 
-    def balance_by_recursion(self):
-        '''
-        Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion 
-        in the following steps:
-            - creates a sorted list of nodes from the input tree using an inorder traversal path
-            - constructs a balanced tree recursively from a sorted list of nodes:
-                1- find the middle of the list and make it the root 
-                2- get the middle left half of the list and make it the left node of the step 1
-                3- get the middle right half of the list and make it the right node of the step 1
-
-        returns:
-            (tree) a balanced binary tree containing the data from a given binary tree
-        '''
-        balancedt = tree()
-        path = self.inorder_traversal(self.root)
-        # reset the visit status (can be avoided if visit status is removed as a node attribute) 
-        for node in path:
-            node._setStatus(node_status.UNVISITED)
-
-        rnode = self._balanceByRecursion(path, 0, len(path) - 1)
-        balancedt.root = rnode
-
-        return balancedt
-
     def _balanceByRecursion(self, nodes, start, end):
         '''
         (helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
@@ -660,3 +636,30 @@ def list_to_BST(dlist, rootdata, balanced=False):
         t.add_node(data, balanced)
 
     return t
+
+def balance_by_recursion(intree):
+    '''
+    Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion 
+    in the following steps:
+        - creates a sorted list of nodes from the input tree using an inorder traversal path
+        - constructs a balanced tree recursively from a sorted list of nodes:
+            1- find the middle of the list and make it the root 
+            2- get the middle left half of the list and make it the left node of the step 1
+            3- get the middle right half of the list and make it the right node of the step 1
+
+    args:
+        intree (tree) input tree
+    returns:
+        (tree) a balanced binary tree containing the data from a given binary tree
+    '''
+    balancedt = tree()
+    path = intree.inorder_traversal(intree.root)
+    # reset the visit status (can be avoided if visit status is removed as a node attribute) 
+    for node in path:
+        node._setStatus(node_status.UNVISITED)
+
+    rnode = intree._balanceByRecursion(path, 0, len(path) - 1)
+    balancedt.root = rnode
+
+    return balancedt
+
