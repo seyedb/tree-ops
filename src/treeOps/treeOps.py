@@ -1,12 +1,14 @@
 #
 import tree
 
-def list_to_tree(dlist, rootVal, balanced=False):
+def list_to_tree(dlist, rootVal=None, balanced=False):
     '''
     Constructs a binary tree (BST or AVL) from a given list of node data
 
-    NOTE: if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
-    tree where rootVal is not nccessarily the root. 
+    NOTE: 
+        - if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
+        tree where rootVal is not nccessarily the root. 
+        - if rootVal=None (default) the first element of dlist will be assgined to rootVal
 
     args:
         dlist (list): list of node data
@@ -16,6 +18,14 @@ def list_to_tree(dlist, rootVal, balanced=False):
         (tree) a BST from the given data list
     '''
     t = tree.tree()
+
+    if rootVal is None:
+        try:
+            rootVal = dlist[0]
+        except IndexError:
+            print("Error! dlist, the list of node data, is empty")
+            return t
+
     t.add_node(rootVal, balanced)
 
     try:
