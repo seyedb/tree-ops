@@ -1,22 +1,25 @@
 #
 import tree
 
-def list_to_BST(dlist, rootdata, balanced=False):
+def list_to_tree(dlist, rootVal, balanced=False):
     '''
-    Constructs a BST from a given list of node data
+    Constructs a binary tree (BST or AVL) from a given list of node data
+
+    NOTE: if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
+    tree where rootVal is not nccessarily the root. 
 
     args:
         dlist (list): list of node data
-        rootdata (node val data type): data of the root node, may or may not be from dlist
-        balanced (boolean): if True rebalance the result will be a balanced tree
+        rootVal (node val data type): value of the root node, may or may not be from dlist
+        balanced (boolean): if True the result will be a balanced tree
     returns:
         (tree) a BST from the given data list
     '''
     t = tree.tree()
-    t.add_node(rootdata, balanced)
+    t.add_node(rootVal, balanced)
 
     try:
-        dlist.remove(rootdata)
+        dlist.remove(rootVal)
     except ValueError:
         pass
 
