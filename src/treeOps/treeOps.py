@@ -23,8 +23,8 @@ def list_to_tree(dlist, rootVal=None, balanced=False):
         try:
             rootVal = dlist[0]
         except IndexError:
-            print("Error! dlist, the list of node data, is empty")
-            return t
+            print("Error! dlist, the list of node data, is empty.")
+            return None
 
     t.add_node(rootVal, balanced)
 
