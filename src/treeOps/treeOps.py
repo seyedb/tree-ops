@@ -1,5 +1,7 @@
 #
 import tree
+import re
+import string
 
 def list_to_tree(dlist, rootVal=None, balanced=False):
     '''
@@ -77,4 +79,44 @@ def convert_to_AVL(inTree):
     inTree._convertToAVL(inTree.root, avlTree)
 
     return avlTree
+
+def text_to_tree(path, regex="", balanced=False):
+    '''
+    Splits a text into paragraphs, splits each paragraph into words and stores those words in a tree
+
+    NOTES: 
+    - Uses regular expressions and split function to extract words. Like any machine learning problem
+    dealing with text data, the challenge is how clean the words are desired to be. Here the choice of 
+    the regex can affect the words that are extracted, a more sophisticated option would be using 
+    libraries like NLTK. 
+    Some regex examples:
+        regex="["+string.punctuation+"]" would remove punctuations but also contractions like "don't" will
+        become "dont" and numbers like "2.3" will become "23"
+        regex="(?<!\d )["+string.punctuation+"](?!\d)", acts as above but numbers will remain unchanged
+    - The size of the returned list is equal to the number of non-empty paragraphs in the text
+
+    args:
+        path (str): path to the input file
+        regex (str): regular expression used while splitting paragraph into words
+        balanced (boolean): if True the constructed trees will be balanced
+    returns:
+        (list of tree) a list of trees where each tree stores words found in any (non-empty) paragraph 
+    '''
+    with open(path, "r") as fid:
+        txtdata = fid.read()
+        paragraphs = txtdata.split("\n\n")
+
+    parlist = list(filter(None, paragraphs))
+
+    treelist = []
+    for paragraph in parlist:
+        par = paragraph.replace("\n", " ").replace("\r", "")
+        wordlist = re.sub(regex,"",par).split()
+        print(wordlist)
+        if len(wordlist) > 0:
+            # use default rootVal
+            t = list_to_tree(wordlist, balanced=balanced)
+            treelist.append(t)
+
+    return treelist
 
