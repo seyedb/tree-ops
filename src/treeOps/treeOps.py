@@ -112,7 +112,6 @@ def text_to_tree(path, regex="", balanced=False):
     for paragraph in parlist:
         par = paragraph.replace("\n", " ").replace("\r", "")
         wordlist = re.sub(regex,"",par).split()
-        print(wordlist)
         if len(wordlist) > 0:
             # use default rootVal
             t = list_to_tree(wordlist, balanced=balanced)

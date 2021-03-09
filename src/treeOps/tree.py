@@ -82,15 +82,14 @@ class tree(object):
         returns:
             (boolean) True if the (sub)tree rooted at node contains the data, False otherwise
         '''
-        if node is None:
-            return False
-
         if node.data == data:
             return True
         elif (data < node.data and node.left is not None):
-            return self._contains(node.left, data)
+            return self._containsData(data, node.left)
         elif (data > node.data and node.right is not None):
-            return self._contains(node.right, data)
+            return self._containsData(data, node.right)
+            
+        return False
 
     def __str__(self):
         '''
