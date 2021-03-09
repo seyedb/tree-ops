@@ -119,3 +119,43 @@ def text_to_tree(path, regex="", balanced=False):
 
     return treelist
 
+def find_word(wrd, indIntv, path, regex="", balanced=False):
+    '''
+    Searches for a word in a given text file: Splits a text into paragraphs, splits each paragraph into 
+    words and stores those words in a tree, then searches for the word in every tree
+
+    NOTE:
+    - See comment of the routine text_to_tree 
+    - Paragraphs are indexed in a 0-based fashion
+
+    args:
+        wrd (str): the word to be searched for
+        indIntv (int list): interval of paragraph indices, search will be limited to the paragraphs with
+                indices within the interval
+        path (str): path to the input file
+        regex (str): regular expression used while splitting paragraph into words
+        balanced (boolean): if True the constructed trees will be balanced
+    returns:
+        (list of int) index of paragraphs that contain the target word 
+    '''
+    res = []
+
+    treelist = text_to_tree(path, regex=regex, balanced=balanced)
+    print("The file has {} (non-empty) paragraphs (0-index based).".format(len(treelist)-1))
+
+    indIntv.sort()
+    s1, e1 = indIntv
+    s2, e2 = [0, len(treelist)-1]
+    if s2 > e1 or s1 > e2:
+        print("Invalid interval!")
+        return res
+    else:
+        start = max(s1, s2)
+        end = min(e1, e2)
+        print("Searching for '{}' in paragraphs indexed within: [{}, {}]".format(wrd, start, end))
+
+    for pn in list(range(start, end+1)):
+        if treelist[pn].__contains__(wrd):
+            res.append(pn)
+
+    return res
