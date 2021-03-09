@@ -58,6 +58,40 @@ class tree(object):
             '''
             self.status = status
 
+    def __contains__(self, data):
+        '''
+        Checks if a tree contains a given data
+
+        args:
+            data (node val data type): the data to be found in the tree
+        returns:
+            (boolean) True if the tree contains the data, False otherwise
+        '''
+        if self.root is not None:
+            return self._containsData(data, self.root)
+        else:
+            return False
+
+    def _containsData(self, data, node):
+        '''
+        (helper function) Checks if a (sub)tree rooted at a given node contains a given data
+
+        args:
+            data (node val data type): the data to be found in the tree
+            node (treeNode): the (root) node at which the recursive search begins
+        returns:
+            (boolean) True if the (sub)tree rooted at node contains the data, False otherwise
+        '''
+        if node is None:
+            return False
+
+        if node.data == data:
+            return True
+        elif (data < node.data and node.left is not None):
+            return self._contains(node.left, data)
+        elif (data > node.data and node.right is not None):
+            return self._contains(node.right, data)
+
     def __str__(self):
         '''
         Prints a tree starting from its root
