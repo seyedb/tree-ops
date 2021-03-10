@@ -10,11 +10,11 @@ class node_status(Enum):
     VISITING = 2
 
 class graph(object):
-    def __init__(self, vertices={}):
-        self.vertices = vertices
+    def __init__(self):
+        self.vertices = {}
 
     class graphNode(object):
-        def __init__(self, data=None, children={}, status=node_status.UNVISITED):
+        def __init__(self, data, status=node_status.UNVISITED):
             self.data = data
-            self.children = children
+            self.children = {}
             self.status = status
