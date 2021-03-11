@@ -95,21 +95,27 @@ class tree(object):
         '''
         Prints a tree starting from its root
         '''
+        res = "\n"
         if self.root is not None:
-            self._printTree(self.root)
-        print("\n")
+            return self._printTree(self.root) + res
+        return res
 
     def _printTree(self, node):
         '''
-        (helper function) Prints a tree starting from a given node all the way down
+        (helper function) Prints a tree rooted at a given node all the way down.
+        NOTE: The output must be in ascending order in case of BST
 
         args:
             node (treeNode): the tree node at which the printing starts 
+        returns:
+            (str) a space-delimited string representing the data stored in the tree
         '''
+        res = ""
         if node is not None:
-            self._printTree(node.left)
-            print("{} ".format(node.data),end="")
-            self._printTree(node.right)
+            res += self._printTree(node.left)
+            res += "{} ".format(node.data)
+            res += self._printTree(node.right)
+        return res
 
     def update_height(self):
         '''
