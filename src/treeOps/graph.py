@@ -26,6 +26,13 @@ class graph(object):
             self.children = {}
             self.status = status
 
+        def __str__(self):
+            '''
+            Prints the data assigned to this node, and list of its children with the weight of the edges connecting them 
+            '''
+            res = "'{}': {}".format(self.data, [[node.data, self._getWeight(node)] for node in self._getChildren()])
+            return res
+
         def _getStatus(self):
             '''
             Returns the current visit status of a node.
@@ -83,12 +90,27 @@ class graph(object):
             '''
             return node in self.children
 
-        def __str__(self):
-            '''
-            Prints the data assigned to this node, and list of its children with the weight of the edges connecting them 
-            '''
-            res = "'{}': {}".format(self.data, [[node.data, self._getWeight(node)] for node in self._getChildren()])
-            return res
+    def __str__(self):
+        '''
+        Prints the vertices and edges of this graph
+        ''' 
+        res = ""
+        for vertex in self._getVerticesDict():
+            res += vertex.__str__() + "\n"
+
+        return res
+
+    def __contains__(self, VxData):
+        '''
+        Checks whether or not the graph contains a given data
+
+        args:
+            VxData (node val data type) the data to be searched for
+        returns:
+            (boolean) True if VxData is found, otherwise False
+        '''
+        data = [k.data for k in self._getVerticesDict().keys()]
+        return VxData in data
 
     def _getVerticesDict(self):
         '''
@@ -98,6 +120,23 @@ class graph(object):
             (dict) the dictionary of vertices of the graph
         '''
         return self.vertices
+
+    def _getVertex(self, VxData):
+        '''
+        (helper function) Returns a graph node that holds the given data 
+
+        args:
+            VxData (node val data type) the data to be searched for
+        returns:
+            (graphNode) the graph node from this graph that has data equal to the given data
+        '''
+        if not self.__contains__(VxData):
+            print("Vertex {} doesn't exist.".format(fromVxData))
+            return None
+
+        for vertex in self._getVerticesDict():
+            if vertex.data == VxData:
+                return vertex
 
     def add_vertex(self, VxData):
         '''
