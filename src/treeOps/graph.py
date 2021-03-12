@@ -179,6 +179,6 @@ class graph(object):
         a._addAdjNode(b, weight)
         b._addAdjNode(a, weight)
 
-        self.vertices[a] = {b: weight}
-        self.vertices[b] = {a: weight}
+        self.vertices[a][b] = weight
+        self.vertices[b][a] = weight
 
