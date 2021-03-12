@@ -105,7 +105,7 @@ class graph(object):
         Checks whether or not the graph contains a given data
 
         args:
-            VxData (node val data type) the data to be searched for
+            VxData (node val data type): the data to be searched for
         returns:
             (boolean) True if VxData is found, otherwise False
         '''
@@ -126,7 +126,7 @@ class graph(object):
         (helper function) Returns a graph node that holds the given data 
 
         args:
-            VxData (node val data type) the data to be searched for
+            VxData (node val data type): the data to be searched for
         returns:
             (graphNode) the graph node from this graph that has data equal to the given data
         '''
@@ -143,7 +143,7 @@ class graph(object):
         Adds a vertex to the graph.
 
         args:
-            VxData (node val data type) the data to be added to the graph
+            VxData (node val data type): the data to be added to the graph
         returns:
             (graph) this graph with a new node added to it as a new vertex
         '''
@@ -154,4 +154,31 @@ class graph(object):
         else:
             self.vertices[vx] = {}
 
+    def add_edge(self, fromVxData, toVxData, weight=0):
+        '''
+        Adds an edge to the graph given the data stored in the nodes at its ends
+
+        args:
+            fromVxData (node val data type): data of the "from" node
+            toVxData (node val data type): data of the "to" node
+            weight (int): weight of the edge
+        returns:
+            (graph) this graph updated with a new edge added to it 
+        '''
+        if not self.__contains__(fromVxData):
+            print("Adding edge failed! Vertex {} doesn't exist.".format(fromVxData))
+            return
+
+        if not self.__contains__(toVxData):
+            print("Adding edge failed! Vertex {} doesn't exist.".format(toVxData))
+            return
+
+        a = self._getVertex(fromVxData)
+        b = self._getVertex(toVxData)
+
+        a._addAdjNode(b, weight)
+        b._addAdjNode(a, weight)
+
+        self.vertices[a] = {b: weight}
+        self.vertices[b] = {a: weight}
 
