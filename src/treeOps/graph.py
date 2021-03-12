@@ -90,27 +90,29 @@ class graph(object):
             res = "'{}': {}".format(self.data, [[node.data, self._getWeight(node)] for node in self._getChildren()])
             return res
 
-    def get_vertices(self):
+    def _getVerticesDict(self):
         '''
-        Returns the keys of the vertices (dict) of the graph.
+        (helper function) Returns the dictionary of the vertices of the graph.
 
         returns:
-            (dict_keys) keys of the dictionary of vertices of the graph
+            (dict) the dictionary of vertices of the graph
         '''
-        return self.vertices.keys()
+        return self.vertices
 
-    def add_vertex(self, vertex):
+    def add_vertex(self, VxData):
         '''
         Adds a vertex to the graph.
 
         args:
-            (graphNode) a vertex to be added to the graph
+            VxData (node val data type) the data to be added to the graph
         returns:
             (graph) this graph with a new node added to it as a new vertex
         '''
-        if vertex in self.get_vertices():
-            print("Vertex {} already exists.".format(vertex.data))
+        vx = self.graphNode(VxData)
+
+        if VxData in self._getVerticesDict():
+            print("Vertex {} already exists.".format(VxData))
         else:
-            self.vertices[vertex] = {}
+            self.vertices[vx] = {}
 
 
