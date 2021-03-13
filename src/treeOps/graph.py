@@ -188,3 +188,29 @@ class graph(object):
         self.vertices[a][b].append(weight)
         self.vertices[b][a].append(weight)
 
+    def DFS(self, start, path=None):
+        '''
+        Depth-First Search (DFS)
+        args:
+            start (node val data type): the key value of the node where the search starts
+            path (list of graphNode): the DFS path (empty path to be filled with nodes)
+        returns:
+            (list of graphNode) the full DFS path
+        '''
+        if path is None:
+            path = []
+
+        s = self._getVertex(start)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        for child in s._getChildren():
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                path = self.DFS(child.data, path)
+
+        return path
