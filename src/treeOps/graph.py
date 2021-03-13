@@ -244,3 +244,9 @@ class graph(object):
 
         return path
 
+    def reset_status(self):
+        '''
+        Resets the visit status of all the nodes in a graph to UNVISITED
+        '''
+        for vx in self._getVerticesDict():
+            vx._setStatus(node_status.UNVISITED)
