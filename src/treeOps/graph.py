@@ -214,3 +214,33 @@ class graph(object):
                 path = self.DFS(child.data, path)
 
         return path
+
+    def BFS(self, start):
+        '''
+        Breadth-First Search (BFS)
+        args:
+            start (node val data type): the key value of the node where the search starts
+        returns:
+            (list of graphNode) the full BFS path
+        '''
+        s = self._getVertex(start)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            for child in k._getChildren():
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path
+
