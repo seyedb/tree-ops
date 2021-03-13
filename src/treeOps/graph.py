@@ -1,5 +1,6 @@
 from enum import Enum
-from collections import deque
+from collections import deque, defaultdict
+from functools import partial
 
 class node_status(Enum):
     '''
@@ -12,25 +13,29 @@ class node_status(Enum):
 class graph(object):
     def __init__(self):
         '''
-        Initializes a graph with a dictionary of graphNodes.
+        Initializes a graph with a nested defaultdict of graphNodes.
+        example: {'A': {'B': [2, 3], 'C': [5, 1]}}
         '''
-        self.vertices = {}
+        self.vertices = defaultdict(partial(defaultdict, list))
 
     class graphNode(object):
         def __init__(self, data, status=node_status.UNVISITED):
             '''
             Initializes a graph node. A graph node has the following attributes:
-            data (any type), children (dict), status (node_status)  
+            data (any type), children ({adj node: [weight]}, ex: {'B': [2, 3], 'C': [5, 1]}), 
+            status (node_status)  
             '''
             self.data = data
-            self.children = {}
+            self.children = defaultdict(list)
             self.status = status
 
         def __str__(self):
             '''
-            Prints the data assigned to this node, and list of its children with the weight of the edges connecting them 
+            Prints the data assigned to this node, and list of its children with the weight of the 
+            edges connecting them.
             '''
-            res = "'{}': {}".format(self.data, [[node.data, self._getWeight(node)] for node in self._getChildren()])
+            res = "'{}': {}".format(self.data, 
+                            [[node.data, self._getWeight(node)] for node in self._getChildren()])
             return res
 
         def _getStatus(self):
@@ -60,7 +65,8 @@ class graph(object):
             returns:
                 (graphNode) this node with its dictionary of children updated with a new node added
             '''
-            self.children[node] = weight
+            self.children[node].append(weight) if weight not in self.children[node] 
+                                               else self.children[node]
 
         def _getChildren(self):
             '''
@@ -114,10 +120,10 @@ class graph(object):
 
     def _getVerticesDict(self):
         '''
-        (helper function) Returns the dictionary of the vertices of the graph.
+        (helper function) Returns a nested (default) dictionary of the vertices of the graph.
 
         returns:
-            (dict) the dictionary of vertices of the graph
+            (defaultdict) the default dictionary of vertices of the graph
         '''
         return self.vertices
 
@@ -152,7 +158,7 @@ class graph(object):
         if VxData in self._getVerticesDict():
             print("Vertex {} already exists.".format(VxData))
         else:
-            self.vertices[vx] = {}
+            self.vertices[vx] = defaultdict(list)
 
     def add_edge(self, fromVxData, toVxData, weight=0):
         '''
@@ -179,6 +185,6 @@ class graph(object):
         a._addAdjNode(b, weight)
         b._addAdjNode(a, weight)
 
-        self.vertices[a][b] = weight
-        self.vertices[b][a] = weight
+        self.vertices[a][b].append(weight)
+        self.vertices[b][a].append(weight)
 
