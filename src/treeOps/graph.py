@@ -65,7 +65,7 @@ class graph(object):
             returns:
                 (graphNode) this node with its dictionary of children updated with a new node added
             '''
-            self.children[node].append(weight) if weight not in self.children[node] 
+            self.children[node].append(weight) if weight not in self.children[node] \
                                                else self.children[node]
 
         def _getChildren(self):
