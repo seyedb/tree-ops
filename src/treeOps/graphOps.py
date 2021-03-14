@@ -32,7 +32,7 @@ def graph_to_adjmat(g):
 
 def adjmat_to_graph(adjMat, vxdatalist=[]):
     '''
-    Given and adjacency matrix retruns the corresponding graph
+    Given an adjacency matrix retruns the corresponding (multi)graph
 
     args:
         adjMat (2d - nested - list): the adjacency matrix
@@ -55,7 +55,7 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
     for vxdata in vxdatalist:
         g.add_vertex(vxdata)
 
-    # check what kind of adjacency matrix, 0 and 1 type or a matrix that contains edge weights
+    # check the kind of the adjacency matrix, 0 and 1 type or a matrix that contains edge weights
     islist, isint = False, False
     checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
     if len(checktype) == 1 and checktype.pop() == True: islist = True
