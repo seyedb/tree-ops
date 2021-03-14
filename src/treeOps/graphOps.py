@@ -29,3 +29,50 @@ def graph_to_adjmat(g):
             adjMatw[r][c] = weight
     
     return adjMat, adjMatw
+
+def adjmat_to_graph(adjMat, vxdatalist=[]):
+    '''
+    Given and adjacency matrix retruns the corresponding graph
+
+    args:
+        adjMat (2d - nested - list): the adjacency matrix
+        vxdatalist (list): list of data to be assigned to the verices of the graph
+    returns:
+        (graph) a graph that has the same adjacency matrix as the given matrix
+    '''
+    assert(adjMat), "The adjacency matrix is empty."
+
+    g = graph.graph()
+
+    nvx = len(adjMat)
+    if vxdatalist:
+        assert(nvx == len(vxdatalist)), "Provide the right number of vertex data or leave the list empty."
+
+    if not vxdatalist:
+        for i in range(nvx):
+            vxdatalist.append(str(i))
+
+    for vxdata in vxdatalist:
+        g.add_vertex(vxdata)
+
+    # check what kind of adjacency matrix, 0 and 1 type or a matrix that contains edge weights
+    islist, isint = False, False
+    checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: islist = True
+    checktype = {all(isinstance(entry, int) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: isint = True
+
+    if islist:
+        for i in range(nvx):
+            for j in range(i, nvx):
+                for w in adjMat[i][j]:
+                    g.add_edge(vxdatalist[i], vxdatalist[j], weight=w)
+    elif isint:
+        for i in range(nvx):
+            for j in range(i, nvx):
+                if adjMat[i][j] != 0:
+                    g.add_edge(vxdatalist[i], vxdatalist[j])
+    else:
+        print("Warning: The adjacency matrix contains unsupported data type!")
+
+    return g
