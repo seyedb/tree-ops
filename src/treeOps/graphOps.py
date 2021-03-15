@@ -73,7 +73,8 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
 def _adjmatType(adjMat):
     '''
     (helper function) retruns <class 'int'> if the adjacency matrix is a matrix of 0 and 1, and
-    returns <class 'list'> if the adjacency matrix contains edge weights
+    returns <class 'list'> if the adjacency matrix contains edge weights, and returns None if
+    neither of the cases occurs.
 
     args:
         adjMat (2D - nested - list): tha adjacency matrix
@@ -82,6 +83,8 @@ def _adjmatType(adjMat):
     '''
     checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
     if len(checktype) == 1 and checktype.pop() == True: return list
+
     checktype = {all(isinstance(entry, int) for entry in row) for row in adjMat}
     if len(checktype) == 1 and checktype.pop() == True: return int
 
+    return None    
