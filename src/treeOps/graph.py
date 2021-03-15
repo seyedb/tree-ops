@@ -136,8 +136,8 @@ class graph(object):
         returns:
             (graphNode) the graph node from this graph that has data equal to the given data
         '''
-        if not self.__contains__(VxData):
-            print("Vertex {} doesn't exist.".format(fromVxData))
+        if VxData not in self:
+            print("Vertex {} doesn't exist.".format(VxData))
             return None
 
         for vertex in self._getVerticesDict():
@@ -171,11 +171,11 @@ class graph(object):
         returns:
             (graph) this graph updated with a new edge added to it 
         '''
-        if not self.__contains__(fromVxData):
+        if fromVxData not in self:
             print("Adding edge failed! Vertex {} doesn't exist.".format(fromVxData))
             return
 
-        if not self.__contains__(toVxData):
+        if toVxData not in self:
             print("Adding edge failed! Vertex {} doesn't exist.".format(toVxData))
             return
 
