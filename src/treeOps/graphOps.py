@@ -4,7 +4,7 @@ from collections import deque
 
 def graph_to_adjmat(g):
     '''
-    Given a graph returns the corresponding adjacency matrix
+    Given a graph returns the corresponding adjacency matrix.
     
     args:
         g (graph): a graph object
@@ -33,7 +33,7 @@ def graph_to_adjmat(g):
 
 def adjmat_to_graph(adjMat, vxdatalist=[]):
     '''
-    Given an adjacency matrix retruns the corresponding (multi)graph
+    Given an adjacency matrix retruns the corresponding (multi)graph.
 
     args:
         adjMat (2d - nested - list): the adjacency matrix
@@ -78,7 +78,7 @@ def _adjmatType(adjMat):
     neither of the cases occurs.
 
     args:
-        adjMat (2D - nested - list): tha adjacency matrix
+        adjMat (2D - nested - list): the adjacency matrix
     returns:
         (type) the type of the adjacency matrix as explained above
     '''
@@ -97,7 +97,7 @@ def dfs_in_adjmat(adjMat, start, visited, path):
     indexing that has led to the adjacency matrix. 
 
     args:
-        adjMat (2D - nested - list): tha adjacency matrix
+        adjMat (2D - nested - list): the adjacency matrix
         start (int): the index of the vertex where the procedure starts
         visited (list of boolean): a list keeping track of the visit status of the vertices
         path (list of int): the DFS path 
@@ -114,7 +114,7 @@ def dfs_in_adjmat(adjMat, start, visited, path):
 
 def dfs_in_adjmatw(adjMatw, start, visited, path):
     '''
-    Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights
+    Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.
     '''
     visited[start] = True
 
@@ -131,7 +131,7 @@ def bfs_in_adjmat(adjMat, start, visited):
     indexing that has led to the adjacency matrix. 
 
     args:
-        adjMat (2D - nested - list): tha adjacency matrix
+        adjMat (2D - nested - list): the adjacency matrix
         start (int): the index of the vertex where the procedure starts
         visited (list of boolean): a list keeping track of the visit status of the vertices
     returns:
@@ -159,7 +159,7 @@ def bfs_in_adjmat(adjMat, start, visited):
 
 def bfs_in_adjmatw(adjMatw, start, visited):
     '''
-    Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights
+    Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.
     '''
     nvx = len(adjMatw)
 
@@ -181,3 +181,38 @@ def bfs_in_adjmatw(adjMatw, start, visited):
 
     return path
 
+def connected_components(adjMat):
+    '''
+    Returns the connected components of a graph (Uses DFS).
+
+    args:
+        adjMat (2D - nested - list): the adjacency matrix
+    returns:
+        (nested list) list of connected components. Every component is a list of indices representing 
+        vertices of the graph. The indices agree with the matrix indexing.
+    '''
+    components = []
+
+    nvx = len(adjMat)
+    visited = [False for i in range(nvx)]
+
+    if _adjmatType(adjMat) is list:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmatw(adjMat, start, visited, path)
+#                path = bfs_in_adjmatw(adjMat, start, visited)
+                components.append(path)
+    elif _adjmatType(adjMat) is int:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmat(adjMat, start, visited, path)
+#                path = bfs_in_adjmat(adjMat, start, visited)
+                components.append(path)
+    else:
+        print("The adjacency matrix contains unsupported data type.")
+
+    return components
