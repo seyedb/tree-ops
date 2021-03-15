@@ -70,7 +70,7 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
     elif isint:
         for i in range(nvx):
             for j in range(i, nvx):
-                if adjMat[i][j] != 0:
+                if adjMat[i][j] == 1:
                     g.add_edge(vxdatalist[i], vxdatalist[j])
     else:
         print("Warning: The adjacency matrix contains unsupported data type!")
