@@ -155,7 +155,7 @@ def find_word(wrd, indIntv, path, regex="", balanced=False):
         print("Searching for '{}' in paragraphs indexed within: [{}, {}]".format(wrd, start, end))
 
     for pn in list(range(start, end+1)):
-        if treelist[pn].__contains__(wrd):
+        if wrd in treelist[pn]:
             res.append(pn)
 
     return res
