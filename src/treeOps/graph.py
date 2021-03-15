@@ -34,8 +34,8 @@ class graph(object):
             Prints the data assigned to this node, and list of its children with the weight of the 
             edges connecting them.
             '''
-            res = "'{}': {}".format(self.data, 
-                            [[node.data, self._getWeight(node)] for node in self._getChildren()])
+            res = "'{}': {}".format(self._getData(), 
+                            [[node._getData(), self._getWeight(node)] for node in self._getChildren()])
             return res
 
         def _getStatus(self):
@@ -54,6 +54,12 @@ class graph(object):
                 (graphNode) the node with its status updated with the given status
             '''
             self.status = status
+
+        def _getData(self):
+            '''
+            Returns the data assigned to this node.
+            '''
+            return self.data
 
         def _addAdjNode(self, node, weight=0):
             '''
@@ -115,7 +121,7 @@ class graph(object):
         returns:
             (boolean) True if VxData is found, otherwise False
         '''
-        data = [k.data for k in self._getVerticesDict().keys()]
+        data = [k._getData() for k in self._getVerticesDict().keys()]
         return VxData in data
 
     def _getVerticesDict(self):
@@ -141,7 +147,7 @@ class graph(object):
             return None
 
         for vertex in self._getVerticesDict():
-            if vertex.data == VxData:
+            if vertex._getData() == VxData:
                 return vertex
 
     def add_vertex(self, VxData):
@@ -211,7 +217,7 @@ class graph(object):
         for child in s._getChildren():
             if child._getStatus() == node_status.UNVISITED:
                 path.append(child)
-                path = self.DFS(child.data, path)
+                path = self.DFS(child._getData(), path)
 
         return path
 

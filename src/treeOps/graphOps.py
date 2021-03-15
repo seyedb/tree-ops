@@ -17,15 +17,15 @@ def graph_to_adjmat(g):
 
     vxdata = []
     for vx in vertices.keys():
-        vxdata.append(vx.data)
+        vxdata.append(vx._getData())
 
     adjMat = [[0 for i in range(nvx)] for j in range(nvx)]
     adjMatw = [[[] for i in range(nvx)] for j in range(nvx)]
 
     for vx, vxchildren in vertices.items():
         for child, weight in vxchildren.items():
-            r = vxdata.index(vx.data)
-            c = vxdata.index(child.data)
+            r = vxdata.index(vx._getData())
+            c = vxdata.index(child._getData())
             adjMat[r][c] = 1
             adjMatw[r][c] = weight
     
