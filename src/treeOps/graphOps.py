@@ -55,19 +55,12 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
     for vxdata in vxdatalist:
         g.add_vertex(vxdata)
 
-    # check the kind of the adjacency matrix, 0 and 1 type or a matrix that contains edge weights
-    islist, isint = False, False
-    checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
-    if len(checktype) == 1 and checktype.pop() == True: islist = True
-    checktype = {all(isinstance(entry, int) for entry in row) for row in adjMat}
-    if len(checktype) == 1 and checktype.pop() == True: isint = True
-
-    if islist:
+    if _adjmatType(adjMat) is list:
         for i in range(nvx):
             for j in range(i, nvx):
                 for w in adjMat[i][j]:
                     g.add_edge(vxdatalist[i], vxdatalist[j], weight=w)
-    elif isint:
+    elif _adjmatType(adjMat) is int:
         for i in range(nvx):
             for j in range(i, nvx):
                 if adjMat[i][j] == 1:
@@ -76,3 +69,19 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
         print("Warning: The adjacency matrix contains unsupported data type!")
 
     return g
+
+def _adjmatType(adjMat):
+    '''
+    (helper function) retruns <class 'int'> if the adjacency matrix is a matrix of 0 and 1, and
+    returns <class 'list'> if the adjacency matrix contains edge weights
+
+    args:
+        adjMat (2D - nested - list): tha adjacency matrix
+    returns:
+        (type) the type of the adjacency matrix as explained above
+    '''
+    checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: return list
+    checktype = {all(isinstance(entry, int) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: return int
+
