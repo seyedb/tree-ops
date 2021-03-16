@@ -1,5 +1,6 @@
 #
 import graph
+import heapq as hq
 from collections import deque
 
 def graph_to_adjmat(g):
@@ -216,3 +217,43 @@ def connected_components(adjMat):
         print("The adjacency matrix contains unsupported data type.")
 
     return components
+
+def Dijkstra(g, source):
+    '''
+    Dijkstra's shortest path algorithm.
+
+    args:
+        g (graph): a graph object
+    retruns:
+        (list of float) the shortest path from the source to all the other vertices
+    '''
+    start = g._getVertex(source)
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        udist, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt < child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    dist = []
+#    prev = []
+    for vx in vertices.keys():
+        dist.append(vx._getDistance())
+#        prev.append(vx._getPrevious())
+
+#    return dist, prev
+    return dist

@@ -22,12 +22,15 @@ class graph(object):
         def __init__(self, data, status=node_status.UNVISITED):
             '''
             Initializes a graph node. A graph node has the following attributes:
-            data (any type), children ({adj node: [weight]}, ex: {'B': [2, 3], 'C': [5, 1]}), 
-            status (node_status)  
+            data (any type), children (dict), status (node_status), distance (float -
+            the distance from a node to this node), previous (predecessor of this node
+            in an optimal path from source)
             '''
             self.data = data
             self.children = defaultdict(list)
             self.status = status
+            self.distance = float("inf")
+            self.previous = None
 
         # comparison operators
         def __lt__(self, other):
@@ -100,6 +103,40 @@ class graph(object):
             '''
             return self.children.keys()
 
+        def _getDistance(self):
+            '''
+            Returns the value of the distance instance attribute of this node
+            '''
+            return self.distance
+
+        def _setDistance(self, distance):
+            '''
+            Sets the instance attribute distance to a given value.
+
+            args:
+                distance (float): the new distance
+            returns:
+                (graphNode) the node with its distance updated with the given value
+            '''
+            self.distance = distance
+
+        def _getPrevious(self):
+            '''
+            Returns the value of the previous instance attribute of this node
+            '''
+            return self.previous
+
+        def _setPrevious(self, node):
+            '''
+            Sets the instance attribute previous to a given node.
+
+            args:
+                node (graphNode): the new previous
+            returns:
+                (graphNode) this node with its previous updated with the given node
+            '''
+            self.previous = node
+
         def _getWeight(self, adjNode):
             '''
             Returns the weight of the edge between this node and the given node if they are adjacent,
@@ -128,6 +165,15 @@ class graph(object):
             res += vertex.__str__() + "\n"
 
         return res
+
+    def reset(self):
+        '''
+        Resets the attributes of all the nodes in a graph to their default values
+        '''
+        for vx in self._getVerticesDict():
+            vx._setStatus(node_status.UNVISITED)
+            vx._setDistance(float("inf"))
+            vx._setPrevious(None)
 
     def __contains__(self, VxData):
         '''
@@ -266,10 +312,3 @@ class graph(object):
             path.append(k)
 
         return path
-
-    def reset_status(self):
-        '''
-        Resets the visit status of all the nodes in a graph to UNVISITED
-        '''
-        for vx in self._getVerticesDict():
-            vx._setStatus(node_status.UNVISITED)
