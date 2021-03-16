@@ -29,6 +29,23 @@ class graph(object):
             self.children = defaultdict(list)
             self.status = status
 
+        # comparison operators
+        def __lt__(self, other):
+            return self.data < other.data
+
+        def __le__(self, other):
+            return self < other or self == other
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data > other.data
+#
+#        def __ge__(self, other):
+#            return self > other or self == other
+
         def __str__(self):
             '''
             Prints the data assigned to this node, and list of its children with the weight of the 

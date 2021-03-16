@@ -38,23 +38,35 @@ class tree(object):
             self.height = 0
             self.balance_factor = balance_factor
 
+        # comparison operators
+        def __lt__(self, other):
+            return self.data < other.data
+
+        def __le__(self, other):
+            return self < other or self == other
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data > other.data
+#
+#        def __ge__(self, other):
+#            return self > other or self == other
+
         def _getStatus(self):
             '''
             Gets the visit status of a tree node
-            
-            returns:
-                (node_status) visit status of the given node
             '''
             return self.status
     
         def _setStatus(self, status):
             '''
-            Sets the visit status of a tree node
+            Sets the visit status of a tree node to a given value
     
             args:
                 status (node_status): the new visit status to be assigned to the node
-            returns:
-                (treeNode) the input tree node with its visit status updated
             '''
             self.status = status
 
@@ -93,7 +105,7 @@ class tree(object):
 
     def __str__(self):
         '''
-        Prints a tree starting from its root
+        Represents a tree with a string starting from its root
         '''
         res = "\n"
         if self.root is not None:
