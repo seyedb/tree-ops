@@ -218,16 +218,23 @@ def connected_components(adjMat):
 
     return components
 
-def Dijkstra(g, source):
+def Dijkstra(g, source, destination):
     '''
     Dijkstra's shortest path algorithm.
 
     args:
         g (graph): a graph object
+        source (node val data type): the data of the source node 
+        destination (node val data type): the data of the destination node
     retruns:
-        (list of float) the shortest path from the source to all the other vertices
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path
+        (float) the length of the shortest path (sum of the weights of the constituent edges) 
     '''
+    assert (not g._isMultigraph()), "The Dijkstra's algorithm is not implemented for multigraphs!"
+
     start = g._getVertex(source)
+    end = g._getVertex(dest)
+
     start._setDistance(0)
     vertices = g._getVerticesDict()
     nvx = len(vertices)
@@ -236,8 +243,10 @@ def Dijkstra(g, source):
     hq.heapify(Q)
 
     while len(Q):
-        udist, u = hq.heappop(Q)
+        _, u = hq.heappop(Q)
         u._setStatus(graph.node_status.VISITED)
+
+        if u == end: break
 
         for child in u._getChildren():
             if child._getStatus() == graph.node_status.VISITED:
@@ -249,11 +258,13 @@ def Dijkstra(g, source):
                 child._setPrevious(u)
                 hq.heappush(Q, (alt, child))
 
-    dist = []
-#    prev = []
-    for vx in vertices.keys():
-        dist.append(vx._getDistance())
-#        prev.append(vx._getPrevious())
+    SPT = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            SPT.insert(0, x._getData())
+            x = x._getPrevious()
 
-#    return dist, prev
-    return dist
+    distance = end._getDistance()
+
+    return SPT, distance

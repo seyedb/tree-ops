@@ -257,6 +257,19 @@ class graph(object):
         self.vertices[a][b].append(weight)
         self.vertices[b][a].append(weight)
 
+    def _isMultigraph(self):
+        '''
+        (helper function) Checks whether or not the graph is a multigraph.
+        '''
+        vertices = self._getVerticesDict()
+
+        for vx, vxchildren in vertices.items():
+            for weight in vxchildren.values():
+                if len(weight) > 1:
+                    return True
+
+        return False
+
     def DFS(self, start, path=None):
         '''
         Depth-First Search (DFS)
