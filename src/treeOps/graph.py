@@ -196,6 +196,24 @@ class graph(object):
         '''
         return self.vertices
 
+    def _getEdges(self):
+        '''
+        Returns a set of edges of the graph
+        
+        returns:
+            (set of tuples): set of edges represented as (vx1, vx2, w)
+        '''
+        vertices = self._getVerticesDict()
+
+        edges = set()
+        for vx, vxchildren in vertices.items():
+            for child, weight in vxchildren.items():
+                tmp = sorted([vx, child])
+                for i in range(len(weight)):
+                    edges.add((tmp[0], tmp[1], weight[i]))
+
+        return edges
+
     def _getVertex(self, VxData):
         '''
         (helper function) Returns a graph node that holds the given data 
