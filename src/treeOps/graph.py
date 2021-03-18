@@ -70,6 +70,16 @@ class graph(object):
         def _getData(self):
             '''Returns the data assigned to this node.'''
             return self.data
+       
+        def _setData(self, data):
+            '''Sets the data of this node to a given value.
+
+            args:
+                data (node val data type): the new data to be assigned to this node
+            returns:
+                (graphNode) the node with updated data
+            ''' 
+            self.data = data
 
         def _addAdjNode(self, node, weight=0):
             '''Adds an adjacent node to this node.
