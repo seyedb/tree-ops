@@ -171,7 +171,10 @@ class graph(object):
         return self.vertices
 
     def _getEdges(self):
-        '''Returns a set of edges of the graph.
+        '''Returns a set of edges of the graph. 
+        NOTE: if there is an edge between vx1, vx2 with wirght w, both (vx1, vx2, w) and (vx2, vx1, w)
+        are included. This is necessary for Bellman-Ford shortest path algorithm and also make it general
+        for directed graphs.
         
         returns:
             (set of tuples): set of edges represented as (vx1, vx2, w)
@@ -181,7 +184,9 @@ class graph(object):
         edges = set()
         for vx, vxchildren in vertices.items():
             for child, weight in vxchildren.items():
-                tmp = sorted([vx, child])
+                # uncomment the following line to have only unique edges
+#                tmp = sorted([vx, child])
+                tmp = [vx, child]
                 for i in range(len(weight)):
                     edges.add((tmp[0], tmp[1], weight[i]))
 

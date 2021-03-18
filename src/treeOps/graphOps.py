@@ -223,7 +223,7 @@ def Dijkstra(g, source, destination):
     assert (not g._isMultigraph()), "The Dijkstra's algorithm is not implemented for multigraphs!"
 
     start = g._getVertex(source)
-    end = g._getVertex(dest)
+    end = g._getVertex(destination)
 
     start._setDistance(0)
     vertices = g._getVerticesDict()
@@ -258,3 +258,50 @@ def Dijkstra(g, source, destination):
     distance = end._getDistance()
 
     return SPT, distance
+
+def Bellman_Ford(g, source, destination):
+    '''Bellman-Ford shortest path algorithm.
+
+    NOTE: 
+    - It is a dynamic programming algorithm.
+    - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights
+
+    args:
+        g (graph): a graph object
+        source (node val data type): the data of the source node 
+        destination (node val data type): the data of the destination node
+    retruns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path
+        (float) the length of the shortest path (sum of the weights of the constituent edges) 
+    '''
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    end = g._getVertex(destination)
+
+    start._setDistance(0)
+
+    for _ in range(ne - 1):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt < b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + float(w)
+        if alt < b._getDistance():
+            print("Error! graph contains a negative-weight cycle.")
+
+    spt = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            spt.insert(0, x._getData())
+            x = x._getPrevious()
+
+    return spt, end._getDistance()
+
