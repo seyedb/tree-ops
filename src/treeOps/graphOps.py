@@ -259,6 +259,46 @@ def Dijkstra(g, source, destination):
 
     return SPT, distance
 
+def Dijkstra_shortest_path(g, source):
+    '''Returns the shortest path between a source and all the other verices of a graph using the Dijkstra's algorithm.
+
+    args:
+        g (graph): a graph object
+        source (node val data type): the data of the source node 
+    retruns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance]
+    '''
+    assert (not g._isMultigraph()), "The Dijkstra's algorithm is not implemented for multigraphs!"
+    g.reset()
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        _, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt < child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp
+
 def Bellman_Ford(g, source, destination):
     '''Bellman-Ford shortest path algorithm.
 
@@ -305,3 +345,38 @@ def Bellman_Ford(g, source, destination):
 
     return spt, end._getDistance()
 
+def BF_shortest_path(g, source):
+    '''Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.
+
+    args:
+        g (graph): a graph object
+        source (node val data type): the data of the source node 
+    retruns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance]
+    '''
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+
+    for _ in range(ne - 1):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt < b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + w
+        if alt < b._getDistance():
+            print("Error! graph contains a negative-weight cycle.")
+
+    vertices = g._getVerticesDict()
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp
