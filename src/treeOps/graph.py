@@ -223,13 +223,14 @@ class graph(object):
         else:
             self.vertices[vx] = defaultdict(list)
 
-    def add_edge(self, fromVxData, toVxData, weight=0):
+    def add_edge(self, fromVxData, toVxData, weight=0, directed=False):
         '''Adds an edge to the graph given the data stored in the nodes at its ends.
 
         args:
             fromVxData (node val data type): data of the "from" node
             toVxData (node val data type): data of the "to" node
             weight (int): weight of the edge
+            directed (boolean): whether or not the edge is directed from fromVxData to toVxData
         returns:
             (graph) this graph updated with a new edge added to it 
         '''
@@ -245,10 +246,11 @@ class graph(object):
         b = self._getVertex(toVxData)
 
         a._addAdjNode(b, weight)
-        b._addAdjNode(a, weight)
-
         self.vertices[a][b].append(weight)
-        self.vertices[b][a].append(weight)
+        
+        if not directed:
+            b._addAdjNode(a, weight)
+            self.vertices[b][a].append(weight)
 
     def _isMultigraph(self):
         '''(helper function) Checks whether or not the graph is a multigraph.'''
