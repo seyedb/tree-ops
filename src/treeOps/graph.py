@@ -245,11 +245,37 @@ class graph(object):
         a = self._getVertex(fromVxData)
         b = self._getVertex(toVxData)
 
-        a._addAdjNode(b, weight)
-        self.vertices[a][b].append(weight)
-        
-        if not directed:
+        edges = self._getEdges()
+        msg = "The edge ({}, {}, {}) already exists!"
+        msgcmpl = msg + " ({}, {}, {}) will be created."
+
+        if directed:
+            if (a, b, weight) in edges:
+                print(msg.format(fromVxData, toVxData, weight))
+                return
+
+            a._addAdjNode(b, weight)
+            self.vertices[a][b].append(weight)
+
+        elif not directed:
+            if (a, b, weight) in edges and (b, a, weight) not in edges:
+                print(msgcmpl.format(fromVxData, toVxData, weight, toVxData, fromVxData, weight))
+                b._addAdjNode(a, weight)
+                self.vertices[b][a].append(weight)
+                return
+
+            elif (b, a, weight) in edges and (a, b, weight) not in edges:
+                print(msgcmpl.format(toVxData, fromVxData, weight, fromVxData, toVxData, weight))
+                a._addAdjNode(b, weight)
+                self.vertices[a][b].append(weight)
+                return
+
+            elif (a, b, weight) in edges and (b, a, weight) in edges:
+                return
+
+            a._addAdjNode(b, weight)
             b._addAdjNode(a, weight)
+            self.vertices[a][b].append(weight)
             self.vertices[b][a].append(weight)
 
     def _isMultigraph(self):
