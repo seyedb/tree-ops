@@ -324,7 +324,7 @@ def Bellman_Ford(g, source, destination):
 
     start._setDistance(0)
 
-    for _ in range(ne - 1):
+    for _ in range(ne):
         for a, b, w in edges:
             alt = a._getDistance() + float(w)
             if alt < b._getDistance():
@@ -362,7 +362,7 @@ def BF_shortest_path(g, source):
     start = g._getVertex(source)
     start._setDistance(0)
 
-    for _ in range(ne - 1):
+    for _ in range(ne):
         for a, b, w in edges:
             alt = a._getDistance() + float(w)
             if alt < b._getDistance():
@@ -370,7 +370,7 @@ def BF_shortest_path(g, source):
                 b._setPrevious(a)
 
     for a, b, w in edges:
-        alt = a._getDistance() + w
+        alt = a._getDistance() + float(w)
         if alt < b._getDistance():
             print("Error! graph contains a negative-weight cycle.")
 
