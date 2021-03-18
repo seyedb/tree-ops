@@ -31,7 +31,7 @@ def graph_to_adjmat(g):
     
     return adjMat, adjMatw
 
-def adjmat_to_graph(adjMat, vxdatalist=[]):
+def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
     '''Given an adjacency matrix retruns the corresponding (multi)graph.
 
     args:
@@ -57,14 +57,14 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
 
     if _adjmatType(adjMat) is list:
         for i in range(nvx):
-            for j in range(i, nvx):
+            for j in range(nvx):
                 for w in adjMat[i][j]:
-                    g.add_edge(vxdatalist[i], vxdatalist[j], weight=w)
+                    g.add_edge(vxdatalist[i], vxdatalist[j], weight=w, directed=directed)
     elif _adjmatType(adjMat) is int:
         for i in range(nvx):
-            for j in range(i, nvx):
+            for j in range(nvx):
                 if adjMat[i][j] == 1:
-                    g.add_edge(vxdatalist[i], vxdatalist[j])
+                    g.add_edge(vxdatalist[i], vxdatalist[j], directed=directed)
     else:
         print("Warning: The adjacency matrix contains unsupported data type!")
 
