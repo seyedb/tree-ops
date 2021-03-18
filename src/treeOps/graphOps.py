@@ -4,8 +4,7 @@ import heapq as hq
 from collections import deque
 
 def graph_to_adjmat(g):
-    '''
-    Given a graph returns the corresponding adjacency matrix.
+    '''Given a graph returns the corresponding adjacency matrix.
     
     args:
         g (graph): a graph object
@@ -33,8 +32,7 @@ def graph_to_adjmat(g):
     return adjMat, adjMatw
 
 def adjmat_to_graph(adjMat, vxdatalist=[]):
-    '''
-    Given an adjacency matrix retruns the corresponding (multi)graph.
+    '''Given an adjacency matrix retruns the corresponding (multi)graph.
 
     args:
         adjMat (2d - nested - list): the adjacency matrix
@@ -73,8 +71,7 @@ def adjmat_to_graph(adjMat, vxdatalist=[]):
     return g
 
 def _adjmatType(adjMat):
-    '''
-    (helper function) retruns <class 'int'> if the adjacency matrix is a (0,1)-matrix, and
+    '''(helper function) retruns <class 'int'> if the adjacency matrix is a (0,1)-matrix, and
     returns <class 'list'> if the adjacency matrix contains edge weights, and returns None if
     neither of the cases occurs.
 
@@ -92,8 +89,8 @@ def _adjmatType(adjMat):
     return None    
 
 def dfs_in_adjmat(adjMat, start, visited, path):
-    '''
-    Performs DFS in a (0,1) adjacency matrix 
+    '''Performs DFS in a (0,1) adjacency matrix.
+
     NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
     indexing that has led to the adjacency matrix. 
 
@@ -114,9 +111,7 @@ def dfs_in_adjmat(adjMat, start, visited, path):
             dfs_in_adjmat(adjMat, i, visited, path)
 
 def dfs_in_adjmatw(adjMatw, start, visited, path):
-    '''
-    Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.
-    '''
+    '''Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.'''
     visited[start] = True
 
     nvx = len(adjMatw)
@@ -126,8 +121,7 @@ def dfs_in_adjmatw(adjMatw, start, visited, path):
             dfs_in_adjmatw(adjMatw, i, visited, path)
 
 def bfs_in_adjmat(adjMat, start, visited):
-    '''
-    Performs BFS in a (0,1) adjacency matrix 
+    '''Performs BFS in a (0,1) adjacency matrix.
     NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
     indexing that has led to the adjacency matrix. 
 
@@ -159,9 +153,7 @@ def bfs_in_adjmat(adjMat, start, visited):
     return path
 
 def bfs_in_adjmatw(adjMatw, start, visited):
-    '''
-    Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.
-    '''
+    '''Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.'''
     nvx = len(adjMatw)
 
     visited[start] = True
@@ -183,8 +175,7 @@ def bfs_in_adjmatw(adjMatw, start, visited):
     return path
 
 def connected_components(adjMat):
-    '''
-    Returns the connected components of a graph (Uses DFS).
+    '''Returns the connected components of a graph (Uses DFS).
 
     args:
         adjMat (2D - nested - list): the adjacency matrix
@@ -219,8 +210,7 @@ def connected_components(adjMat):
     return components
 
 def Dijkstra(g, source, destination):
-    '''
-    Dijkstra's shortest path algorithm.
+    '''Dijkstra's shortest path algorithm.
 
     args:
         g (graph): a graph object

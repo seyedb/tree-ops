@@ -4,8 +4,7 @@ import re
 import string
 
 def list_to_tree(dlist, rootVal=None, balanced=False):
-    '''
-    Constructs a binary tree (BST or AVL) from a given list of node data
+    '''Constructs a binary tree (BST or AVL) from a given list of node data.
 
     NOTE: 
         - if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
@@ -41,8 +40,7 @@ def list_to_tree(dlist, rootVal=None, balanced=False):
     return t
 
 def balance_by_recursion(inTree):
-    '''
-    Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion
+    '''Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion
     in the following steps:
         - creates a sorted list of nodes from the input tree using an inorder traversal path
         - constructs a balanced tree recursively from a sorted list of nodes:
@@ -67,8 +65,7 @@ def balance_by_recursion(inTree):
     return balancedt
 
 def convert_to_AVL(inTree):
-    '''
-    Converts a given tree (may or may not be BST) to a balanced (AVL) tree
+    '''Converts a given tree (may or may not be BST) to a balanced (AVL) tree.
 
     args:
         inTree (tree) input tree
@@ -81,10 +78,9 @@ def convert_to_AVL(inTree):
     return avlTree
 
 def text_to_tree(path, regex="", balanced=False):
-    '''
-    Splits a text into paragraphs, splits each paragraph into words and stores those words in a tree
+    '''Splits a text into paragraphs, splits each paragraph into words and stores those words in a tree.
 
-    NOTES: 
+    NOTE: 
     - Uses regular expressions and split function to extract words. Like any machine learning problem
     dealing with text data, the challenge is how clean the words are desired to be. Here the choice of 
     the regex can affect the words that are extracted, a more sophisticated option would be using 
@@ -120,9 +116,8 @@ def text_to_tree(path, regex="", balanced=False):
     return treelist
 
 def find_word(wrd, indIntv, path, regex="", balanced=False):
-    '''
-    Searches for a word in a given text file: Splits a text into paragraphs, splits each paragraph into 
-    words and stores those words in a tree, then searches for the word in every tree
+    '''Searches for a word in a given text file: Splits a text into paragraphs, splits each paragraph into 
+    words and stores those words in a tree, then searches for the word in every tree.
 
     NOTE:
     - See comment of the routine text_to_tree 

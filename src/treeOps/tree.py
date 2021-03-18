@@ -2,33 +2,24 @@ from enum import Enum
 from collections import deque
 
 class node_status(Enum):
-    '''
-    List of all possible visit status of each node (tree traversal)
-    '''
+    '''List of all possible visit status of each node (tree traversal)'''
     UNVISITED = 0
     VISITED = 1
     VISITING = 2
 
 class tree(object):
-    '''
-    The main (binary search) tree class
-    '''
+    '''The main (binary search) tree class'''
     def __init__(self, root=None):
-        '''
-        Initializes a tree with its root node
-        '''
+        '''Initializes a tree with its root node.'''
         self.root = root
 
     class treeNode(object):
-        '''
-        The main tree node class (defined as an inner class of the tree class)
-        '''
+        '''The main tree node class (defined as an inner class of the tree class)'''
         def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
-            '''
-            Initializes a tree node
+            '''Initializes a tree node.
             A tree node has a value, a left child, a right child, a visit status, parent node, 
             height of the tree rooted at the node, and balance factor (difference between the
-            height of the left and the right subtrees)
+            height of the left and the right subtrees).
             '''
             self.data = data
             self.left = None
@@ -56,14 +47,11 @@ class tree(object):
 #            return self > other or self == other
 
         def _getStatus(self):
-            '''
-            Gets the visit status of a tree node
-            '''
+            '''Gets the visit status of a tree node.'''
             return self.status
     
         def _setStatus(self, status):
-            '''
-            Sets the visit status of a tree node to a given value
+            '''Sets the visit status of a tree node to a given value.
     
             args:
                 status (node_status): the new visit status to be assigned to the node
@@ -71,8 +59,7 @@ class tree(object):
             self.status = status
 
     def __contains__(self, data):
-        '''
-        Checks if a tree contains a given data
+        '''Checks if a tree contains a given data.
 
         args:
             data (node val data type): the data to be found in the tree
@@ -85,8 +72,7 @@ class tree(object):
             return False
 
     def _containsData(self, data, node):
-        '''
-        (helper function) Checks if a (sub)tree rooted at a given node contains a given data
+        '''(helper function) Checks if a (sub)tree rooted at a given node contains a given data.
 
         args:
             data (node val data type): the data to be found in the tree
@@ -104,17 +90,14 @@ class tree(object):
         return False
 
     def __str__(self):
-        '''
-        Represents a tree with a string starting from its root
-        '''
+        '''Represents a tree with a string starting from its root'''
         res = "\n"
         if self.root is not None:
             return self._printTree(self.root) + res
         return res
 
     def _printTree(self, node):
-        '''
-        (helper function) Prints a tree rooted at a given node all the way down.
+        '''(helper function) Prints a tree rooted at a given node all the way down.
         NOTE: The output must be in ascending order in case of BST
 
         args:
@@ -130,20 +113,15 @@ class tree(object):
         return res
 
     def update_height(self):
-        '''
-        Updates the height of every node of a given tree
-        '''
+        '''Updates the height of every node of a given tree.'''
         self._updateHeight(self.root)
 
     def update_balance_factor(self):
-        '''
-        Updates the balance factor of every node of a given tree
-        '''
+        '''Updates the balance factor of every node of a given tree.'''
         self._updateBalanceFactor(self.root)
 
     def _getHeight(self, node):
-        '''
-        (helper function) Returns the height attribute of a given node
+        '''(helper function) Returns the height attribute of a given node.
 
         returns:
             (int) tree height
@@ -154,8 +132,7 @@ class tree(object):
             return -1
 
     def _calcHeight(self, node):
-        '''
-        (helper function) Calculates the height of the tree rooted at a given node
+        '''(helper function) Calculates the height of the tree rooted at a given node.
 
         returns:
             (treeNode) the imput tree node with updated height
@@ -165,8 +142,7 @@ class tree(object):
         node.height = max(lheight, rheight) + 1
 
     def _calcBalanceFactor(self, node):
-        '''
-        (helper function) Calculates the balance factor of the tree rooted a given tree node
+        '''(helper function) Calculates the balance factor of the tree rooted a given tree node.
 
         returns:
             (treeNode) the imput tree node with updated balance factor
@@ -176,9 +152,8 @@ class tree(object):
         node.balance_factor = lheight - rheight
 
     def _updateHeight(self, node):
-        '''
-        (helper function) Recursively updates the height of each node starting from the given node 
-        all the way down
+        '''(helper function) Recursively updates the height of each node starting from the given node 
+        all the way down.
         
         args:
             node (treeNode): the tree node at which the procedure starts
@@ -191,9 +166,8 @@ class tree(object):
             self._updateHeight(node.right)
 
     def _updateBalanceFactor(self, node):
-        '''
-        (helper function) Recursively updates the balance factor of each node starting from the given node 
-        all the way down
+        '''(helper function) Recursively updates the balance factor of each node starting from the given node 
+        all the way down.
         
         args:
             node (treeNode): the tree node at which the procedure starts
@@ -206,16 +180,13 @@ class tree(object):
             self._updateBalanceFactor(node.right)
 
     def reset_status(self):
-        '''
-        Resets the visit status of all the nodes in a tree to UNVISITED
-        '''
+        '''Resets the visit status of all the nodes in a tree to UNVISITED.'''
         self._resetStatus(self.root)
 
     def _resetStatus(self, node):
-        '''
-        (helper function) Resets the visit status of each node below the given node to UNVISITED 
+        '''(helper function) Resets the visit status of each node below the given node to UNVISITED 
         after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
-        following an in-order fashion
+        following an in-order fashion.
 
         args:
             node (treeNode): the tree node at which the procedure starts
@@ -226,8 +197,7 @@ class tree(object):
             self._resetStatus(node.right)
 
     def add_node(self, data, balanced=False):
-        '''
-        Adds a node to a tree.
+        '''Adds a node to a tree.
 
         args:
             data (node val data type): the value to be assigned to the new tree node
@@ -241,8 +211,7 @@ class tree(object):
             self.root = self._addNode(self.root, data, balanced)
 
     def _addNode(self, node, data, balanced=False):
-        '''
-        (helper function) Finds the right location for the new node according to the BST-property.
+        '''(helper function) Finds the right location for the new node according to the BST-property.
 
         args:
             data (node val data type): the value to be assigned to the new node
@@ -277,9 +246,8 @@ class tree(object):
             return node
 
     def insert_node(self, data, balanced=False):
-        '''
-        Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
-        (see documentation of _insertNode for more details)
+        '''Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
+        (see documentation of _insertNode for more details).
 
         args:
             data (node val data type): the value to be assigned to the new tree node
@@ -293,8 +261,7 @@ class tree(object):
             self._insertNode(self.root, data, balanced)
 
     def _insertNode(self, node, data, balanced=False):
-        '''
-        (helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
+        '''(helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
         (breadth-first):
             traversing down the tree from the given starting point, if a node N is found whose left 
             node is empty, a new node with the given data is created as N.left, else if a node N is 
@@ -338,8 +305,7 @@ class tree(object):
             return node
 
     def inorder_traversal(self, node, path=None):
-        '''
-        Inorder Traversal 
+        '''Inorder Traversal 
 
         args:
             node (treeNode): the tree node at with the inorder traversal starts
@@ -361,8 +327,7 @@ class tree(object):
         return path
 
     def preorder_traversal(self, node, path=None):
-        '''
-        Preorder Traversal 
+        '''Preorder Traversal 
 
         args:
             node (treeNode): the tree node at with the preorder traversal starts
@@ -384,8 +349,7 @@ class tree(object):
         return path
 
     def postorder_traversal(self, node, path=None):
-        '''
-        Postorder Traversal 
+        '''Postorder Traversal 
 
         args:
             node (treeNode): the tree node at with the postorder traversal starts
@@ -407,8 +371,7 @@ class tree(object):
         return path
 
     def find_node(self, data):
-        '''
-        Finds a node in a tree
+        '''Finds a node in a tree.
         
         args:
             data (node val data type): the data to be found in the tree
@@ -421,8 +384,7 @@ class tree(object):
             return None
 
     def _findNode(self, data, node):
-        '''
-        (helper function) Finds a given data in a tree
+        '''(helper function) Finds a given data in a tree.
         
         args:
             data (node val data type): the data to be found in the tree
@@ -438,8 +400,7 @@ class tree(object):
             return self._findNode(data, node.right)
 
     def DFS(self, start, path=None):
-        '''
-        Depth-First Search (DFS)
+        '''Depth-First Search (DFS)
 
         args:
             start (node val data type): the key value of the node where the search starts
@@ -470,8 +431,7 @@ class tree(object):
         return path
         
     def BFS(self, start):
-        '''
-        Breadth-First Search (BFS)
+        '''Breadth-First Search (BFS)
 
         args:
             start (node val data type): the key value of the node where the search starts
@@ -503,8 +463,7 @@ class tree(object):
         return path
 
     def is_balanced(self):
-        '''
-        Checks whether or not a tree (BST or not) is balanced
+        '''Checks whether or not a tree (BST or not) is balanced.
 
         returns:
             (bool) True when the tree is balanced, False otherwise
@@ -512,8 +471,7 @@ class tree(object):
         return self._isBalanced(self.root) > -1
 
     def _isBalanced(self, node):
-        '''
-        (helper function) Checks if a BST is balanced
+        '''(helper function) Checks if a BST is balanced.
         
         args:
             node (treeNode): the tree node where the recursive procedure starts
@@ -535,8 +493,7 @@ class tree(object):
         return max(lheight, rheight) + 1
 
     def _balanceByRecursion(self, nodes, start, end):
-        '''
-        (helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
+        '''(helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
         the recursive step.
 
         args:
@@ -560,8 +517,7 @@ class tree(object):
         return node
 
     def _convertToAVL(self, node, res):
-        '''
-        (helper function) Converts a tree rooted at node into an AVL tree
+        '''(helper function) Converts a tree rooted at node into an AVL tree.
             - perform an inorder traversal of the tree
             - insert the visited node into another (AVL) tree preserving balance 
 
@@ -579,8 +535,7 @@ class tree(object):
         return res
 
     def _rebalanceSubtree(self, node):
-        '''
-        (helper function) Rebalances a subtree rooted at a given node using rotation operations
+        '''(helper function) Rebalances a subtree rooted at a given node using rotation operations.
 
         args:
             node (treeNode): root of the subtree to be rebalanced
@@ -610,8 +565,7 @@ class tree(object):
             return node
 
     def _rotateRight(self, node):
-        '''
-        (helper function) Performs right rotation of subtree rooted at node
+        '''(helper function) Performs right rotation of subtree rooted at node.
 
         args:
             node (treeNode): the parent node of the subtree to rotate
@@ -647,8 +601,7 @@ class tree(object):
         return pivot
 
     def _rotateLeft(self, node):
-        '''
-        (helper function) Performs left rotation of subtree rooted at node
+        '''(helper function) Performs left rotation of subtree rooted at node.
 
         args:
             node (treeNode): the parent node of the subtree to rotate
