@@ -70,6 +70,37 @@ def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
 
     return g
 
+def remap_vertex_data(g, new_vxdata):
+    '''Remaps vertex data to a new list
+
+    args:
+        g (graph): a graph object
+        new_vxdata (list): a new list of data to be assigned to the graph nodes
+    returns:
+        (graph) the input graph with new data assigned to its vertices
+    '''
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+    assert(nvx == len(new_vxdata)), "Provide the right number of vertex data."
+
+    vxdata = []
+    for vx in vertices.keys():
+        vxdata.append(vx._getData())
+
+    datamap = {}
+    for i in range(nvx):
+        datamap[vxdata[i]] = new_vxdata[i]
+    print("The vertex data are remapped according to the following mapping:\n", datamap)
+
+    i = 0
+    for vx in vertices.keys():
+        # make sure the mapping goes according to the plan
+        if vx._getData() == vxdata[i]:
+            vx._setData(new_vxdata[i])
+        i += 1
+
+    return g
+
 def _adjmatType(adjMat):
     '''(helper function) retruns <class 'int'> if the adjacency matrix is a (0,1)-matrix, and
     returns <class 'list'> if the adjacency matrix contains edge weights, and returns None if
