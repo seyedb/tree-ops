@@ -94,6 +94,53 @@ def edges_to_graph(edges, directed=False):
 
     return g
 
+def file_to_graph(fin, directed=False):
+    '''Constructs a graph based on data stored in a file.
+
+    NOTE: the file must have the following format:
+    - the first line is the number of vertices
+    - the second line is the number of edges
+    - the rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w
+
+    args:
+        fin (str): path to the file
+        directed (boolean): whether or not the graph is a directed graph
+    returns:
+        (graph) a graph object that has vertices and edges matching with the loaded data from the input file
+    '''
+    g = graph.graph()
+
+    edges = set()
+    with open(fin, "r") as fid:
+        nvx = int(fid.readline())
+        ne = int(fid.readline())
+        for _, line in enumerate(fid):
+            edge = line.strip().split()
+            edges.add((edge[0], edge[1], float(edge[2])))
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    # we might have isolated nodes
+    if nvx > len(vxdata):
+        nvx_extra = nvx - len(vxdata)
+        print("Warning! based on the provided data, {} isolated vertices had to be added to the graph.".format(nvx_extra))
+        for i in range(nvx_extra):
+            g.add_vertex(str(i))
+    elif nvx < len(vxdata):
+        print("Warning! the number of vertices (the first line of the file) doesn't match with the edge data.\n"+
+              "A graph is constructed based on the edge data.")
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g
+
 def remap_vertex_data(g, new_vxdata):
     '''Remaps vertex data to a new list
 
