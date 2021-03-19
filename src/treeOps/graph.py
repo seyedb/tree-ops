@@ -233,13 +233,13 @@ class graph(object):
         else:
             self.vertices[vx] = defaultdict(list)
 
-    def add_edge(self, fromVxData, toVxData, weight=0, directed=False):
+    def add_edge(self, fromVxData, toVxData, weight=0.0, directed=False):
         '''Adds an edge to the graph given the data stored in the nodes at its ends.
 
         args:
             fromVxData (node val data type): data of the "from" node
             toVxData (node val data type): data of the "to" node
-            weight (int): weight of the edge
+            weight (float): weight of the edge
             directed (boolean): whether or not the edge is directed from fromVxData to toVxData
         returns:
             (graph) this graph updated with a new edge added to it 
