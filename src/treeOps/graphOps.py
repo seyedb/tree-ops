@@ -70,6 +70,30 @@ def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
 
     return g
 
+def edges_to_graph(edges, directed=False):
+    '''Converts a set of edges into a graph
+
+    args:
+        edges (set of tuples): set of edges represented as tuples (v1, v2, w)
+        directed (boolean): whether or not the graph is a directed graph
+    returns:
+        (graph) a graph object that has vertices and edges matching with the given edge data
+    '''
+    g = graph.graph()
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g
+
 def remap_vertex_data(g, new_vxdata):
     '''Remaps vertex data to a new list
 
