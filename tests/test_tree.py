@@ -47,6 +47,6 @@ def test_setStatus(dflt_treeNode):
     dflt_treeNode._setStatus(Tree.node_status.VISITED)
     assert dflt_treeNode.status == Tree.node_status.VISITED
 
-def test_str_method(simple_tree):
+def test__str__(simple_tree):
     tree_str = simple_tree.__str__()
     assert tree_str == "left root right \n"
