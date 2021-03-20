@@ -5,17 +5,17 @@ import tree as Tree
 
 @pytest.fixture
 def dflt_tree():
-    '''Retunrs a default initialized tree object'''
+    '''Returns a default initialized tree object'''
     return Tree.tree()
 
 @pytest.fixture
 def dflt_treeNode():
-    '''Retunrs a default initialized treeNode object'''
+    '''Returns a default initialized treeNode object'''
     return Tree.tree().treeNode()
 
 @pytest.fixture
 def simple_tree():
-    '''Retunrs a simple tree with 3 nodes: root, its left and right nodes'''
+    '''Returns a simple tree with 3 nodes: root, its left and right nodes'''
     smpl_tree = Tree.tree()
     root = Tree.tree().treeNode('root')
     left = Tree.tree().treeNode('left')
