@@ -191,7 +191,7 @@ class tree(object):
         '''(helper function) Calculates the height of the tree rooted at a given node.
 
         returns:
-            (treeNode) the imput tree node with updated height
+            (treeNode) the input tree node with updated height
         '''
         lheight = self._getHeight(node.left)
         rheight = self._getHeight(node.right)
@@ -219,7 +219,7 @@ class tree(object):
         '''(helper function) Calculates the balance factor of the tree rooted a given tree node.
 
         returns:
-            (treeNode) the imput tree node with updated balance factor
+            (treeNode) the input tree node with updated balance factor
         '''
         lheight = self._getHeight(node.left)
         rheight = self._getHeight(node.right)
