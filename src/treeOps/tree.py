@@ -93,11 +93,11 @@ class tree(object):
         '''Represents a tree with a string starting from its root'''
         res = "\n"
         if self.root is not None:
-            return self._printTree(self.root) + res
+            return self._strTree(self.root) + res
         return res
 
-    def _printTree(self, node):
-        '''(helper function) Prints a tree rooted at a given node all the way down.
+    def _strTree(self, node):
+        '''(helper function) Returns string representation of a (sub)tree rooted at a given node.
         NOTE: The output must be in ascending order in case of BST
 
         args:
@@ -107,9 +107,9 @@ class tree(object):
         '''
         res = ""
         if node is not None:
-            res += self._printTree(node.left)
+            res += self._strTree(node.left)
             res += "{} ".format(node.data)
-            res += self._printTree(node.right)
+            res += self._strTree(node.right)
         return res
 
     def verbose_rep(self, verb_level=0):

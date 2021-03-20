@@ -88,10 +88,6 @@ def test_setStatus(dflt_treeNode):
     dflt_treeNode._setStatus(Tree.node_status.VISITED)
     assert dflt_treeNode.status == Tree.node_status.VISITED
 
-def test__str__(simple_tree):
-    tree_str = simple_tree.__str__()
-    assert tree_str == "left root right \n"
-
 def test__contains__(sample_bst_bstNode):
     t = sample_bst_bstNode[0]
     condT = 3 in t
@@ -107,10 +103,14 @@ def test_containsData(sample_bst_bstNode):
     cond = (condT, condF)
     assert cond == (True, False)
 
-def test_printTree(sample_bst_bstNode):
+def test__str__(simple_tree):
+    tree_str = simple_tree.__str__()
+    assert tree_str == "left root right \n"
+
+def test_strTree(sample_bst_bstNode):
     t = sample_bst_bstNode[0]
     n = sample_bst_bstNode[1]
-    test_str = t._printTree(n)
+    test_str = t._strTree(n)
     assert test_str == "1 3 4 6 7 "
 
 def test_verbose_rep(simple_tree):
