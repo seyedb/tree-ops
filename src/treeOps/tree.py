@@ -173,19 +173,8 @@ class tree(object):
         '''
         if node is not None:
             self._updateHeight(node.left)
-            self._calcHeight(node)
+            node.height = self._calcHeight(node)
             self._updateHeight(node.right)
-
-    def _getHeight(self, node):
-        '''(helper function) Returns the height attribute of a given node.
-
-        returns:
-            (int) tree height
-        '''
-        if node is not None:
-            return node.height
-        else:
-            return -1
 
     def _calcHeight(self, node):
         '''(helper function) Calculates the height of the tree rooted at a given node.
@@ -193,9 +182,12 @@ class tree(object):
         returns:
             (treeNode) the input tree node with updated height
         '''
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.height = max(lheight, rheight) + 1
+        if node is None:
+            return -1
+        else:
+            lheight = self._getHeight(node.left)
+            rheight = self._getHeight(node.right)
+            return max(lheight, rheight) + 1
 
     def update_balance_factor(self):
         '''Updates the balance factor of every node of a given tree.'''
@@ -221,8 +213,8 @@ class tree(object):
         returns:
             (treeNode) the input tree node with updated balance factor
         '''
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
+        lheight = self._calcHeight(node.left)
+        rheight = self._calcHeight(node.right)
         node.balance_factor = lheight - rheight
 
     def reset_status(self):
