@@ -2,6 +2,7 @@
 
 import pytest
 import tree as Tree
+import deepdiff
 
 @pytest.fixture
 def dflt_tree():
@@ -111,3 +112,37 @@ def test_printTree(sample_bst_bstNode):
     n = sample_bst_bstNode[1]
     test_str = t._printTree(n)
     assert test_str == "1 3 4 6 7 "
+
+def test_verbose_rep(simple_tree):
+    rep_v0_ref = {'root': {'left': 'left', 'right': 'right'},
+                  'left': {'left': 'None', 'right': 'None'},
+                  'right': {'left': 'None', 'right': 'None'}}
+
+    rep_v1_ref = {'root': {'left': 'left', 'right': 'right', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+                  'left': {'left': 'None', 'right': 'None', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+                  'right': {'left': 'None', 'right': 'None', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}}
+
+    rep_v0 = simple_tree.verbose_rep(0)
+    rep_v1 = simple_tree.verbose_rep(1)
+
+    diff_v0 = deepdiff.DeepDiff(rep_v0, rep_v0_ref)
+    diff_v1 = deepdiff.DeepDiff(rep_v1, rep_v1_ref)
+
+    cond = (diff_v0, diff_v1)
+    assert cond == ({}, {})
+
+def test_verboseRep(sample_bst_bstNode):
+    rep_ref = {3: {'left': 1, 'right': 6},
+               1: {'left': 'None', 'right': 'None'},
+               6: {'left': 4, 'right': 7},
+               4: {'left': 'None', 'right': 'None'},
+               7: {'left': 'None', 'right': 'None'}}
+
+    rep = {}
+    t = sample_bst_bstNode[0]
+    n3 = sample_bst_bstNode[1]
+    t._verboseRep(n3, rep, 0)
+
+    diff = deepdiff.DeepDiff(rep, rep_ref)
+    assert diff == {}
+
