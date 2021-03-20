@@ -162,9 +162,19 @@ class tree(object):
         '''Updates the height of every node of a given tree.'''
         self._updateHeight(self.root)
 
-    def update_balance_factor(self):
-        '''Updates the balance factor of every node of a given tree.'''
-        self._updateBalanceFactor(self.root)
+    def _updateHeight(self, node):
+        '''(helper function) Recursively updates the height of each node starting from the given node 
+        all the way down.
+        
+        args:
+            node (treeNode): the tree node at which the procedure starts
+        returns:
+            (tree) the input tree where every node of its subtrees rooted at the input node have updated heights
+        '''
+        if node is not None:
+            self._updateHeight(node.left)
+            self._calcHeight(node)
+            self._updateHeight(node.right)
 
     def _getHeight(self, node):
         '''(helper function) Returns the height attribute of a given node.
@@ -187,29 +197,9 @@ class tree(object):
         rheight = self._getHeight(node.right)
         node.height = max(lheight, rheight) + 1
 
-    def _calcBalanceFactor(self, node):
-        '''(helper function) Calculates the balance factor of the tree rooted a given tree node.
-
-        returns:
-            (treeNode) the imput tree node with updated balance factor
-        '''
-        lheight = self._getHeight(node.left)
-        rheight = self._getHeight(node.right)
-        node.balance_factor = lheight - rheight
-
-    def _updateHeight(self, node):
-        '''(helper function) Recursively updates the height of each node starting from the given node 
-        all the way down.
-        
-        args:
-            node (treeNode): the tree node at which the procedure starts
-        returns:
-            (tree) the input tree where every node of its subtrees rooted at the input node have updated heights
-        '''
-        if node is not None:
-            self._updateHeight(node.left)
-            self._calcHeight(node)
-            self._updateHeight(node.right)
+    def update_balance_factor(self):
+        '''Updates the balance factor of every node of a given tree.'''
+        self._updateBalanceFactor(self.root)
 
     def _updateBalanceFactor(self, node):
         '''(helper function) Recursively updates the balance factor of each node starting from the given node 
@@ -224,6 +214,16 @@ class tree(object):
             self._updateBalanceFactor(node.left)
             self._calcBalanceFactor(node)
             self._updateBalanceFactor(node.right)
+
+    def _calcBalanceFactor(self, node):
+        '''(helper function) Calculates the balance factor of the tree rooted a given tree node.
+
+        returns:
+            (treeNode) the imput tree node with updated balance factor
+        '''
+        lheight = self._getHeight(node.left)
+        rheight = self._getHeight(node.right)
+        node.balance_factor = lheight - rheight
 
     def reset_status(self):
         '''Resets the visit status of all the nodes in a tree to UNVISITED.'''
