@@ -39,6 +39,54 @@ def list_to_tree(dlist, rootVal=None, balanced=False):
 
     return t
 
+def dict_to_tree(tdict, root_ind=0): 
+    '''Converts a (2D) nested dictionary (node adjacency information) to a tree. Can be used to 
+    create an arbitrary binary tree.
+
+    NOTE:
+        - the input dictionary should have the follwing format: 
+          {n1: {'left': n3, 'right': 'None'}, n2: {'left': 'None', 'right': n4}, ...}
+          the string value 'None' represents a None-type treeNode
+    
+    args:
+        tdict (nested dict): the dictionary containing tree data with the above-mentioned format
+        root_ind (int): the index of the node in the dictionary that will be the tree root
+    returns:
+        (tree) a binary tree with data consistent with the provided tree data dictionary
+    '''
+    assert(root_ind in range(len(tdict))), "Error! Invalid root index."
+
+    ndata_list = []
+    nodes = []
+
+    for ndata in tdict.keys():
+        ndata_list.append(ndata)
+        nodes.append(tree.tree().treeNode(ndata))
+
+    t = tree.tree(nodes[root_ind])
+
+    for ndata, children in tdict.items():
+
+        n_ind = ndata_list.index(ndata)
+        n = nodes[n_ind]
+
+        if children['left'] != 'None':
+            l_ind = ndata_list.index(children['left'])
+            lnode = nodes[l_ind]
+        else:
+            lnode = None
+
+        if children['right'] != 'None':
+            r_ind = ndata_list.index(children['right'])
+            rnode = nodes[r_ind]
+        else:
+            rnode = None
+
+        n.left = lnode
+        n.right = rnode
+
+    return t
+
 def balance_by_recursion(inTree):
     '''Converts a given binary tree (may or may not be BST) to a balanced binary tree by recursion
     in the following steps:
