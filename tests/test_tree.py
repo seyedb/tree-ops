@@ -163,21 +163,21 @@ def test_update_height(sample_bst_bstNode):
     ref = {8: 3, 3: 2, 10: 2, 6: 1, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
 
     current = t.root
-    heights = {}
-    s = []
+    height_dict = {}
+    stk = []
     while True:
         while current:
-            s.append(current)
+            stk.append(current)
             current = current.left
 
-        if s:
-            current = s.pop()
-            heights[current.data] = current.height
+        if stk:
+            current = stk.pop()
+            height_dict[current.data] = current.height
             current = current.right
         else:
             break
 
-    diff = deepdiff.DeepDiff(heights, ref)
+    diff = deepdiff.DeepDiff(height_dict, ref)
     assert diff == {}
 
 def test_updateHeight(sample_bst_bstNode):
@@ -188,28 +188,85 @@ def test_updateHeight(sample_bst_bstNode):
     ref = {3: 2, 6: 1, 1: 0, 4: 0, 7: 0}
 
     current = n3
-    heights = {}
-    s = []
+    height_dict = {}
+    stk = []
     while True:
         while current:
-            s.append(current)
+            stk.append(current)
             current = current.left
 
-        if s:
-            current = s.pop()
-            heights[current.data] = current.height
+        if stk:
+            current = stk.pop()
+            height_dict[current.data] = current.height
             current = current.right
         else:
             break
 
-    print(heights)
-    diff = deepdiff.DeepDiff(heights, ref)
+    print(height_dict)
+    diff = deepdiff.DeepDiff(height_dict, ref)
     assert diff == {}
 
 def test_calcHeight(sample_bst_bstNode):
     t = sample_bst_bstNode[0]
     n3 = sample_bst_bstNode[1]
-    old_height = 0
+    old_height = n3.height
     new_height = t._calcHeight(n3)
 
     assert (old_height, new_height) == (0, 2)
+
+def test_update_balance_factor(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    t.update_balance_factor()
+
+    ref = {8: 0, 3: -1, 10: -2, 6: 0, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
+
+    current = t.root
+    bf_dict = {}
+    stk = []
+    while True:
+        while current:
+            stk.append(current)
+            current = current.left
+
+        if stk:
+            current = stk.pop()
+            bf_dict[current.data] = current.balance_factor
+            current = current.right
+        else:
+            break
+
+    diff = deepdiff.DeepDiff(bf_dict, ref)
+    assert diff == {}
+
+def test_updataBalanceFactor(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    n3 = sample_bst_bstNode[1]
+    t._updateBalanceFactor(n3)
+
+    ref = {3: -1, 6: 0, 1: 0, 4: 0, 7: 0}
+
+    current = n3
+    bf_dict = {}
+    stk = []
+    while True:
+        while current:
+            stk.append(current)
+            current = current.left
+
+        if stk:
+            current = stk.pop()
+            bf_dict[current.data] = current.balance_factor
+            current = current.right
+        else:
+            break
+
+    diff = deepdiff.DeepDiff(bf_dict, ref)
+    assert diff == {}
+
+def test_calcBalanceFactor(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    n3 = sample_bst_bstNode[1]
+    old_bf = n3.balance_factor
+    t._calcBalanceFactor(n3)
+
+    assert (old_bf, n3.balance_factor) == (0, -1)
