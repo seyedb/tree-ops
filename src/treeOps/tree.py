@@ -114,29 +114,30 @@ class tree(object):
         return res
 
     def verbose_rep(self, verb_level=0):
-        '''Returns a verbose representation of the tree in the form of a nested dictionary. The dict
-        keys are the data of the nodes and dict values are the values of the instance attributes.
+        '''Returns a verbose representation of the tree as a list of dictionaries. The dict keys are 
+           the instance attributes of the nodes and dict values are the values of the attributes. The
+           ordering of nodes in the list follows an in-order pattern.
 
         args:
             verb_level (0 or 1): the verbosity level
         returns:
-            (nested dict) a nested (2D) dictionary representing the tree
+            (list of dict) a list of dictionaries representing the tree
         '''
-        representation = {}
+        representation = []
         if self.root is not None:
             self._verboseRep(self.root, representation, verb_level)
 
         return representation
 
     def _verboseRep(self, node, rep, verb_level=0):
-        '''(helper function) Returns a nested dict representation of the (sub)tree rooted at the given node.
+        '''(helper function) Returns a list of dict representation of the (sub)tree rooted at the given node.
 
         args:
             node (treeNode): the node where the procedure (inorder visit of the tree nodes) starts
-            rep (dict): the dict representation to be constructed
+            rep (list): the list of dict representation to be constructed
             verb_level (0 or 1): the verbosity level
         returns:
-            (nested dict) a nested (2D) dictionary containing the values of the instance attributes of
+            (list of dict) a list of dictionaries containing the values of the instance attributes of
             all the nodes in the (sub)tree
         '''
         assert(verb_level in {0, 1}), 'Invalid verbosity level!'
@@ -145,6 +146,7 @@ class tree(object):
             self._verboseRep(node.left, rep, verb_level)
 
             attrs = {}
+            attrs['data'] = node.data
             if verb_level == 0:
                 attrs['left'] = 'None' if node.left is None else node.left.data
                 attrs['right'] = 'None' if node.right is None else node.right.data
@@ -155,7 +157,7 @@ class tree(object):
                 attrs['status'] = node.status
                 attrs['height'] = node.height
                 attrs['balance_factor'] = node.balance_factor
-            rep[node.data] = attrs
+            rep.append(attrs)
 
             self._verboseRep(node.right, rep, verb_level)
 
