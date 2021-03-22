@@ -156,3 +156,60 @@ def test_verboseRep(sample_bst_bstNode):
     diff = deepdiff.DeepDiff(rep, rep_ref)
     assert diff == {}
 
+def test_update_height(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    t.update_height()
+
+    ref = {8: 3, 3: 2, 10: 2, 6: 1, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
+
+    current = t.root
+    heights = {}
+    s = []
+    while True:
+        while current:
+            s.append(current)
+            current = current.left
+
+        if s:
+            current = s.pop()
+            heights[current.data] = current.height
+            current = current.right
+        else:
+            break
+
+    diff = deepdiff.DeepDiff(heights, ref)
+    assert diff == {}
+
+def test_updateHeight(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    n3 = sample_bst_bstNode[1]
+    t._updateHeight(n3)
+
+    ref = {3: 2, 6: 1, 1: 0, 4: 0, 7: 0}
+
+    current = n3
+    heights = {}
+    s = []
+    while True:
+        while current:
+            s.append(current)
+            current = current.left
+
+        if s:
+            current = s.pop()
+            heights[current.data] = current.height
+            current = current.right
+        else:
+            break
+
+    print(heights)
+    diff = deepdiff.DeepDiff(heights, ref)
+    assert diff == {}
+
+def test_calcHeight(sample_bst_bstNode):
+    t = sample_bst_bstNode[0]
+    n3 = sample_bst_bstNode[1]
+    old_height = 0
+    new_height = t._calcHeight(n3)
+
+    assert (old_height, new_height) == (0, 2)
