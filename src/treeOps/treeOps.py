@@ -73,12 +73,14 @@ def dict_to_tree(tdict, root_ind=0):
         if children['left'] != 'None':
             l_ind = ndata_list.index(children['left'])
             lnode = nodes[l_ind]
+            lnode.parent = n
         else:
             lnode = None
 
         if children['right'] != 'None':
             r_ind = ndata_list.index(children['right'])
             rnode = nodes[r_ind]
+            rnode.parent = n
         else:
             rnode = None
 

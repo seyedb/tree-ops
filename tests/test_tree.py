@@ -28,6 +28,8 @@ def simple_tree():
     smpl_tree.root = root
     root.left = left
     root.right = right
+    left.parent = root
+    right.parent = root
 
     return smpl_tree
 
@@ -64,6 +66,14 @@ def sample_bst_bstNode():
     n6.right = n7
     n10.right = n14
     n14.left = n13
+    n3.parent = n8
+    n10.parent = n8
+    n1.parent = n3
+    n6.parent = n3
+    n14.parent = n10
+    n4.parent = n6
+    n7.parent = n6
+    n13.parent = n14
 
     return t, n3
 
@@ -119,8 +129,8 @@ def test_verbose_rep(simple_tree):
                   'right': {'left': 'None', 'right': 'None'}}
 
     rep_v1_ref = {'root': {'left': 'left', 'right': 'right', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
-                  'left': {'left': 'None', 'right': 'None', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
-                  'right': {'left': 'None', 'right': 'None', 'parent': 'None', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}}
+                  'left': {'left': 'None', 'right': 'None', 'parent': 'root', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+                  'right': {'left': 'None', 'right': 'None', 'parent': 'root', 'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}}
 
     rep_v0 = simple_tree.verbose_rep(0)
     rep_v1 = simple_tree.verbose_rep(1)
