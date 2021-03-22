@@ -25,6 +25,7 @@ class tree(object):
             self.left = None
             self.right = None
             self.status = status
+            # the following are used in tree balancing algorithms
             self.parent = None
             self.height = 0
             self.balance_factor = balance_factor
@@ -169,7 +170,7 @@ class tree(object):
         args:
             node (treeNode): the tree node at which the procedure starts
         returns:
-            (tree) the input tree where every node of its subtrees rooted at the input node have updated heights
+            (tree) the input tree where every node of its subtree rooted at the input node have updated heights
         '''
         if node is not None:
             self._updateHeight(node.left)
@@ -180,7 +181,7 @@ class tree(object):
         '''(helper function) Calculates the height of the tree rooted at a given node.
 
         returns:
-            (treeNode) the input tree node with updated height
+            (int) the height of the tree at the input node
         '''
         if node is None:
             return -1
