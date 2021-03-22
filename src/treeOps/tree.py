@@ -186,8 +186,8 @@ class tree(object):
         if node is None:
             return -1
         else:
-            lheight = self._getHeight(node.left)
-            rheight = self._getHeight(node.right)
+            lheight = self._calcHeight(node.left)
+            rheight = self._calcHeight(node.right)
             return max(lheight, rheight) + 1
 
     def update_balance_factor(self):
