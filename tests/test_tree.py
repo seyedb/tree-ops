@@ -229,3 +229,46 @@ def test_calcBalanceFactor(sample_bst):
     t._calcBalanceFactor(n3)
 
     assert (old_bf, n3.balance_factor) == (0, -1)
+
+def test_reset_status(sample_bst):
+    t, nodes = sample_bst
+
+    ref = {8: Tree.node_status.UNVISITED, 3: Tree.node_status.UNVISITED, 10: Tree.node_status.UNVISITED,
+           6: Tree.node_status.UNVISITED, 14: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
+           4: Tree.node_status.UNVISITED, 7: Tree.node_status.UNVISITED, 13: Tree.node_status.UNVISITED}
+
+    # for testing purpose, set the status of nodes indexed with indices in ref_ind to VISITED
+    ref_ind = [0, 2, 4, 6, 8]
+    for i in ref_ind:
+        nodes[i].status = Tree.node_status.VISITED
+
+    t.reset_status()
+
+    stat_dict = {}
+    for node in nodes:
+        stat_dict[node.data] = node.status
+
+    diff = deepdiff.DeepDiff(stat_dict, ref)
+    assert diff == {}
+
+def test_resetSatus(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1]
+
+    ref = {3: Tree.node_status.UNVISITED, 6: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
+           4: Tree.node_status.UNVISITED, 7: Tree.node_status.UNVISITED}
+
+    # for testing purpose, set the status of nodes indexed with indices in ref_ind to VISITED
+    ref_ind = [0, 2, 4, 6, 8]
+    for i in ref_ind:
+        nodes[i].status = Tree.node_status.VISITED
+
+    t._resetStatus(n3)
+
+    ind = [1, 3, 4, 6, 7]
+    stat_dict = {}
+    for i in ind:
+        stat_dict[nodes[i].data] = nodes[i].status
+
+    diff = deepdiff.DeepDiff(stat_dict, ref)
+    assert diff == {}
