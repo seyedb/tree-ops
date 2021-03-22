@@ -57,7 +57,9 @@ def sample_bst():
     n10 = Tree.tree().treeNode(10)
     n13 = Tree.tree().treeNode(13)
     n14 = Tree.tree().treeNode(14)
+    # set the root manually
     t.root = n8
+    # set the left and right nodes manually
     n8.left = n3
     n8.right = n10
     n3.left = n1
@@ -66,6 +68,7 @@ def sample_bst():
     n6.right = n7
     n10.right = n14
     n14.left = n13
+    # set parent nodes manually
     n3.parent = n8
     n10.parent = n8
     n1.parent = n3
@@ -156,7 +159,8 @@ def test_verboseRep(sample_bst):
     t._verboseRep(n3, rep, 0)
 
     diff = deepdiff.DeepDiff(rep, rep_ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_update_height(sample_bst):
     t, nodes = sample_bst
@@ -169,7 +173,8 @@ def test_update_height(sample_bst):
         h_dict[node.data] = node.height
 
     diff = deepdiff.DeepDiff(h_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_updateHeight(sample_bst):
     t, nodes = sample_bst
@@ -184,7 +189,8 @@ def test_updateHeight(sample_bst):
         h_dict[nodes[i].data] = nodes[i].height
 
     diff = deepdiff.DeepDiff(height_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_calcHeight(sample_bst):
     t, nodes = sample_bst
@@ -205,7 +211,8 @@ def test_update_balance_factor(sample_bst):
         bf_dict[node.data] = node.balance_factor
 
     diff = deepdiff.DeepDiff(bf_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_updataBalanceFactor(sample_bst):
     t, nodes = sample_bst
@@ -220,7 +227,8 @@ def test_updataBalanceFactor(sample_bst):
         bf_dict[nodes[i].data] = nodes[i].balance_factor
 
     diff = deepdiff.DeepDiff(bf_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_calcBalanceFactor(sample_bst):
     t, nodes = sample_bst
@@ -249,7 +257,8 @@ def test_reset_status(sample_bst):
         stat_dict[node.data] = node.status
 
     diff = deepdiff.DeepDiff(stat_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
 
 def test_resetSatus(sample_bst):
     t, nodes = sample_bst
@@ -271,4 +280,5 @@ def test_resetSatus(sample_bst):
         stat_dict[nodes[i].data] = nodes[i].status
 
     diff = deepdiff.DeepDiff(stat_dict, ref)
-    assert diff == {}
+    # the diff must be an empty dictionary
+    assert not diff
