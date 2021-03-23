@@ -97,6 +97,11 @@ def test_default_treeNode(dflt_treeNode):
     dflt_balance_factor = (dflt_treeNode.balance_factor == 0)
     assert (dflt_data and dflt_left and dflt_right and dflt_status and dflt_parent and dflt_height and dflt_balance_factor)
 
+def test_treeNode__str__(dflt_treeNode):
+    treeNode_str = dflt_treeNode.__str__()
+    ref_str = "data: None,\tleft: None,\tright: None,\tstatus: node_status.UNVISITED,\tparent: None,\theight: 0,\tbalance factor: 0"
+    assert treeNode_str == ref_str
+
 def test_getStatus(dflt_treeNode):
     assert dflt_treeNode._getStatus() == Tree.node_status.UNVISITED
 
@@ -119,7 +124,7 @@ def test_containsData(sample_bst):
     cond = (condT, condF)
     assert cond == (True, False)
 
-def test__str__(simple_tree):
+def test_tree__str__(simple_tree):
     tree_str = simple_tree.__str__()
     assert tree_str == "left root right \n"
 

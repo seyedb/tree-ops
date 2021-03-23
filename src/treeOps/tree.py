@@ -47,6 +47,17 @@ class tree(object):
 #        def __ge__(self, other):
 #            return self > other or self == other
 
+        def __str__(self):
+            '''Returns a string representation of a treeNode'''
+            res = 'data: {},\t'.format('None' if self.data is None else self.data)
+            res += 'left: {},\t'.format('None' if self.left is None else self.left.data)
+            res += 'right: {},\t'.format('None' if self.right is None else self.right.data)
+            res += 'status: {},\t'.format(self.status)
+            res += 'parent: {},\t'.format('None' if self.parent is None else self.parent.data)
+            res += 'height: {},\t'.format(self.height)
+            res += 'balance factor: {}'.format(self.balance_factor)
+            return res
+
         def _getStatus(self):
             '''Gets the visit status of a tree node.'''
             return self.status
