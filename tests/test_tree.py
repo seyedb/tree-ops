@@ -166,20 +166,10 @@ def test_verbose_rep(simple_tree):
     v0 = sorted(v0, key=op.itemgetter('data'))
     v1 = sorted(v1, key=op.itemgetter('data'))
 
-    pairs = zip(v0, v0_ref)
-    diff_list = []
-    for n1, n2 in pairs:
-        diff = deepdiff.DeepDiff(n1, n2)
-        diff_list.append(diff)
-
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(v0, v0_ref)]
     cond_v0 = diff_list == [{}] * 3
 
-    pairs = zip(v1, v1_ref)
-    diff_list = []
-    for n1, n2 in pairs:
-        diff = deepdiff.DeepDiff(n1, n2)
-        diff_list.append(diff)
-
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(v1, v1_ref)]
     cond_v1 = diff_list == [{}] * 3
 
     assert cond_v0 and cond_v1
@@ -200,12 +190,7 @@ def test_verboseRep(sample_bst):
 
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    pairs = zip(rep, rep_ref)
-    diff_list = []
-    for n1, n2 in pairs:
-        diff = deepdiff.DeepDiff(n1, n2)
-        diff_list.append(diff)
-
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
     cond = diff_list == [{}] * 5
 
     assert cond
@@ -216,9 +201,7 @@ def test_update_height(sample_bst):
 
     ref = {8: 3, 3: 2, 10: 2, 6: 1, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
 
-    h_dict = {}
-    for node in nodes:
-        h_dict[node.data] = node.height
+    h_dict = {node.data:node.height for node in nodes}
 
     diff = deepdiff.DeepDiff(h_dict, ref)
     # the diff must be an empty dictionary
@@ -232,9 +215,7 @@ def test_updateHeight(sample_bst):
     ref = {3: 2, 6: 1, 1: 0, 4: 0, 7: 0}
 
     ind = [1, 3, 4, 6, 7]
-    h_dict = {}
-    for i in ind:
-        h_dict[nodes[i].data] = nodes[i].height
+    h_dict = {nodes[i].data:nodes[i].height for i in ind}
 
     diff = deepdiff.DeepDiff(height_dict, ref)
     # the diff must be an empty dictionary
@@ -254,9 +235,7 @@ def test_update_balance_factor(sample_bst):
 
     ref = {8: 0, 3: -1, 10: -2, 6: 0, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
 
-    bf_dict = {}
-    for node in nodes:
-        bf_dict[node.data] = node.balance_factor
+    bf_dict = {node.data:node.balance_factor for node in nodes}
 
     diff = deepdiff.DeepDiff(bf_dict, ref)
     # the diff must be an empty dictionary
@@ -270,9 +249,7 @@ def test_updataBalanceFactor(sample_bst):
     ref = {3: -1, 6: 0, 1: 0, 4: 0, 7: 0}
 
     ind = [1, 3, 4, 6, 7]
-    bf_dict = {}
-    for i in ind:
-        bf_dict[nodes[i].data] = nodes[i].balance_factor
+    bf_dict = {nodes[i].data:nodes[i].balance_factor for i in ind}
 
     diff = deepdiff.DeepDiff(bf_dict, ref)
     # the diff must be an empty dictionary
@@ -300,9 +277,7 @@ def test_reset_status(sample_bst):
 
     t.reset_status()
 
-    stat_dict = {}
-    for node in nodes:
-        stat_dict[node.data] = node.status
+    stat_dict = {node.data:node.status for node in nodes}
 
     diff = deepdiff.DeepDiff(stat_dict, ref)
     # the diff must be an empty dictionary
@@ -323,9 +298,7 @@ def test_resetSatus(sample_bst):
     t._resetStatus(n3)
 
     ind = [1, 3, 4, 6, 7]
-    stat_dict = {}
-    for i in ind:
-        stat_dict[nodes[i].data] = nodes[i].status
+    stat_dict = {nodes[i].data:nodes[i].status for i in ind}
 
     diff = deepdiff.DeepDiff(stat_dict, ref)
     # the diff must be an empty dictionary
