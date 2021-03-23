@@ -35,7 +35,7 @@ class tree(object):
             return self.data < other.data
 
         def __le__(self, other):
-            return self < other or self == other
+            return self.data < other.data or self.data == other.data
 
         # the following are optional
 #        def __ne__(self, other):
@@ -45,7 +45,7 @@ class tree(object):
 #            return self.data > other.data
 #
 #        def __ge__(self, other):
-#            return self > other or self == other
+#            return self.data > other.data or self.data == other.data
 
         def __str__(self):
             '''Returns a string representation of a treeNode'''

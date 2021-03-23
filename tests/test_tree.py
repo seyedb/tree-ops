@@ -97,6 +97,17 @@ def test_default_treeNode(dflt_treeNode):
     dflt_balance_factor = (dflt_treeNode.balance_factor == 0)
     assert (dflt_data and dflt_left and dflt_right and dflt_status and dflt_parent and dflt_height and dflt_balance_factor)
 
+def test__lt__():
+    n1 = Tree.tree().treeNode(1)
+    n2 = Tree.tree().treeNode(2)
+    n3 = Tree.tree().treeNode(3)
+    assert (n1 < n2 and n3 > n2)
+
+def test__le__():
+    n1 = Tree.tree().treeNode(1)
+    n2 = Tree.tree().treeNode(1)
+    assert (n2 <= n1)
+
 def test_treeNode__str__(dflt_treeNode):
     treeNode_str = dflt_treeNode.__str__()
     ref_str = "data: None,\tleft: None,\tright: None,\tstatus: node_status.UNVISITED,\tparent: None,\theight: 0,\tbalance factor: 0"
