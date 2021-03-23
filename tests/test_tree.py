@@ -510,3 +510,56 @@ def test_insertNode(sample_bst):
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
 
     assert all(cond)
+
+def test_insert_node_balanced(sample_bst):
+    t, nodes = sample_bst
+    # the node that will be affected
+    n10 = nodes[2]
+
+    t.insert_node(11, True)
+
+    n11 = n10.left # was None
+
+    # the new node
+    cond0 = (n11.data == 11)
+    cond1 = (n11.left == None)
+    cond2 = (n11.right == None)
+    cond3 = (n11.status == Tree.node_status.UNVISITED)
+    cond4 = (n11.parent == n10)
+    cond5 = (n11.height == 0)
+    cond6 = (n11.balance_factor == 0)
+
+    cond7 = (n10.balance_factor == -1) # -2
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+
+    assert all(cond)
+
+def test_insertNode_balanced(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1] # subtree root
+
+    # the nodes that will be affected
+    n1 = nodes[3]
+
+    t._insertNode(n3, 5, True)
+
+    n5 = n1.left # n1.left was None
+
+    # the new node
+    cond0 = (n5.data == 5)
+    cond1 = (n5.left == None)
+    cond2 = (n5.right == None)
+    cond3 = (n5.status == Tree.node_status.UNVISITED)
+    cond4 = (n5.parent == n1)
+    cond5 = (n5.height == 0)
+    cond6 = (n5.balance_factor == 0)
+
+    cond7 = (n1.height == 1) # 0
+    cond8 = (n1.balance_factor == 1) # 0
+
+    cond9 = (n3.balance_factor == 0) # -1
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
+
+    assert all(cond)
