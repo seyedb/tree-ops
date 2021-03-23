@@ -278,7 +278,7 @@ class tree(object):
             node.right = rnode
             rnode.parent = node
         
-        self._calcHeight(node)
+        self._updateHeight(node)
         self._calcBalanceFactor(node)
 
         if balanced:
@@ -321,6 +321,9 @@ class tree(object):
         while Q:
             node = Q.popleft()
 
+            self._updateHeight(node)
+            self._calcBalanceFactor(node)
+
             if node.left is None:
                 lnode = self.treeNode(data)
                 node.left = lnode
@@ -336,9 +339,6 @@ class tree(object):
                 break
             else:
                 Q.append(node.right)
-
-        self._calcHeight(node)
-        self._calcBalanceFactor(node)
 
         if balanced:
             return self._rebalanceSubtree(node)
