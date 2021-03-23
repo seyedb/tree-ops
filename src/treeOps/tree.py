@@ -634,9 +634,9 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        self._calcHeight(node)
+        self._updateHeight(node)
         self._calcBalanceFactor(node)
-        self._calcHeight(pivot)
+        self._updateHeight(pivot)
         self._calcBalanceFactor(pivot)
 
         return pivot
@@ -670,9 +670,9 @@ class tree(object):
         if self.root == node:
             self.root = pivot
 
-        self._calcHeight(node)
+        self._updateHeight(node)
         self._calcBalanceFactor(node)
-        self._calcHeight(pivot)
+        self._updateHeight(pivot)
         self._calcBalanceFactor(pivot)
 
         return pivot
