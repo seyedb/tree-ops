@@ -362,4 +362,89 @@ def test_addNode(sample_bst):
     assert (n5_data and n5_left and n5_right and n5_status and n5_parent and n5_height and
             n5_balance_factor and n4_height and n4_balance_factor)
 
+def test_add_node_balanced(sample_bst):
+    t, nodes = sample_bst
+    # the nodes that will be affected
+    n8 = nodes[0]
+    n10 = nodes[2]
+    n14 = nodes[5]
+    n13 = nodes[8]
 
+    t.add_node(11, True)
+
+    n11 = n10.right # was n14
+
+    # the new node
+    cond0 = n11.data == 11
+    cond1 = n11.left == None
+    cond2 = n11.right == None
+    cond3 = n11.status == Tree.node_status.UNVISITED
+    cond4 = n11.parent == n10
+    cond5 = n11.height == 0
+    cond6 = n11.balance_factor == 0
+
+    cond7 = n8.right == n13 # n10
+
+    cond8 = n10.parent == n13 # n8
+    cond9 = n10.height == 1 # 2
+    cond10 = n10.balance_factor == -1 # -2
+
+    cond11 = n13.left == n10 # None
+    cond12 = n13.right == n14 # None
+    cond13 = n13.parent == n8 # n14
+    cond14 = n13.height == 2 # 0
+    cond15 = n13.balance_factor == 1 # 0
+
+    cond16 = n14.left == None # n13
+    cond17 = n14.parent == n13 # n10
+    cond18 = n14.height == 0 # 1
+    cond19 = n14.balance_factor == 0 # 1
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
+            cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
+            cond17, cond18, cond19]
+
+    assert (all(cond))
+
+def test_addNode_balanced(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1] # subtree root
+
+    # the nodes that will be affected
+    n4 = nodes[6]
+    n6 = nodes[4]
+    n8 = nodes[0]
+
+    t._addNode(n3, 5, True)
+
+    n5 = n6.left # n6.left was n4
+
+    # the new node
+    cond0 = n5.data == 5
+    cond1 = n5.left == None
+    cond2 = n5.right == None
+    cond3 = n5.status == Tree.node_status.UNVISITED
+    cond4 = n5.parent == n6
+    cond5 = n5.height == 0
+    cond6 = n5.balance_factor == 0
+
+    cond7 = n8.left == n4 # n3
+
+    cond8 = n4.left == n3 # None
+    cond9 = n4.right == n6 # None
+    cond10 = n4.parent == n8 # n6
+    cond11 = n4.height == 2 # 0
+
+    cond12 = n3.right == None # n6
+    cond13 = n3.parent == n4 # n8
+    cond14 = n3.height == 1 # 2
+    cond15 = n3.balance_factor == 1 # -1
+
+    cond16 = n6.left == n5 # n4
+    cond17 = n6.parent == n4 # n3
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
+            cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
+            cond17]
+
+    assert(all(cond))
