@@ -3,6 +3,7 @@
 import pytest
 import tree as Tree
 import deepdiff
+import operator as op
 
 @pytest.fixture
 def dflt_tree():
@@ -129,24 +130,43 @@ def test_strTree(sample_bst):
     assert test_str == "1 3 4 6 7 "
 
 def test_verbose_rep(simple_tree):
-    rep_v0_ref = [{'data': 'root', 'left': 'left', 'right': 'right'},
-                  {'data': 'left', 'left': 'None', 'right': 'None'},
-                  {'data': 'right', 'left': 'None', 'right': 'None'}]
+    v0_ref = [{'data': 'root', 'left': 'left', 'right': 'right'},
+              {'data': 'left', 'left': 'None', 'right': 'None'},
+              {'data': 'right', 'left': 'None', 'right': 'None'}]
 
-    rep_v1_ref = [{'data': 'root', 'left': 'left', 'right': 'right', 'parent': 'None',
-                    'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
-                  {'data': 'left', 'left': 'None', 'right': 'None', 'parent': 'root',
-                    'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
-                  {'data': 'right', 'left': 'None', 'right': 'None', 'parent': 'root',
-                    'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+    v1_ref = [{'data': 'root', 'left': 'left', 'right': 'right', 'parent': 'None',
+               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+              {'data': 'left', 'left': 'None', 'right': 'None', 'parent': 'root',
+               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+              {'data': 'right', 'left': 'None', 'right': 'None', 'parent': 'root',
+               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
 
-    rep_v0 = simple_tree.verbose_rep(0)
-    rep_v1 = simple_tree.verbose_rep(1)
+    v0_ref = sorted(v0_ref, key=op.itemgetter('data'))
+    v1_ref = sorted(v1_ref, key=op.itemgetter('data'))
 
-    cond_v0 = [item for item in rep_v0 if item not in rep_v0_ref] == []
-    cond_v1 = [item for item in rep_v1 if item not in rep_v1_ref] == []
+    v0 = simple_tree.verbose_rep(0)
+    v1 = simple_tree.verbose_rep(1)
 
-    assert(cond_v0 and cond_v1)
+    v0 = sorted(v0, key=op.itemgetter('data'))
+    v1 = sorted(v1, key=op.itemgetter('data'))
+
+    pairs = zip(v0, v0_ref)
+    diff_list = []
+    for n1, n2 in pairs:
+        diff = deepdiff.DeepDiff(n1, n2)
+        diff_list.append(diff)
+
+    cond_v0 = diff_list == [{}] * 3
+
+    pairs = zip(v1, v1_ref)
+    diff_list = []
+    for n1, n2 in pairs:
+        diff = deepdiff.DeepDiff(n1, n2)
+        diff_list.append(diff)
+
+    cond_v1 = diff_list == [{}] * 3
+
+    assert cond_v0 and cond_v1
 
 def test_verboseRep(sample_bst):
     rep_ref = [{'data': 3, 'left': 1, 'right': 6},
@@ -155,14 +175,24 @@ def test_verboseRep(sample_bst):
                {'data': 4, 'left': 'None', 'right': 'None'},
                {'data': 7, 'left': 'None', 'right': 'None'}]
 
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
     rep = []
     t, nodes = sample_bst
     n3 = nodes[1]
     t._verboseRep(n3, rep, 0)
 
-    cond = [item for item in rep if item not in rep_ref] == []
+    rep = sorted(rep, key=op.itemgetter('data'))
 
-    assert(cond)
+    pairs = zip(rep, rep_ref)
+    diff_list = []
+    for n1, n2 in pairs:
+        diff = deepdiff.DeepDiff(n1, n2)
+        diff_list.append(diff)
+
+    cond = diff_list == [{}] * 5
+
+    assert cond
 
 def test_update_height(sample_bst):
     t, nodes = sample_bst
