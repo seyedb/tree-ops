@@ -342,7 +342,9 @@ def test_addNode(sample_bst):
     t, nodes = sample_bst
     n3 = nodes[1] # subtree root
 
-    n4 = nodes[6] # the existing node that will be affected
+    # the existing nodes that will be affected
+    n4 = nodes[6]
+    n6 = nodes[4]
 
     t._addNode(n3, 5)
 
@@ -360,7 +362,14 @@ def test_addNode(sample_bst):
     cond7 = (n4.height == 1) # was 0
     cond8 = (n4.balance_factor == -1) # was 0
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8]
+    cond9 = (n3.height == 3) # was 2
+    cond10 = (n3.balance_factor == -2) # was -1
+
+    cond11 = (n6.height == 2) # was 1
+    cond12 = (n6.balance_factor == 1) # was 0
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
+            cond9, cond10, cond11, cond12]
 
     assert all(cond)
 
@@ -406,7 +415,7 @@ def test_add_node_balanced(sample_bst):
             cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
             cond17, cond18, cond19]
 
-    assert (all(cond))
+    assert all(cond)
 
 def test_addNode_balanced(sample_bst):
     t, nodes = sample_bst
@@ -449,4 +458,55 @@ def test_addNode_balanced(sample_bst):
             cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
             cond17]
 
-    assert(all(cond))
+    assert all(cond)
+
+def test_insert_node(sample_bst):
+    t, nodes = sample_bst
+    n10 = nodes[2] # the existing node to be affected
+
+    t.insert_node(2)
+
+    n2 = n10.left # n10.left was None
+
+    # the new node
+    cond0 = (n2.data == 2)
+    cond1 = (n2.left == None)
+    cond2 = (n2.right == None)
+    cond3 = (n2.status == Tree.node_status.UNVISITED)
+    cond4 = (n2.parent == n10)
+    cond5 = (n2.height == 0)
+    cond6 = (n2.balance_factor == 0)
+
+    cond7 = (n10.balance_factor == -1) # was -2
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+
+    assert all(cond)
+
+def test_insertNode(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1] # subtree root
+
+    n1 = nodes[3] # the existing node that will be affected
+
+    t._insertNode(n3, 5)
+
+    n5 = n1.left # n1.left was None
+
+    # the new node
+    cond0 = (n5.data == 5)
+    cond1 = (n5.left == None)
+    cond2 = (n5.right == None)
+    cond3 = (n5.status == Tree.node_status.UNVISITED)
+    cond4 = (n5.parent == n1)
+    cond5 = (n5.height == 0)
+    cond6 = (n5.balance_factor == 0)
+
+    cond7 = (n1.height == 1) # was 0
+    cond8 = (n1.balance_factor == 1) # was 0
+
+    cond9 = (n3.balance_factor == 0) # was -1
+
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
+
+    assert all(cond)
