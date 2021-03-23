@@ -317,12 +317,13 @@ def test_resetSatus(sample_bst):
 
 def test_add_node(sample_bst):
     t, nodes = sample_bst
-    n10 = nodes[2]
+    n10 = nodes[2] # the existing node to be affected
 
     t.add_node(9)
 
-    n9 = n10.left
+    n9 = n10.left # n10.left was None
 
+    # the new node
     n9_data = (n9.data == 9)
     n9_left = (n9.left == None)
     n9_right = (n9.right == None)
@@ -331,7 +332,7 @@ def test_add_node(sample_bst):
     n9_height = (n9.height == 0)
     n9_balance_factor = (n9.balance_factor == 0)
 
-    n10_balance_factor = (n10.balance_factor == -1)
+    n10_balance_factor = (n10.balance_factor == -1) # was -2
 
     assert (n9_data and n9_left and n9_right and n9_status and n9_parent and n9_height and
             n9_balance_factor and n10_balance_factor)
@@ -344,8 +345,9 @@ def test_addNode(sample_bst):
 
     t._addNode(n3, 5)
 
-    n5 = n4.right
+    n5 = n4.right # n4.right was None
 
+    # the new node
     n5_data = (n5.data == 5)
     n5_left = (n5.left == None)
     n5_right = (n5.right == None)
@@ -354,8 +356,10 @@ def test_addNode(sample_bst):
     n5_height = (n5.height == 0)
     n5_balance_factor = (n5.balance_factor == 0)
 
-    n4_balance_factor = (n4.balance_factor == -1)
-    n4_height = (n4.height == 1)
+    n4_height = (n4.height == 1) # was 0
+    n4_balance_factor = (n4.balance_factor == -1) # was 0
 
     assert (n5_data and n5_left and n5_right and n5_status and n5_parent and n5_height and
             n5_balance_factor and n4_height and n4_balance_factor)
+
+
