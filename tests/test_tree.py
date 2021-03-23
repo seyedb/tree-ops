@@ -324,18 +324,19 @@ def test_add_node(sample_bst):
     n9 = n10.left # n10.left was None
 
     # the new node
-    n9_data = (n9.data == 9)
-    n9_left = (n9.left == None)
-    n9_right = (n9.right == None)
-    n9_status = (n9.status == Tree.node_status.UNVISITED)
-    n9_parent = (n9.parent == n10)
-    n9_height = (n9.height == 0)
-    n9_balance_factor = (n9.balance_factor == 0)
+    cond0 = (n9.data == 9)
+    cond1 = (n9.left == None)
+    cond2 = (n9.right == None)
+    cond3 = (n9.status == Tree.node_status.UNVISITED)
+    cond4 = (n9.parent == n10)
+    cond5 = (n9.height == 0)
+    cond6 = (n9.balance_factor == 0)
 
-    n10_balance_factor = (n10.balance_factor == -1) # was -2
+    cond7 = (n10.balance_factor == -1) # was -2
 
-    assert (n9_data and n9_left and n9_right and n9_status and n9_parent and n9_height and
-            n9_balance_factor and n10_balance_factor)
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+
+    assert all(cond)
 
 def test_addNode(sample_bst):
     t, nodes = sample_bst
@@ -348,19 +349,20 @@ def test_addNode(sample_bst):
     n5 = n4.right # n4.right was None
 
     # the new node
-    n5_data = (n5.data == 5)
-    n5_left = (n5.left == None)
-    n5_right = (n5.right == None)
-    n5_status = (n5.status == Tree.node_status.UNVISITED)
-    n5_parent = (n5.parent == n4)
-    n5_height = (n5.height == 0)
-    n5_balance_factor = (n5.balance_factor == 0)
+    cond0 = (n5.data == 5)
+    cond1 = (n5.left == None)
+    cond2 = (n5.right == None)
+    cond3 = (n5.status == Tree.node_status.UNVISITED)
+    cond4 = (n5.parent == n4)
+    cond5 = (n5.height == 0)
+    cond6 = (n5.balance_factor == 0)
 
-    n4_height = (n4.height == 1) # was 0
-    n4_balance_factor = (n4.balance_factor == -1) # was 0
+    cond7 = (n4.height == 1) # was 0
+    cond8 = (n4.balance_factor == -1) # was 0
 
-    assert (n5_data and n5_left and n5_right and n5_status and n5_parent and n5_height and
-            n5_balance_factor and n4_height and n4_balance_factor)
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8]
+
+    assert all(cond)
 
 def test_add_node_balanced(sample_bst):
     t, nodes = sample_bst
@@ -375,30 +377,30 @@ def test_add_node_balanced(sample_bst):
     n11 = n10.right # was n14
 
     # the new node
-    cond0 = n11.data == 11
-    cond1 = n11.left == None
-    cond2 = n11.right == None
-    cond3 = n11.status == Tree.node_status.UNVISITED
-    cond4 = n11.parent == n10
-    cond5 = n11.height == 0
-    cond6 = n11.balance_factor == 0
+    cond0 = (n11.data == 11)
+    cond1 = (n11.left == None)
+    cond2 = (n11.right == None)
+    cond3 = (n11.status == Tree.node_status.UNVISITED)
+    cond4 = (n11.parent == n10)
+    cond5 = (n11.height == 0)
+    cond6 = (n11.balance_factor == 0)
 
-    cond7 = n8.right == n13 # n10
+    cond7 = (n8.right == n13) # n10
 
-    cond8 = n10.parent == n13 # n8
-    cond9 = n10.height == 1 # 2
-    cond10 = n10.balance_factor == -1 # -2
+    cond8 = (n10.parent == n13) # n8
+    cond9 = (n10.height == 1) # 2
+    cond10 = (n10.balance_factor == -1) # -2
 
-    cond11 = n13.left == n10 # None
-    cond12 = n13.right == n14 # None
-    cond13 = n13.parent == n8 # n14
-    cond14 = n13.height == 2 # 0
-    cond15 = n13.balance_factor == 1 # 0
+    cond11 = (n13.left == n10) # None
+    cond12 = (n13.right == n14) # None
+    cond13 = (n13.parent == n8) # n14
+    cond14 = (n13.height == 2) # 0
+    cond15 = (n13.balance_factor == 1) # 0
 
-    cond16 = n14.left == None # n13
-    cond17 = n14.parent == n13 # n10
-    cond18 = n14.height == 0 # 1
-    cond19 = n14.balance_factor == 0 # 1
+    cond16 = (n14.left == None) # n13
+    cond17 = (n14.parent == n13) # n10
+    cond18 = (n14.height == 0) # 1
+    cond19 = (n14.balance_factor == 0) # 1
 
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
             cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
@@ -420,28 +422,28 @@ def test_addNode_balanced(sample_bst):
     n5 = n6.left # n6.left was n4
 
     # the new node
-    cond0 = n5.data == 5
-    cond1 = n5.left == None
-    cond2 = n5.right == None
-    cond3 = n5.status == Tree.node_status.UNVISITED
-    cond4 = n5.parent == n6
-    cond5 = n5.height == 0
-    cond6 = n5.balance_factor == 0
+    cond0 = (n5.data == 5)
+    cond1 = (n5.left == None)
+    cond2 = (n5.right == None)
+    cond3 = (n5.status == Tree.node_status.UNVISITED)
+    cond4 = (n5.parent == n6)
+    cond5 = (n5.height == 0)
+    cond6 = (n5.balance_factor == 0)
 
-    cond7 = n8.left == n4 # n3
+    cond7 = (n8.left == n4) # n3
 
-    cond8 = n4.left == n3 # None
-    cond9 = n4.right == n6 # None
-    cond10 = n4.parent == n8 # n6
-    cond11 = n4.height == 2 # 0
+    cond8 = (n4.left == n3) # None
+    cond9 = (n4.right == n6) # None
+    cond10 = (n4.parent == n8) # n6
+    cond11 = (n4.height == 2) # 0
 
-    cond12 = n3.right == None # n6
-    cond13 = n3.parent == n4 # n8
-    cond14 = n3.height == 1 # 2
-    cond15 = n3.balance_factor == 1 # -1
+    cond12 = (n3.right == None) # n6
+    cond13 = (n3.parent == n4) # n8
+    cond14 = (n3.height == 1) # 2
+    cond15 = (n3.balance_factor == 1) # -1
 
-    cond16 = n6.left == n5 # n4
-    cond17 = n6.parent == n4 # n3
+    cond16 = (n6.left == n5) # n4
+    cond17 = (n6.parent == n4) # n3
 
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
             cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
