@@ -49,7 +49,7 @@ class tree(object):
 
         def __str__(self):
             '''Returns a string representation of a treeNode'''
-            res = 'data: {},\t'.format('None' if self.data is None else self.data)
+            res = 'data: {},\t'.format(self.data)
             res += 'left: {},\t'.format('None' if self.left is None else self.left.data)
             res += 'right: {},\t'.format('None' if self.right is None else self.right.data)
             res += 'status: {},\t'.format(self.status)
