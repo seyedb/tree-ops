@@ -645,3 +645,21 @@ def test_findNode(sample_bst):
 
     assert cond1 and cond2
 
+def test_DFS(sample_bst):
+    t,_ = sample_bst
+    ref_dfs = [8, 3, 1, 6, 4, 7, 10, 14, 13]
+
+    path = []
+    t.DFS(t.root, path)
+    dfs = [n.data for n in path]
+
+    assert dfs == ref_dfs
+
+def test_BFS(sample_bst):
+    t,_ = sample_bst
+    ref_bfs = [8, 3, 10, 1, 6, 14, 4, 7, 13]
+
+    path = t.BFS(t.root)
+    bfs = [n.data for n in path]
+
+    assert bfs == ref_bfs
