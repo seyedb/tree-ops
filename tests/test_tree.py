@@ -40,7 +40,7 @@ def simple_tree():
     return smpl_tree
 
 @pytest.fixture
-def sample_bst():
+def ref_bst():
     '''Returns a sample binary search tree and a tuple of its nodes.
        The tree has the following form:
           8:  {'left': 3, 'right': 10}
@@ -100,7 +100,7 @@ def sample_bst():
 
 @pytest.fixture
 def plain_bst():
-    '''Returns a plain binary search tree and a tuple of its nodes. The tree has the same structure as sample_bst.'''
+    '''Returns a plain binary search tree and a tuple of its nodes. The tree has the same structure as ref_bst.'''
     t = Tree.tree()
     n1 = Tree.tree().treeNode(1)
     n3 = Tree.tree().treeNode(3)
@@ -162,15 +162,15 @@ def test_setStatus(dflt_treeNode):
     dflt_treeNode._setStatus(Tree.node_status.VISITED)
     assert dflt_treeNode.status == Tree.node_status.VISITED
 
-def test__contains__(sample_bst):
-    t,_ = sample_bst
+def test__contains__(ref_bst):
+    t,_ = ref_bst
     condT = 3 in t
     condF = 5 in t
     cond = (condT, condF)
     assert cond == (True, False)
 
-def test_containsData(sample_bst):
-    t, nodes = sample_bst
+def test_containsData(ref_bst):
+    t, nodes = ref_bst
     n = nodes[1]
     condT = t._containsData(6, n)
     condF = t._containsData(14, n)
@@ -181,8 +181,8 @@ def test_tree__str__(simple_tree):
     tree_str = simple_tree.__str__()
     assert tree_str == "left root right \n"
 
-def test_strTree(sample_bst):
-    t, nodes = sample_bst
+def test_strTree(ref_bst):
+    t, nodes = ref_bst
     n = nodes[1]
     test_str = t._strTree(n)
     assert test_str == "1 3 4 6 7 "
@@ -216,7 +216,7 @@ def test_verbose_rep(simple_tree):
 
     assert cond_v0 and cond_v1
 
-def test_verboseRep(sample_bst):
+def test_verboseRep(ref_bst):
     rep_ref = [{'data': 3, 'left': 1, 'right': 6},
                {'data': 1, 'left': 'None', 'right': 'None'},
                {'data': 6, 'left': 4, 'right': 7},
@@ -226,7 +226,7 @@ def test_verboseRep(sample_bst):
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 
     rep = []
-    t, nodes = sample_bst
+    t, nodes = ref_bst
     n3 = nodes[1]
     t._verboseRep(n3, rep, 0)
 
@@ -237,8 +237,8 @@ def test_verboseRep(sample_bst):
 
     assert cond
 
-def test_update_height(sample_bst):
-    t, nodes = sample_bst
+def test_update_height(ref_bst):
+    t, nodes = ref_bst
     t.update_height()
 
     ref = {8: 3, 3: 2, 10: 2, 6: 1, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
@@ -249,8 +249,8 @@ def test_update_height(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_updateHeight(sample_bst):
-    t, nodes = sample_bst
+def test_updateHeight(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1]
     t._updateHeight(n3)
 
@@ -263,8 +263,8 @@ def test_updateHeight(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_calcHeight(plain_bst, sample_bst):
-    ref_t, ref_nodes = sample_bst
+def test_calcHeight(plain_bst, ref_bst):
+    ref_t, ref_nodes = ref_bst
     t, nodes = plain_bst
 
     ref_n3 = ref_nodes[1]
@@ -275,8 +275,8 @@ def test_calcHeight(plain_bst, sample_bst):
 
     assert ref_height == new_height == 2
 
-def test_update_balance_factor(sample_bst):
-    t, nodes = sample_bst[0]
+def test_update_balance_factor(ref_bst):
+    t, nodes = ref_bst[0]
     t.update_balance_factor()
 
     ref = {8: 0, 3: -1, 10: -2, 6: 0, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
@@ -287,8 +287,8 @@ def test_update_balance_factor(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_updataBalanceFactor(sample_bst):
-    t, nodes = sample_bst
+def test_updataBalanceFactor(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1]
     t._updateBalanceFactor(n3)
 
@@ -301,8 +301,8 @@ def test_updataBalanceFactor(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_calcBalanceFactor(plain_bst, sample_bst):
-    ref_t, ref_nodes = sample_bst
+def test_calcBalanceFactor(plain_bst, ref_bst):
+    ref_t, ref_nodes = ref_bst
     t, nodes = plain_bst
 
     ref_n3 = ref_nodes[1]
@@ -312,8 +312,8 @@ def test_calcBalanceFactor(plain_bst, sample_bst):
 
     assert ref_n3.balance_factor == n3.balance_factor == -1
 
-def test_reset_status(sample_bst):
-    t, nodes = sample_bst
+def test_reset_status(ref_bst):
+    t, nodes = ref_bst
 
     ref = {8: Tree.node_status.UNVISITED, 3: Tree.node_status.UNVISITED, 10: Tree.node_status.UNVISITED,
            6: Tree.node_status.UNVISITED, 14: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
@@ -332,8 +332,8 @@ def test_reset_status(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_resetSatus(sample_bst):
-    t, nodes = sample_bst
+def test_resetSatus(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1]
 
     ref = {3: Tree.node_status.UNVISITED, 6: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
@@ -353,8 +353,8 @@ def test_resetSatus(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_add_node(sample_bst):
-    t, nodes = sample_bst
+def test_add_node(ref_bst):
+    t, nodes = ref_bst
     n10 = nodes[2] # the existing node to be affected
 
     t.add_node(9)
@@ -376,8 +376,8 @@ def test_add_node(sample_bst):
 
     assert all(cond)
 
-def test_addNode(sample_bst):
-    t, nodes = sample_bst
+def test_addNode(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1] # subtree root
 
     # the existing nodes that will be affected
@@ -411,8 +411,8 @@ def test_addNode(sample_bst):
 
     assert all(cond)
 
-def test_add_node_balanced(sample_bst):
-    t, nodes = sample_bst
+def test_add_node_balanced(ref_bst):
+    t, nodes = ref_bst
     # the nodes that will be affected
     n8 = nodes[0]
     n10 = nodes[2]
@@ -455,8 +455,8 @@ def test_add_node_balanced(sample_bst):
 
     assert all(cond)
 
-def test_addNode_balanced(sample_bst):
-    t, nodes = sample_bst
+def test_addNode_balanced(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1] # subtree root
 
     # the nodes that will be affected
@@ -498,8 +498,8 @@ def test_addNode_balanced(sample_bst):
 
     assert all(cond)
 
-def test_insert_node(sample_bst):
-    t, nodes = sample_bst
+def test_insert_node(ref_bst):
+    t, nodes = ref_bst
     n10 = nodes[2] # the existing node to be affected
 
     t.insert_node(2)
@@ -521,8 +521,8 @@ def test_insert_node(sample_bst):
 
     assert all(cond)
 
-def test_insertNode(sample_bst):
-    t, nodes = sample_bst
+def test_insertNode(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1] # subtree root
 
     n1 = nodes[3] # the existing node that will be affected
@@ -549,8 +549,8 @@ def test_insertNode(sample_bst):
 
     assert all(cond)
 
-def test_insert_node_balanced(sample_bst):
-    t, nodes = sample_bst
+def test_insert_node_balanced(ref_bst):
+    t, nodes = ref_bst
     # the node that will be affected
     n10 = nodes[2]
 
@@ -573,8 +573,8 @@ def test_insert_node_balanced(sample_bst):
 
     assert all(cond)
 
-def test_insertNode_balanced(sample_bst):
-    t, nodes = sample_bst
+def test_insertNode_balanced(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1] # subtree root
 
     # the nodes that will be affected
@@ -602,8 +602,8 @@ def test_insertNode_balanced(sample_bst):
 
     assert all(cond)
 
-def test_height_bf_add_node(sample_bst):
-    t,_ = sample_bst
+def test_height_bf_add_node(ref_bst):
+    t,_ = ref_bst
     n8 = t.root
 
     t.add_node(2)
@@ -619,8 +619,8 @@ def test_height_bf_add_node(sample_bst):
 
     assert cond1 and cond2
 
-def test_height_bf_insert_node(sample_bst):
-    t,_ = sample_bst
+def test_height_bf_insert_node(ref_bst):
+    t,_ = ref_bst
     n8 = t.root
 
     t.insert_node(2)
@@ -636,8 +636,8 @@ def test_height_bf_insert_node(sample_bst):
 
     assert cond1 and cond2
 
-def test_inorder_traversal(sample_bst):
-    t,_ = sample_bst
+def test_inorder_traversal(ref_bst):
+    t,_ = ref_bst
     ref_inorder = [1, 3, 4, 6, 7, 8, 10, 13, 14]
 
     path = []
@@ -647,8 +647,8 @@ def test_inorder_traversal(sample_bst):
 
     assert inorder == ref_inorder
 
-def test_preorder_traversal(sample_bst):
-    t,_ = sample_bst
+def test_preorder_traversal(ref_bst):
+    t,_ = ref_bst
     ref_preorder = [8, 3, 1, 6, 4, 7, 10, 14, 13]
 
     path = []
@@ -658,8 +658,8 @@ def test_preorder_traversal(sample_bst):
 
     assert preorder == ref_preorder
 
-def test_postorder_traversal(sample_bst):
-    t,_ = sample_bst
+def test_postorder_traversal(ref_bst):
+    t,_ = ref_bst
     ref_postorder = [1, 4, 7, 6, 3, 13, 14, 10, 8]
 
     path = []
@@ -669,8 +669,8 @@ def test_postorder_traversal(sample_bst):
 
     assert postorder == ref_postorder
 
-def test_find_node(sample_bst):
-    t, nodes = sample_bst
+def test_find_node(ref_bst):
+    t, nodes = ref_bst
     n10 = nodes[2]
 
     n = t.find_node(2)
@@ -681,8 +681,8 @@ def test_find_node(sample_bst):
 
     assert cond1 and cond2
 
-def test_findNode(sample_bst):
-    t, nodes = sample_bst
+def test_findNode(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1]
     n6 = nodes[4]
 
@@ -694,8 +694,8 @@ def test_findNode(sample_bst):
 
     assert cond1 and cond2
 
-def test_DFS(sample_bst):
-    t,_ = sample_bst
+def test_DFS(ref_bst):
+    t,_ = ref_bst
     ref_dfs = [8, 3, 1, 6, 4, 7, 10, 14, 13]
 
     path = []
@@ -704,8 +704,8 @@ def test_DFS(sample_bst):
 
     assert dfs == ref_dfs
 
-def test_BFS(sample_bst):
-    t,_ = sample_bst
+def test_BFS(ref_bst):
+    t,_ = ref_bst
     ref_bfs = [8, 3, 10, 1, 6, 14, 4, 7, 13]
 
     path = t.BFS(t.root)
@@ -713,12 +713,12 @@ def test_BFS(sample_bst):
 
     assert bfs == ref_bfs
 
-def test_is_balanced(sample_bst):
-    t,_ = sample_bst
+def test_is_balanced(ref_bst):
+    t,_ = ref_bst
     assert not t.is_balanced()
 
-def test_isBalanced(sample_bst):
-    t, nodes = sample_bst
+def test_isBalanced(ref_bst):
+    t, nodes = ref_bst
     n3 = nodes[1]
     isbalanced = True if t._isBalanced(n3) > 0 else False
 
