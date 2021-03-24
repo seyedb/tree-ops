@@ -431,25 +431,25 @@ class tree(object):
             (treeNode) the tree node that contains the given data          
         '''
         if self.root is not None:
-            return self._findNode(data, self.root)
+            return self._findNode(self.root, data)
         else:
             return None
 
-    def _findNode(self, data, node):
+    def _findNode(self, node, data):
         '''(helper function) Finds a given data in a tree.
         
         args:
-            data (node val data type): the data to be found in the tree
             node (treeNode): the node at which the recursive search begins
+            data (node val data type): the data to be found in the tree
         returns:
             (treeNode) the tree node that contains the given data
         '''
         if node.data == data:
             return node
         elif (data < node.data and node.left is not None):
-            return self._findNode(data, node.left)
+            return self._findNode(node.left, data)
         elif (data > node.data and node.right is not None):
-            return self._findNode(data, node.right)
+            return self._findNode(node.right, data)
 
     def DFS(self, start, path=None):
         '''Depth-First Search (DFS)
