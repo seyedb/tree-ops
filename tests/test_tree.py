@@ -586,3 +586,36 @@ def test_height_bf_insert_node(sample_bst):
     cond2 = (n8.balance_factor == 1)
 
     assert cond1 and cond2
+
+def test_inorder_traversal(sample_bst):
+    t,_ = sample_bst
+    ref_inorder = [1, 3, 4, 6, 7, 8, 10, 13, 14]
+
+    path = []
+    t.inorder_traversal(t.root, path)
+
+    inorder = [n.data for n in path]
+
+    assert inorder == ref_inorder
+
+def test_preorder_traversal(sample_bst):
+    t,_ = sample_bst
+    ref_preorder = [8, 3, 1, 6, 4, 7, 10, 14, 13]
+
+    path = []
+    t.preorder_traversal(t.root, path)
+
+    preorder = [n.data for n in path]
+
+    assert preorder == ref_preorder
+
+def test_postorder_traversal(sample_bst):
+    t,_ = sample_bst
+    ref_postorder = [1, 4, 7, 6, 3, 13, 14, 10, 8]
+
+    path = []
+    t.postorder_traversal(t.root, path)
+
+    postorder = [n.data for n in path]
+
+    assert postorder == ref_postorder
