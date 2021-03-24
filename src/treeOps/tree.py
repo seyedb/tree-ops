@@ -455,7 +455,7 @@ class tree(object):
         '''Depth-First Search (DFS)
 
         args:
-            start (node val data type): the key value of the node where the search starts
+            start (treeNode): the node where the traversal starts
             path (list of treeNode): the DFS path (empty path to be filled with nodes)
         returns:
             (list of treeNode) the full DFS path
@@ -463,7 +463,7 @@ class tree(object):
         if path is None:
             path = []
 
-        s = self.find_node(start)
+        s = self.find_node(start.data)
         if s is None:
             return
 
@@ -478,7 +478,7 @@ class tree(object):
         for child in children:
             if child._getStatus() == node_status.UNVISITED:
                 path.append(child)
-                path = self.DFS(child.data, path)
+                path = self.DFS(child, path)
 
         return path
         
@@ -486,11 +486,11 @@ class tree(object):
         '''Breadth-First Search (BFS)
 
         args:
-            start (node val data type): the key value of the node where the search starts
+            start (treeNode): the node where the traversal starts
         returns:
             (list of treeNode) the full BFS path
         '''
-        s = self.find_node(start)
+        s = self.find_node(start.data)
         if s is None:
             return
         s._setStatus(node_status.VISITED)
