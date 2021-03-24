@@ -552,3 +552,37 @@ def test_insertNode_balanced(sample_bst):
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
 
     assert all(cond)
+
+def test_height_bf_add_node(sample_bst):
+    t,_ = sample_bst
+    n8 = t.root
+
+    t.add_node(2)
+    t.add_node(5)
+    t.add_node(9)
+    t.add_node(11)
+    t.add_node(15)
+    t.add_node(16)
+    t.add_node(17)
+
+    cond1 = (n8.height == 5)
+    cond2 = (n8.balance_factor == -1)
+
+    assert cond1 and cond2
+
+def test_height_bf_insert_node(sample_bst):
+    t,_ = sample_bst
+    n8 = t.root
+
+    t.insert_node(2)
+    t.insert_node(5)
+    t.insert_node(9)
+    t.insert_node(11)
+    t.insert_node(15)
+    t.insert_node(16)
+    t.insert_node(17)
+
+    cond1 = (n8.height == 4)
+    cond2 = (n8.balance_factor == 1)
+
+    assert cond1 and cond2
