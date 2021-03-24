@@ -26,11 +26,16 @@ def simple_tree():
     root = Tree.tree().treeNode('root')
     left = Tree.tree().treeNode('left')
     right = Tree.tree().treeNode('right')
+    # set the root manually
     smpl_tree.root = root
+    # set the left and right nodes manually
     root.left = left
     root.right = right
+    # set parent nodes manually
     left.parent = root
     right.parent = root
+    # set height manually
+    root.height = 1
 
     return smpl_tree
 
@@ -78,10 +83,47 @@ def sample_bst():
     n4.parent = n6
     n7.parent = n6
     n13.parent = n14
+    # set height manually
+    n8.height = 3
+    n3.height = 2
+    n10.height = 2
+    n6.height = 1
+    n14.height = 1
+    # set balance factor manually
+    n10.balance_factor = -2
+    n3.balance_factor = -1
+    n14.balance_factor = 1
 
     nodes_tuple = (n8, n3, n10, n1, n6, n14, n4, n7, n13)
 
     return t, nodes_tuple
+
+@pytest.fixture
+def plain_bst():
+    '''Returns a plain binary search tree and a tuple of its nodes. The tree has the same structure as sample_bst.'''
+    t = Tree.tree()
+    n1 = Tree.tree().treeNode(1)
+    n3 = Tree.tree().treeNode(3)
+    n4 = Tree.tree().treeNode(4)
+    n6 = Tree.tree().treeNode(6)
+    n7 = Tree.tree().treeNode(7)
+    n8 = Tree.tree().treeNode(8)
+    n10 = Tree.tree().treeNode(10)
+    n13 = Tree.tree().treeNode(13)
+    n14 = Tree.tree().treeNode(14)
+    t.root = n8
+    n8.left = n3
+    n8.right = n10
+    n3.left = n1
+    n3.right = n6
+    n6.left = n4
+    n6.right = n7
+    n10.right = n14
+    n14.left = n13
+
+    node_tuple = (n8, n3, n10, n1, n6, n14, n4, n7, n13)
+
+    return t, node_tuple
 
 def test_default_tree(dflt_tree):
     dflt_root = (dflt_tree.root == None)
@@ -151,7 +193,7 @@ def test_verbose_rep(simple_tree):
               {'data': 'right', 'left': 'None', 'right': 'None'}]
 
     v1_ref = [{'data': 'root', 'left': 'left', 'right': 'right', 'parent': 'None',
-               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+               'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
               {'data': 'left', 'left': 'None', 'right': 'None', 'parent': 'root',
                'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
               {'data': 'right', 'left': 'None', 'right': 'None', 'parent': 'root',
@@ -221,13 +263,17 @@ def test_updateHeight(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_calcHeight(sample_bst):
-    t, nodes = sample_bst
+def test_calcHeight(plain_bst, sample_bst):
+    ref_t, ref_nodes = sample_bst
+    t, nodes = plain_bst
+
+    ref_n3 = ref_nodes[1]
     n3 = nodes[1]
-    old_height = n3.height
+
+    ref_height = ref_n3.height
     new_height = t._calcHeight(n3)
 
-    assert (old_height, new_height) == (0, 2)
+    assert ref_height == new_height == 2
 
 def test_update_balance_factor(sample_bst):
     t, nodes = sample_bst[0]
@@ -255,13 +301,16 @@ def test_updataBalanceFactor(sample_bst):
     # the diff must be an empty dictionary
     assert not diff
 
-def test_calcBalanceFactor(sample_bst):
-    t, nodes = sample_bst
+def test_calcBalanceFactor(plain_bst, sample_bst):
+    ref_t, ref_nodes = sample_bst
+    t, nodes = plain_bst
+
+    ref_n3 = ref_nodes[1]
     n3 = nodes[1]
-    old_bf = n3.balance_factor
+
     t._calcBalanceFactor(n3)
 
-    assert (old_bf, n3.balance_factor) == (0, -1)
+    assert ref_n3.balance_factor == n3.balance_factor == -1
 
 def test_reset_status(sample_bst):
     t, nodes = sample_bst
