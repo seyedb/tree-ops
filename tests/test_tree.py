@@ -619,3 +619,29 @@ def test_postorder_traversal(sample_bst):
     postorder = [n.data for n in path]
 
     assert postorder == ref_postorder
+
+def test_find_node(sample_bst):
+    t, nodes = sample_bst
+    n10 = nodes[2]
+
+    n = t.find_node(2)
+    cond1 = (n == None)
+
+    n = t.find_node(10)
+    cond2 = (n == n10)
+
+    assert cond1 and cond2
+
+def test_findNode(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1]
+    n6 = nodes[4]
+
+    n = t._findNode(n3, 6)
+    cond1 = (n == n6)
+
+    n = t._findNode(n3, 10)
+    cond2 = (n == None)
+
+    assert cond1 and cond2
+
