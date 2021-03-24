@@ -663,3 +663,15 @@ def test_BFS(sample_bst):
     bfs = [n.data for n in path]
 
     assert bfs == ref_bfs
+
+def test_is_balanced(sample_bst):
+    t,_ = sample_bst
+    assert not t.is_balanced()
+
+def test_isBalanced(sample_bst):
+    t, nodes = sample_bst
+    n3 = nodes[1]
+    isbalanced = True if t._isBalanced(n3) > 0 else False
+
+    assert isbalanced
+
