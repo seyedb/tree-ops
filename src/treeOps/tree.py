@@ -12,6 +12,7 @@ class tree(object):
     def __init__(self, root=None):
         '''Initializes a tree with its root node.'''
         self.root = root
+        if root: self.root.parent = None
 
     class treeNode(object):
         '''The main tree node class (defined as an inner class of the tree class)'''
