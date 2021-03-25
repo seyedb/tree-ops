@@ -548,9 +548,13 @@ class tree(object):
     def _balanceByRecursion(self, nodes, start, end):
         '''(helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
         the recursive step.
+        NOTE:
+            - nodes must be a list of consecutive nodes in an inorder sense.
+            - nodes that come before or after the list will NOT be updated, i.e. their height, 
+            balance_factor, parent, left and right nodes will remain unchanged.
 
         args:
-            nodes (treeNode): the portion of the node list over which a recursion step is taken
+            nodes (list of treeNode): a subset of the node list over which a recursion step is taken
             start (int): the index of the left-most element of the list over which the currect step 
             of recursion is performed
             end (int): the index of the right-most element of the list over which the current step 
@@ -566,6 +570,12 @@ class tree(object):
         node = nodes[mid]
         node.left = self._balanceByRecursion(nodes, start, mid - 1)
         node.right = self._balanceByRecursion(nodes, mid + 1, end)
+
+        if node.left: node.left.parent = node
+        if node.right: node.right.parent = node
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
 
         return node
 
