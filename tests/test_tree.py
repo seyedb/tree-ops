@@ -771,3 +771,93 @@ def test_isBalanced(ref_bst):
 
     assert isbalanced
 
+def test_balanceByRecursion(ref_unbalanced_tree):
+    t, nodes = ref_unbalanced_tree
+
+    rnode = t._balanceByRecursion(nodes, 0, len(nodes) - 1)
+    balancedt = Tree.tree(rnode)
+
+    rep_ref = [
+    {'data': 1, 'left': 'None', 'right': 2, 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+    {'data': 2, 'left': 'None', 'right': 'None', 'parent': 1,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 1, 'right': 5, 'parent': 'None',
+     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 0},
+    {'data': 4, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 5, 'left': 4, 'right': 6, 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+    {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
+    rep = balancedt.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    cond = diff_list == [{}] * 6
+
+    assert cond
+
+def test_convertToAVL(ref_unbalanced_tree):
+    t, nodes = ref_unbalanced_tree
+    n1 = nodes[0]
+
+    balancedt = Tree.tree()
+    t._convertToAVL(n1, balancedt)
+
+    rep_ref = [
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 2,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 2, 'left': 1, 'right': 3, 'parent': 4,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+    {'data': 3, 'left': 'None', 'right': 'None', 'parent': 2,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 4, 'left': 2, 'right': 5, 'parent': 'None',
+     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 0},
+    {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+    {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
+    rep = balancedt.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    cond = diff_list == [{}] * 6
+
+    assert cond
+
+def test_rebalanceSubtree(ref_unbalanced_tree):
+    t, nodes = ref_unbalanced_tree
+    n3 = nodes[2]
+
+    _ = t._rebalanceSubtree(n3)
+
+    rep_ref = [
+    {'data': 1, 'left': 'None', 'right': 2, 'parent': 'None',
+     'status': Tree.node_status.UNVISITED, 'height': 5, 'balance_factor': -5},
+    {'data': 2, 'left': 'None', 'right': 4, 'parent': 1,
+     'status': Tree.node_status.UNVISITED, 'height': 4, 'balance_factor': -4},
+    {'data': 3, 'left': 'None', 'right': 'None', 'parent': 4,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 4, 'left': 3, 'right': 5, 'parent': 2,
+     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': -1},
+    {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+    {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    cond = diff_list == [{}] * 6
+
+    assert cond
