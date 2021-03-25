@@ -933,3 +933,55 @@ def test_rebalanceSubtree(ref_unbalanced_tree):
     cond = diff_list == [{}] * 6
 
     assert cond
+
+def test_rotateRight(left_heavy_tree):
+    t,_ = left_heavy_tree
+    t._rotateRight(t.root)
+
+    rep_ref = [
+    {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 2, 'right': 5, 'parent': 'None',
+     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': -1},
+    {'data': 4, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 5, 'left': 4, 'right': 7, 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+    {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    cond = diff_list == [{}] * 5
+
+    assert cond
+
+def test_rotateLeft(right_heavy_tree):
+    t,_ = right_heavy_tree
+    t._rotateLeft(t.root)
+
+    rep_ref = [
+    {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 2, 'right': 4, 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+    {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+    {'data': 5, 'left': 3, 'right': 7, 'parent': 'None',
+     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 1},
+    {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
+     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+
+    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    cond = diff_list == [{}] * 5
+
+    assert cond
