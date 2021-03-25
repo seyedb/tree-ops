@@ -8,7 +8,7 @@ def list_to_tree(dlist, rootVal=None, balanced=False):
 
     NOTE: 
         - if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
-        tree where rootVal is not nccessarily the root. 
+        tree where rootVal is not necessarily the root. 
         - if rootVal=None (default) the first element of dlist will be assgined to rootVal
 
     args:
@@ -41,7 +41,7 @@ def list_to_tree(dlist, rootVal=None, balanced=False):
 
 def dict_to_tree(tdict, root_ind=0): 
     '''Converts a (2D) nested dictionary (node adjacency information) to a tree. Can be used to 
-    create an arbitrary binary tree.
+    create an arbitrary binary tree with distinct node values.
 
     NOTE:
         - the input dictionary should have the follwing format: 
@@ -103,14 +103,13 @@ def balance_by_recursion(inTree):
     returns:
         (tree) a balanced binary tree containing the data/nodes from the given binary tree
     '''
-    balancedt = tree.tree()
     path = inTree.inorder_traversal(inTree.root)
     # reset the visit status (can be avoided if visit status is removed as a node attribute)
     for node in path:
         node._setStatus(node_status.UNVISITED)
 
     rnode = inTree._balanceByRecursion(path, 0, len(path) - 1)
-    balancedt.root = rnode
+    balancedt = tree.tree(rnode)
 
     return balancedt
 
