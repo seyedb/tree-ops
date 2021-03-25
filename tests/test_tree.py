@@ -271,7 +271,7 @@ def test__le__():
 
 def test_treeNode__str__(dflt_treeNode):
     treeNode_str = dflt_treeNode.__str__()
-    ref_str = "data: None,\tleft: None,\tright: None,\tstatus: node_status.UNVISITED,\tparent: None,\theight: 0,\tbalance factor: 0"
+    ref_str = "data: None,\tleft: None,\tright: None,\tstatus: unvisited,\tparent: None,\theight: 0,\tbalance factor: 0"
     assert treeNode_str == ref_str
 
 def test_getStatus(dflt_treeNode):
@@ -312,11 +312,11 @@ def test_verbose_rep(simple_tree):
               {'data': 'right', 'left': 'None', 'right': 'None'}]
 
     v1_ref = [{'data': 'root', 'left': 'left', 'right': 'right', 'parent': 'None',
-               'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+               'status': 'unvisited', 'height': 1, 'balance_factor': 0},
               {'data': 'left', 'left': 'None', 'right': 'None', 'parent': 'root',
-               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+               'status': 'unvisited', 'height': 0, 'balance_factor': 0},
               {'data': 'right', 'left': 'None', 'right': 'None', 'parent': 'root',
-               'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+               'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     v0_ref = sorted(v0_ref, key=op.itemgetter('data'))
     v1_ref = sorted(v1_ref, key=op.itemgetter('data'))
@@ -851,17 +851,17 @@ def test_balanceByRecursion(ref_unbalanced_tree):
 
     rep_ref = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 1,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 5, 'parent': 'None',
-     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 5, 'left': 4, 'right': 6, 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 
@@ -882,17 +882,17 @@ def test_convertToAVL(ref_unbalanced_tree):
 
     rep_ref = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 2,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 2, 'left': 1, 'right': 3, 'parent': 4,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
     {'data': 3, 'left': 'None', 'right': 'None', 'parent': 2,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 4, 'left': 2, 'right': 5, 'parent': 'None',
-     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
     {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 
@@ -912,17 +912,17 @@ def test_rebalanceSubtree(ref_unbalanced_tree):
 
     rep_ref = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 'None',
-     'status': Tree.node_status.UNVISITED, 'height': 5, 'balance_factor': -5},
+     'status': 'unvisited', 'height': 5, 'balance_factor': -5},
     {'data': 2, 'left': 'None', 'right': 4, 'parent': 1,
-     'status': Tree.node_status.UNVISITED, 'height': 4, 'balance_factor': -4},
+     'status': 'unvisited', 'height': 4, 'balance_factor': -4},
     {'data': 3, 'left': 'None', 'right': 'None', 'parent': 4,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 4, 'left': 3, 'right': 5, 'parent': 2,
-     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': -1},
+     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
     {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': -1},
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 
@@ -940,15 +940,15 @@ def test_rotateRight(left_heavy_tree):
 
     rep_ref = [
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 2, 'right': 5, 'parent': 'None',
-     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': -1},
+     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 5, 'left': 4, 'right': 7, 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 
@@ -966,15 +966,15 @@ def test_rotateLeft(right_heavy_tree):
 
     rep_ref = [
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 2, 'right': 4, 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 1, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0},
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 5, 'left': 3, 'right': 7, 'parent': 'None',
-     'status': Tree.node_status.UNVISITED, 'height': 2, 'balance_factor': 1},
+     'status': 'unvisited', 'height': 2, 'balance_factor': 1},
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': Tree.node_status.UNVISITED, 'height': 0, 'balance_factor': 0}]
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
     rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
 

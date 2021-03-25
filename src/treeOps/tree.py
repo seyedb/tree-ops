@@ -50,10 +50,17 @@ class tree(object):
 
         def __str__(self):
             '''Returns a string representation of a treeNode'''
+            if self.status is node_status.UNVISITED:
+                stat = 'unvisited'
+            elif self.status is node_status.VISITED:
+                stat = 'visited'
+            else:
+                stat = 'visiting'
+
             res = 'data: {},\t'.format(self.data)
             res += 'left: {},\t'.format('None' if self.left is None else self.left.data)
             res += 'right: {},\t'.format('None' if self.right is None else self.right.data)
-            res += 'status: {},\t'.format(self.status)
+            res += 'status: {},\t'.format(stat)
             res += 'parent: {},\t'.format('None' if self.parent is None else self.parent.data)
             res += 'height: {},\t'.format(self.height)
             res += 'balance factor: {}'.format(self.balance_factor)
@@ -157,6 +164,13 @@ class tree(object):
         if node is not None:
             self._verboseRep(node.left, rep, verb_level)
 
+            if node.status is node_status.UNVISITED:
+                stat = 'unvisited'
+            elif node.status is node_status.VISITED:
+                stat = 'visited'
+            else:
+                stat = 'visiting'
+
             attrs = {}
             attrs['data'] = node.data
             if verb_level == 0:
@@ -166,7 +180,7 @@ class tree(object):
                 attrs['left'] = 'None' if node.left is None else node.left.data
                 attrs['right'] = 'None' if node.right is None else node.right.data
                 attrs['parent'] = 'None' if node.parent is None else node.parent.data
-                attrs['status'] = node.status
+                attrs['status'] = stat
                 attrs['height'] = node.height
                 attrs['balance_factor'] = node.balance_factor
             rep.append(attrs)
