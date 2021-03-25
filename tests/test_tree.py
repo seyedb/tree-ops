@@ -172,6 +172,78 @@ def ref_unbalanced_tree():
 
     return t, node_tuple
 
+@pytest.fixture
+def left_heavy_tree():
+    '''Returns a left heavy tree to test right rotation operations.
+       The tree has the following structure:
+         2: {'left': 'None', 'right': 'None'}
+         3: {'left': 2, 'right': 4}
+         4: {'left': 'None', 'right': 'None'}
+         5: {'left': 3, 'right': 7}
+         7: {'left': 'None', 'right': 'None'}
+    '''
+    t = Tree.tree()
+    n2 = Tree.tree().treeNode(2)
+    n3 = Tree.tree().treeNode(3)
+    n4 = Tree.tree().treeNode(4)
+    n5 = Tree.tree().treeNode(5)
+    n7 = Tree.tree().treeNode(7)
+    t.root = n5
+    n5.left = n3
+    n5.right = n7
+    n3.left = n2
+    n3.right = n4
+
+    n2.parent = n3
+    n3.parent = n5
+    n4.parent = n3
+    n7.parent = n5
+
+    n3.height = 1
+    n5.height = 2
+
+    n5.balance_factor = 1
+
+    node_tuple = (n2, n3, n4, n5, n7)
+
+    return t, node_tuple
+
+@pytest.fixture
+def right_heavy_tree():
+    '''Returns a right heavy tree to test left rotation operations.
+       The tree has the following structure:
+         2: {'left': 'None', 'right': 'None'}
+         3: {'left': 2, 'right': 5}
+         4: {'left': 'None', 'right': 'None'}
+         5: {'left': 4, 'right': 7}
+         7: {'left': 'None', 'right': 'None'}
+    '''
+    t = Tree.tree()
+    n2 = Tree.tree().treeNode(2)
+    n3 = Tree.tree().treeNode(3)
+    n4 = Tree.tree().treeNode(4)
+    n5 = Tree.tree().treeNode(5)
+    n7 = Tree.tree().treeNode(7)
+    t.root = n3
+    n5.left = n4
+    n5.right = n7
+    n3.left = n2
+    n3.right = n5
+
+    n2.parent = n3
+    n5.parent = n3
+    n4.parent = n5
+    n7.parent = n5
+
+    n3.height = 2
+    n5.height = 1
+
+    n3.balance_factor = -1
+
+    node_tuple = (n2, n3, n4, n5, n7)
+
+    return t, node_tuple
+
 def test_default_tree(dflt_tree):
     dflt_root = (dflt_tree.root == None)
     assert dflt_root
