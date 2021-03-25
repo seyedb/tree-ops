@@ -125,6 +125,53 @@ def plain_bst():
 
     return t, node_tuple
 
+@pytest.fixture
+def ref_unbalanced_tree():
+    '''Returns a sample unbalanced binary search tree and a tuple of its nodes.
+       The tree has the following structure:
+          1: {'left': 'None', 'right': 2}
+          2: {'left': 'None', 'right': 3}
+          3: {'left': 'None', 'right': 4}
+          4: {'left': 'None', 'right': 5}
+          5: {'left': 'None', 'right': 6}
+          6: {'left': 'None', 'right': 'None'}
+    '''
+    t = Tree.tree()
+    n1 = Tree.tree().treeNode(1)
+    n2 = Tree.tree().treeNode(2)
+    n3 = Tree.tree().treeNode(3)
+    n4 = Tree.tree().treeNode(4)
+    n5 = Tree.tree().treeNode(5)
+    n6 = Tree.tree().treeNode(6)
+    t.root = n1
+    n1.right = n2
+    n2.right = n3
+    n3.right = n4
+    n4.right = n5
+    n5.right = n6
+
+    n2.parent = n1
+    n3.parent = n2
+    n4.parent = n3
+    n5.parent = n4
+    n6.parent = n5
+
+    n1.height = 5
+    n2.height = 4
+    n3.height = 3
+    n4.height = 2
+    n5.height = 1
+
+    n1.balance_factor = -5
+    n2.balance_factor = -4
+    n3.balance_factor = -3
+    n4.balance_factor = -2
+    n5.balance_factor = -1
+
+    node_tuple = (n1, n2, n3, n4, n5, n6)
+
+    return t, node_tuple
+
 def test_default_tree(dflt_tree):
     dflt_root = (dflt_tree.root == None)
     assert dflt_root
