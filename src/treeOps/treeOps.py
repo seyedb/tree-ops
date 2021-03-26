@@ -109,7 +109,7 @@ def balance_by_recursion(inTree):
     path = inTree.inorder_traversal(inTree.root)
     # reset the visit status (can be avoided if visit status is removed as a node attribute)
     for node in path:
-        node._setStatus(node_status.UNVISITED)
+        node._setStatus(tree.node_status.UNVISITED)
 
     rnode = inTree._balanceByRecursion(path, 0, len(path) - 1)
     balancedt = tree.tree(rnode)
