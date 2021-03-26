@@ -1,11 +1,11 @@
 # these tests are designed for pytest framework
-
 import pytest
 import tree as Tree
 import treeOps as to
 import deepdiff
 import operator as op
 import string
+import collections
 
 @pytest.fixture
 def ref_bst():
@@ -238,3 +238,14 @@ def test_text_to_tree():
     parnr = 151
 
     assert treelist[parnr].__str__() == ref
+
+def test_find_word():
+    path = "../data/Goethe.txt"
+    regex = "(?<!\d )["+string.punctuation+"](?!\d)"
+    indIntv = [0, 1000]
+    wrd = "Nameh"
+
+    ref = [58, 154, 204, 255, 318, 386, 449, 457, 675, 773, 797, 820]
+    res = to.find_word(wrd, indIntv, path, regex=regex, balanced=True)
+
+    assert collections.Counter(res) == collections.Counter(ref)
