@@ -18,9 +18,14 @@ class tree(object):
         """The main tree node class (defined as an inner class of the tree class)."""
         def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
             """Initializes a tree node.
-            A tree node has a value, a left child, a right child, a visit status, parent node, 
-            height of the tree rooted at the node, and balance factor (difference between the
-            height of the left and the right subtrees).
+            Attributes:
+                data (any type): the node value.
+                left (treeNode): the left child.
+                right (treeNode): the right child.
+                status (node_status): the visit status (tree traversal).
+                parent (treeNode): the parent node.
+                height (int): the height of the tree rooted at the node.
+                balance_factor (int): difference between the height of the left and the right subtrees.
             """
             self.data = data
             self.left = None

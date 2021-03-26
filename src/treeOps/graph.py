@@ -17,10 +17,14 @@ class graph(object):
 
     class graphNode(object):
         def __init__(self, data, status=node_status.UNVISITED):
-            """Initializes a graph node. A graph node has the following attributes:
-            data (any type), children (dict), status (node_status), distance (float -
-            the distance from a node to this node), previous (predecessor of this node
-            in an optimal path from a predefined source in a shortest path algorith).
+            """Initializes a graph node.
+            Attributes:
+                data (any type): the node value.
+                children (dict): a dictionary of the children (adjacent nodes).
+                status (node_status): the visit status of the node (graph traversal).
+                distance (float): the distance from a source node to this node.
+                previous (graphNode): predecessor of this node in an optimal path from 
+                a predefined source in a shortest path algorithm.
             """
             self.data = data
             self.children = defaultdict(list)
