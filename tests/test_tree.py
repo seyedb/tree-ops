@@ -336,13 +336,13 @@ def test_verbose_rep(simple_tree):
     assert cond_v0 and cond_v1
 
 def test_verboseRep(ref_bst):
-    rep_ref = [{'data': 3, 'left': 1, 'right': 6},
+    ref_rep = [{'data': 3, 'left': 1, 'right': 6},
                {'data': 1, 'left': 'None', 'right': 'None'},
                {'data': 6, 'left': 4, 'right': 7},
                {'data': 4, 'left': 'None', 'right': 'None'},
                {'data': 7, 'left': 'None', 'right': 'None'}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = []
     t, nodes = ref_bst
@@ -351,7 +351,7 @@ def test_verboseRep(ref_bst):
 
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 5
 
     assert cond
@@ -849,7 +849,7 @@ def test_balanceByRecursion(ref_unbalanced_tree):
     rnode = t._balanceByRecursion(nodes, 0, len(nodes) - 1)
     balancedt = Tree.tree(rnode)
 
-    rep_ref = [
+    ref_rep = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 3,
      'status': 'unvisited', 'height': 1, 'balance_factor': -1},
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 1,
@@ -863,12 +863,12 @@ def test_balanceByRecursion(ref_unbalanced_tree):
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = balancedt.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 6
 
     assert cond
@@ -880,7 +880,7 @@ def test_convertToAVL(ref_unbalanced_tree):
     balancedt = Tree.tree()
     t._convertToAVL(n1, balancedt)
 
-    rep_ref = [
+    ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 2,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 2, 'left': 1, 'right': 3, 'parent': 4,
@@ -894,12 +894,12 @@ def test_convertToAVL(ref_unbalanced_tree):
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = balancedt.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 6
 
     assert cond
@@ -910,7 +910,7 @@ def test_rebalanceSubtree(ref_unbalanced_tree):
 
     _ = t._rebalanceSubtree(n3)
 
-    rep_ref = [
+    ref_rep = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 'None',
      'status': 'unvisited', 'height': 5, 'balance_factor': -5},
     {'data': 2, 'left': 'None', 'right': 4, 'parent': 1,
@@ -924,12 +924,12 @@ def test_rebalanceSubtree(ref_unbalanced_tree):
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = t.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 6
 
     assert cond
@@ -938,7 +938,7 @@ def test_rotateRight(left_heavy_tree):
     t,_ = left_heavy_tree
     t._rotateRight(t.root)
 
-    rep_ref = [
+    ref_rep = [
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 2, 'right': 5, 'parent': 'None',
@@ -950,12 +950,12 @@ def test_rotateRight(left_heavy_tree):
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = t.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 5
 
     assert cond
@@ -964,7 +964,7 @@ def test_rotateLeft(right_heavy_tree):
     t,_ = right_heavy_tree
     t._rotateLeft(t.root)
 
-    rep_ref = [
+    ref_rep = [
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 3,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 2, 'right': 4, 'parent': 5,
@@ -976,12 +976,12 @@ def test_rotateLeft(right_heavy_tree):
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 5,
      'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
 
-    rep_ref = sorted(rep_ref, key=op.itemgetter('data'))
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
     rep = t.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
 
-    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, rep_ref)]
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
     cond = diff_list == [{}] * 5
 
     assert cond
