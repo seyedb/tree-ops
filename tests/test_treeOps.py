@@ -188,3 +188,36 @@ def test_balance_by_recursion(ref_bst):
     cond = diff_list == [{}] * 9
 
     assert cond
+
+def test_convert_to_AVL(ref_bst):
+    t,_ = ref_bst
+
+    balancedt = to.convert_to_AVL(t)
+
+    ref_rep = [
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 1, 'right': 4, 'parent': 6,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+    {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 6, 'left': 3, 'right': 8, 'parent': 'None',
+     'status': 'unvisited', 'height': 3, 'balance_factor': -1},
+    {'data': 7, 'left': 'None', 'right': 'None', 'parent': 8,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 8, 'left': 7, 'right': 13, 'parent': 6,
+     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+    {'data': 10, 'left': 'None', 'right': 'None', 'parent': 13,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 13, 'left': 10, 'right': 14, 'parent': 8,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+    {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+
+    rep = balancedt.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 9
+
+    assert cond
