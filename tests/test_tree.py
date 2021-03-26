@@ -1,5 +1,4 @@
 # these tests are designed for pytest framework
-
 import pytest
 import tree as Tree
 import deepdiff
@@ -378,7 +377,7 @@ def test_updateHeight(ref_bst):
     ind = [1, 3, 4, 6, 7]
     h_dict = {nodes[i].data:nodes[i].height for i in ind}
 
-    diff = deepdiff.DeepDiff(height_dict, ref)
+    diff = deepdiff.DeepDiff(h_dict, ref)
     # the diff must be an empty dictionary
     assert not diff
 
@@ -395,7 +394,7 @@ def test_calcHeight(plain_bst, ref_bst):
     assert ref_height == new_height == 2
 
 def test_update_balance_factor(ref_bst):
-    t, nodes = ref_bst[0]
+    t, nodes = ref_bst
     t.update_balance_factor()
 
     ref = {8: 0, 3: -1, 10: -2, 6: 0, 14: 1, 1: 0, 4: 0, 7: 0, 13: 0}
