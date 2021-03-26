@@ -4,14 +4,14 @@ import heapq as hq
 from collections import deque
 
 def graph_to_adjmat(g):
-    '''Given a graph returns the corresponding adjacency matrix.
+    """Given a graph returns the corresponding adjacency matrix.
     
-    args:
-        g (graph): a graph object
-    retruns:
-        (2D - nested - list) adjacency matrix: a_ij = 1 if vi and vj are adjacent , 0 otherwise) 
-        (2D - nested - list) adjacency matrix: a_ij = weight of the edges between adjacent vertices vi and vj , empty list otherwise)   
-    '''
+    Args:
+        g (graph): a graph object.
+    Returns:
+        (2D - nested - list) adjacency matrix: a_ij = 1 if vi and vj are adjacent , 0 otherwise.
+        (2D - nested - list) adjacency matrix: a_ij = weight of the edges between adjacent vertices vi and vj , empty list otherwise.
+    """
     vertices = g._getVerticesDict()
     nvx = len(vertices)
 
@@ -32,14 +32,14 @@ def graph_to_adjmat(g):
     return adjMat, adjMatw
 
 def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
-    '''Given an adjacency matrix retruns the corresponding (multi)graph.
+    """Given an adjacency matrix retruns the corresponding (multi)graph.
 
-    args:
-        adjMat (2d - nested - list): the adjacency matrix
-        vxdatalist (list): list of data to be assigned to the verices of the graph
-    returns:
-        (graph) a graph that has the same adjacency matrix as the given matrix
-    '''
+    Args:
+        adjMat (2d - nested - list): the adjacency matrix.
+        vxdatalist (list): list of data to be assigned to the verices of the graph.
+    Returns:
+        (graph) a graph that has the same adjacency matrix as the given matrix.
+    """
     assert(adjMat), "The adjacency matrix is empty."
 
     g = graph.graph()
@@ -71,14 +71,14 @@ def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
     return g
 
 def edges_to_graph(edges, directed=False):
-    '''Converts a set of edges into a graph
+    """Converts a set of edges into a graph
 
-    args:
-        edges (set of tuples): set of edges represented as tuples (v1, v2, w)
-        directed (boolean): whether or not the graph is a directed graph
-    returns:
-        (graph) a graph object that has vertices and edges matching with the given edge data
-    '''
+    Args:
+        edges (set of tuples): set of edges represented as tuples (v1, v2, w).
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the given edge data.
+    """
     g = graph.graph()
 
     vxdata = set()
@@ -95,23 +95,23 @@ def edges_to_graph(edges, directed=False):
     return g
 
 def file_to_graph(fin, directed=False):
-    '''Constructs a graph based on data stored in a file.
+    """Constructs a graph based on data stored in a file.
 
     NOTE: the file must have the following format:
-    - the first line is the number of vertices
-    - the second line is the number of edges
-    - the rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w
+    - the first line is the number of vertices.
+    - the second line is the number of edges.
+    - the rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.
 
-    args:
-        fin (str): path to the file
-        directed (boolean): whether or not the graph is a directed graph
-    returns:
-        (graph) a graph object that has vertices and edges matching with the loaded data from the input file
-    '''
+    Args:
+        fin (str): path to the file.
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the loaded data from the input file.
+    """
     g = graph.graph()
 
     edges = set()
-    with open(fin, "r") as fid:
+    with open(fin, 'r') as fid:
         nvx = int(fid.readline())
         ne = int(fid.readline())
         for _, line in enumerate(fid):
@@ -142,14 +142,14 @@ def file_to_graph(fin, directed=False):
     return g
 
 def remap_vertex_data(g, new_vxdata):
-    '''Remaps vertex data to a new list
+    """Remaps vertex data to a new list.
 
-    args:
-        g (graph): a graph object
-        new_vxdata (list): a new list of data to be assigned to the graph nodes
-    returns:
-        (graph) the input graph with new data assigned to its vertices
-    '''
+    Args:
+        g (graph): a graph object.
+        new_vxdata (list): a new list of data to be assigned to the graph nodes.
+    Returns:
+        (graph) the input graph with new data assigned to its vertices.
+    """
     vertices = g._getVerticesDict()
     nvx = len(vertices)
     assert(nvx == len(new_vxdata)), "Provide the right number of vertex data."
@@ -173,15 +173,15 @@ def remap_vertex_data(g, new_vxdata):
     return g
 
 def _adjmatType(adjMat):
-    '''(helper function) retruns <class 'int'> if the adjacency matrix is a (0,1)-matrix, and
+    """(helper function) retruns <class 'int'> if the adjacency matrix is a (0,1)-matrix, and
     returns <class 'list'> if the adjacency matrix contains edge weights, and returns None if
     neither of the cases occurs.
 
-    args:
-        adjMat (2D - nested - list): the adjacency matrix
-    returns:
-        (type) the type of the adjacency matrix as explained above
-    '''
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+    Returns:
+        (type) the type of the adjacency matrix as explained above.
+    """
     checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
     if len(checktype) == 1 and checktype.pop() == True: return list
 
@@ -191,19 +191,19 @@ def _adjmatType(adjMat):
     return None    
 
 def dfs_in_adjmat(adjMat, start, visited, path):
-    '''Performs DFS in a (0,1) adjacency matrix.
+    """Performs DFS in a (0,1) adjacency matrix.
 
     NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
     indexing that has led to the adjacency matrix. 
 
-    args:
-        adjMat (2D - nested - list): the adjacency matrix
-        start (int): the index of the vertex where the procedure starts
-        visited (list of boolean): a list keeping track of the visit status of the vertices
-        path (list of int): the DFS path 
-    returns:
-        (list of int) the full DFS path starting from the given vertex 
-    '''
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+        path (list of int): the DFS path.
+    Returns:
+        (list of int) the full DFS path starting from the given vertex.
+    """
     visited[start] = True
 
     nvx = len(adjMat)
@@ -213,7 +213,7 @@ def dfs_in_adjmat(adjMat, start, visited, path):
             dfs_in_adjmat(adjMat, i, visited, path)
 
 def dfs_in_adjmatw(adjMatw, start, visited, path):
-    '''Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.'''
+    """Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights."""
     visited[start] = True
 
     nvx = len(adjMatw)
@@ -223,17 +223,17 @@ def dfs_in_adjmatw(adjMatw, start, visited, path):
             dfs_in_adjmatw(adjMatw, i, visited, path)
 
 def bfs_in_adjmat(adjMat, start, visited):
-    '''Performs BFS in a (0,1) adjacency matrix.
+    """Performs BFS in a (0,1) adjacency matrix.
     NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
     indexing that has led to the adjacency matrix. 
 
-    args:
-        adjMat (2D - nested - list): the adjacency matrix
-        start (int): the index of the vertex where the procedure starts
-        visited (list of boolean): a list keeping track of the visit status of the vertices
-    returns:
-        (list of int) the full BFS path starting from the given vertex 
-    '''
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+    Returns:
+        (list of int) the full BFS path starting from the given vertex.
+    """
     nvx = len(adjMat)
 
     visited[start] = True
@@ -255,7 +255,7 @@ def bfs_in_adjmat(adjMat, start, visited):
     return path
 
 def bfs_in_adjmatw(adjMatw, start, visited):
-    '''Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.'''
+    """Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights."""
     nvx = len(adjMatw)
 
     visited[start] = True
@@ -277,14 +277,14 @@ def bfs_in_adjmatw(adjMatw, start, visited):
     return path
 
 def connected_components(adjMat):
-    '''Returns the connected components of a graph (Uses DFS).
+    """Returns the connected components of a graph (Uses DFS).
 
-    args:
-        adjMat (2D - nested - list): the adjacency matrix
-    returns:
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+    Returns:
         (nested list) list of connected components. Every component is a list of indices representing 
         vertices of the graph. The indices agree with the matrix indexing.
-    '''
+    """
     components = []
 
     nvx = len(adjMat)
@@ -312,16 +312,16 @@ def connected_components(adjMat):
     return components
 
 def Dijkstra(g, source, destination):
-    '''Dijkstra's shortest path algorithm.
+    """Dijkstra's shortest path algorithm.
 
-    args:
-        g (graph): a graph object
-        source (node val data type): the data of the source node 
-        destination (node val data type): the data of the destination node
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
     retruns:
-        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path
-        (float) the length of the shortest path (sum of the weights of the constituent edges) 
-    '''
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    """
     assert (not g._isMultigraph()), "The Dijkstra's algorithm is not implemented for multigraphs!"
 
     start = g._getVertex(source)
@@ -362,14 +362,14 @@ def Dijkstra(g, source, destination):
     return SPT, distance
 
 def Dijkstra_shortest_path(g, source):
-    '''Returns the shortest path between a source and all the other verices of a graph using the Dijkstra's algorithm.
+    """Returns the shortest path between a source and all the other verices of a graph using the Dijkstra's algorithm.
 
-    args:
-        g (graph): a graph object
-        source (node val data type): the data of the source node 
-    retruns:
-        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance]
-    '''
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    """
     assert (not g._isMultigraph()), "The Dijkstra's algorithm is not implemented for multigraphs!"
     g.reset()
 
@@ -402,20 +402,20 @@ def Dijkstra_shortest_path(g, source):
     return sp
 
 def Bellman_Ford(g, source, destination):
-    '''Bellman-Ford shortest path algorithm.
+    """Bellman-Ford shortest path algorithm.
 
     NOTE: 
     - It is a dynamic programming algorithm.
-    - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights
+    - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.
 
-    args:
-        g (graph): a graph object
-        source (node val data type): the data of the source node 
-        destination (node val data type): the data of the destination node
-    retruns:
-        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path
-        (float) the length of the shortest path (sum of the weights of the constituent edges) 
-    '''
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
+    Returns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    """
     g.reset()
 
     edges = g._getEdges()
@@ -448,14 +448,14 @@ def Bellman_Ford(g, source, destination):
     return spt, end._getDistance()
 
 def BF_shortest_path(g, source):
-    '''Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.
+    """Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.
 
-    args:
-        g (graph): a graph object
-        source (node val data type): the data of the source node 
-    retruns:
-        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance]
-    '''
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    """
     g.reset()
 
     edges = g._getEdges()

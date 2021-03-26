@@ -9,7 +9,7 @@ import collections
 
 @pytest.fixture
 def ref_bst():
-    '''Returns a sample binary search tree and a tuple of its nodes.
+    """Returns a sample binary search tree and a tuple of its nodes.
        The tree has the following form:
           8:  {'left': 3, 'right': 10}
           3:  {'left': 1, 'right': 6}
@@ -20,7 +20,7 @@ def ref_bst():
           4:  {'left': 'None', 'right': 'None'}
           7:  {'left': 'None', 'right': 'None'}
           13: {'left': 'None', 'right': 'None'}
-    '''
+    """
     t = Tree.tree()
     n1 = Tree.tree().treeNode(1)
     n3 = Tree.tree().treeNode(3)
@@ -224,12 +224,12 @@ def test_convert_to_AVL(ref_bst):
     assert cond
 
 def test_text_to_tree():
-    ''' The reference paragraph (par nr. 151) reads as follows:
+    """ The reference paragraph (par nr. 151) reads as follows:
     Und so lang du das nicht hast,
     Dieses: Stirb und werde!
     Bist du nur ein trüber Gast
     Auf der dunklen Erde.
-    '''
+    """
     path = "../data/Goethe.txt"
     regex = "(?<!\d )["+string.punctuation+"](?!\d)"
     treelist = to.text_to_tree(path, regex=regex, balanced=False)

@@ -7,21 +7,21 @@ import operator as op
 
 @pytest.fixture
 def dflt_tree():
-    '''Returns a default initialized tree object.'''
+    """Returns a default initialized tree object."""
     return Tree.tree()
 
 @pytest.fixture
 def dflt_treeNode():
-    '''Returns a default initialized treeNode object.'''
+    """Returns a default initialized treeNode object."""
     return Tree.tree().treeNode()
 
 @pytest.fixture
 def simple_tree():
-    '''Returns a simple tree with 3 nodes: root, its left and right nodes:
+    """Returns a simple tree with 3 nodes: root, its left and right nodes:
         'root':  {'left': 'left', 'right': 'right'}
         'left':  {'left': 'None', 'right': 'None'}
         'right': {'left': 'None', 'right': 'None'}
-    '''
+    """
     smpl_tree = Tree.tree()
     root = Tree.tree().treeNode('root')
     left = Tree.tree().treeNode('left')
@@ -41,7 +41,7 @@ def simple_tree():
 
 @pytest.fixture
 def ref_bst():
-    '''Returns a sample binary search tree and a tuple of its nodes.
+    """Returns a sample binary search tree and a tuple of its nodes.
        The tree has the following form:
           8:  {'left': 3, 'right': 10}
           3:  {'left': 1, 'right': 6}
@@ -52,7 +52,7 @@ def ref_bst():
           4:  {'left': 'None', 'right': 'None'}
           7:  {'left': 'None', 'right': 'None'}
           13: {'left': 'None', 'right': 'None'}
-    '''
+    """
     t = Tree.tree()
     n1 = Tree.tree().treeNode(1)
     n3 = Tree.tree().treeNode(3)
@@ -100,7 +100,7 @@ def ref_bst():
 
 @pytest.fixture
 def plain_bst():
-    '''Returns a plain binary search tree and a tuple of its nodes. The tree has the same structure as ref_bst.'''
+    """Returns a plain binary search tree and a tuple of its nodes. The tree has the same structure as ref_bst."""
     t = Tree.tree()
     n1 = Tree.tree().treeNode(1)
     n3 = Tree.tree().treeNode(3)
@@ -127,7 +127,7 @@ def plain_bst():
 
 @pytest.fixture
 def ref_unbalanced_tree():
-    '''Returns a sample unbalanced binary search tree and a tuple of its nodes.
+    """Returns a sample unbalanced binary search tree and a tuple of its nodes.
        The tree has the following structure:
           1: {'left': 'None', 'right': 2}
           2: {'left': 'None', 'right': 3}
@@ -135,7 +135,7 @@ def ref_unbalanced_tree():
           4: {'left': 'None', 'right': 5}
           5: {'left': 'None', 'right': 6}
           6: {'left': 'None', 'right': 'None'}
-    '''
+    """
     t = Tree.tree()
     n1 = Tree.tree().treeNode(1)
     n2 = Tree.tree().treeNode(2)
@@ -174,14 +174,14 @@ def ref_unbalanced_tree():
 
 @pytest.fixture
 def left_heavy_tree():
-    '''Returns a left heavy tree to test right rotation operations.
+    """Returns a left heavy tree to test right rotation operations.
        The tree has the following structure:
          2: {'left': 'None', 'right': 'None'}
          3: {'left': 2, 'right': 4}
          4: {'left': 'None', 'right': 'None'}
          5: {'left': 3, 'right': 7}
          7: {'left': 'None', 'right': 'None'}
-    '''
+    """
     t = Tree.tree()
     n2 = Tree.tree().treeNode(2)
     n3 = Tree.tree().treeNode(3)
@@ -210,14 +210,14 @@ def left_heavy_tree():
 
 @pytest.fixture
 def right_heavy_tree():
-    '''Returns a right heavy tree to test left rotation operations.
+    """Returns a right heavy tree to test left rotation operations.
        The tree has the following structure:
          2: {'left': 'None', 'right': 'None'}
          3: {'left': 2, 'right': 5}
          4: {'left': 'None', 'right': 'None'}
          5: {'left': 4, 'right': 7}
          7: {'left': 'None', 'right': 'None'}
-    '''
+    """
     t = Tree.tree()
     n2 = Tree.tree().treeNode(2)
     n3 = Tree.tree().treeNode(3)
