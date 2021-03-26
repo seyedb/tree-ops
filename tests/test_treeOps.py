@@ -155,3 +155,36 @@ def test_dict_to_tree(ref_bst):
     cond = diff_list == [{}] * 9
 
     assert cond
+
+def test_balance_by_recursion(ref_bst):
+    t,_ = ref_bst
+
+    balancedt = to.balance_by_recursion(t)
+
+    ref_rep = [
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 1, 'right': 4, 'parent': 7,
+     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+    {'data': 4, 'left': 'None', 'right': 6, 'parent': 3,
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+    {'data': 6, 'left': 'None', 'right': 'None', 'parent': 4,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 7, 'left': 3, 'right': 10, 'parent': 'None',
+     'status': 'unvisited', 'height': 3, 'balance_factor': 0},
+    {'data': 8, 'left': 'None', 'right': 'None', 'parent': 10,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 10, 'left': 8, 'right': 13, 'parent': 7,
+     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+    {'data': 13, 'left': 'None', 'right': 14, 'parent': 10,
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+    {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+
+    rep = balancedt.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 9
+
+    assert cond
