@@ -16,7 +16,7 @@ class graph(object):
         self.vertices = defaultdict(partial(defaultdict, list))
 
     class graphNode(object):
-        def __init__(self, data, status=node_status.UNVISITED):
+        def __init__(self, data=None, status=node_status.UNVISITED):
             """Initializes a graph node.
             Attributes:
                 data (any type): the node value.
