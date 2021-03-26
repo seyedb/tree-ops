@@ -6,7 +6,7 @@ import string
 def list_to_tree(dlist, rootVal=None, balanced=False):
     """Constructs a binary tree (BST or AVL) from a given list of node data.
 
-    NOTE: 
+    NOTE:
         - if balanced=True the rebalancing procedure (consisting of tree rotations) may lead to a 
         tree where rootVal is not necessarily the root. 
         - if rootVal=None (default) the first element of dlist will be assgined to rootVal.
@@ -132,16 +132,16 @@ def convert_to_AVL(inTree):
 def text_to_tree(path, regex="", balanced=False):
     """Splits a text into paragraphs, splits each paragraph into words and stores those words in a tree.
 
-    NOTE: 
-    - Uses regular expressions and split function to extract words. Like any machine learning problem
-    dealing with text data, the challenge is how clean the words are desired to be. Here the choice of 
-    the regex can affect the words that are extracted, a more sophisticated option would be using 
-    libraries like NLTK. 
-    Some regex examples:
-        regex="["+string.punctuation+"]" would remove punctuations but also contractions like "don't" will
-        become "dont" and numbers like "2.3" will become "23"
-        regex="(?<!\d )["+string.punctuation+"](?!\d)", acts as above but numbers will remain unchanged
-    - The size of the returned list is equal to the number of non-empty paragraphs in the text.
+    NOTE:
+        - Uses regular expressions and split function to extract words. Like any machine learning problem
+        dealing with text data, the challenge is how clean the words are desired to be. Here the choice of 
+        the regex can affect the words that are extracted, a more sophisticated option would be using 
+        libraries like NLTK.
+        Some regex examples:
+            regex="["+string.punctuation+"]" would remove punctuations but also contractions like "don't" will
+            become "dont" and numbers like "2.3" will become "23"
+            regex="(?<!\d )["+string.punctuation+"](?!\d)", acts as above but numbers will remain unchanged.
+        - The size of the returned list is equal to the number of non-empty paragraphs in the text.
 
     Args:
         path (str): path to the input file.
@@ -172,8 +172,8 @@ def find_word(wrd, indIntv, path, regex="", balanced=False):
     words and stores those words in a tree, then searches for the word in every tree.
 
     NOTE:
-    - See comment of the routine text_to_tree.
-    - Paragraphs are indexed in a 0-based fashion.
+        - See comment of the routine text_to_tree.
+        - Paragraphs are indexed in a 0-based fashion.
 
     Args:
         wrd (str): the word to be searched for.

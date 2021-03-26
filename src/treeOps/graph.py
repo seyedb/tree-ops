@@ -182,9 +182,10 @@ class graph(object):
 
     def _getEdges(self):
         """Returns a set of edges of the graph. 
-        NOTE: if there is an edge between v1, v2 with weight w, both (v1, v2, w) and (v2, v1, w) are
-        included. This is necessary for Bellman-Ford shortest path algorithm and also make it general
-        for directed graphs.
+        NOTE:
+            - If there is an edge between v1, v2 with weight w, both (v1, v2, w) and (v2, v1, w) are
+            included. This is necessary for Bellman-Ford shortest path algorithm and also make it general
+            for directed graphs.
         
         Returns:
             (set of tuples): set of edges represented as (v1, v2, w).

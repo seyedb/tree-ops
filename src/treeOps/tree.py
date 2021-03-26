@@ -118,7 +118,8 @@ class tree(object):
 
     def _strTree(self, node):
         """(helper function) Returns string representation of a (sub)tree rooted at a given node.
-        NOTE: The output must be in ascending order in case of BST.
+        NOTE:
+            - The output must be in ascending order in case of BST.
 
         Args:
             node (treeNode): the tree node at which the printing starts.

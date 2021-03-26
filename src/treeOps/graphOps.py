@@ -71,7 +71,7 @@ def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
     return g
 
 def edges_to_graph(edges, directed=False):
-    """Converts a set of edges into a graph
+    """Converts a set of edges into a graph.
 
     Args:
         edges (set of tuples): set of edges represented as tuples (v1, v2, w).
@@ -97,10 +97,11 @@ def edges_to_graph(edges, directed=False):
 def file_to_graph(fin, directed=False):
     """Constructs a graph based on data stored in a file.
 
-    NOTE: the file must have the following format:
-    - the first line is the number of vertices.
-    - the second line is the number of edges.
-    - the rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.
+    NOTE:
+        - The file must have the following format:
+          The first line is the number of vertices.
+          The second line is the number of edges.
+          The rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.
 
     Args:
         fin (str): path to the file.
@@ -193,8 +194,9 @@ def _adjmatType(adjMat):
 def dfs_in_adjmat(adjMat, start, visited, path):
     """Performs DFS in a (0,1) adjacency matrix.
 
-    NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
-    indexing that has led to the adjacency matrix. 
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
 
     Args:
         adjMat (2D - nested - list): the adjacency matrix.
@@ -224,8 +226,10 @@ def dfs_in_adjmatw(adjMatw, start, visited, path):
 
 def bfs_in_adjmat(adjMat, start, visited):
     """Performs BFS in a (0,1) adjacency matrix.
-    NOTE : the result is a list of the indices of the vertices. The indices are in accordance with the 
-    indexing that has led to the adjacency matrix. 
+
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
 
     Args:
         adjMat (2D - nested - list): the adjacency matrix.
@@ -318,7 +322,7 @@ def Dijkstra(g, source, destination):
         g (graph): a graph object.
         source (node val data type): the data of the source node.
         destination (node val data type): the data of the destination node.
-    retruns:
+    Returns:
         (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
         (float) the length of the shortest path (sum of the weights of the constituent edges).
     """
@@ -404,9 +408,9 @@ def Dijkstra_shortest_path(g, source):
 def Bellman_Ford(g, source, destination):
     """Bellman-Ford shortest path algorithm.
 
-    NOTE: 
-    - It is a dynamic programming algorithm.
-    - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.
+    NOTE:
+        - It is a dynamic programming algorithm.
+        - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.
 
     Args:
         g (graph): a graph object.
