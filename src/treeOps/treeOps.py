@@ -87,6 +87,9 @@ def dict_to_tree(tdict, root_ind=0):
         n.left = lnode
         n.right = rnode
 
+    t.update_height()
+    t.update_balance_factor()
+
     return t
 
 def balance_by_recursion(inTree):
