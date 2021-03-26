@@ -129,3 +129,29 @@ def test_list_to_tree_balanced():
 
     assert cond
 
+def test_dict_to_tree(ref_bst):
+    ref_t,_ = ref_bst
+
+    ref_rep = ref_t.verbose_rep(1)
+    ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
+
+    tdict = {
+        1:  {'left': 'None', 'right': 'None'},
+        3:  {'left': 1, 'right': 6},
+        4:  {'left': 'None', 'right': 'None'},
+        6:  {'left': 4, 'right': 7},
+        7:  {'left': 'None', 'right': 'None'},
+        8:  {'left': 3, 'right': 10},
+        10: {'left': 'None', 'right': 14},
+        13: {'left': 'None', 'right': 'None'},
+        14: {'left': 13, 'right': 'None'}}
+
+    t = to.dict_to_tree(tdict, root_ind=5)
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 9
+
+    assert cond
