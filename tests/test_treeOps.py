@@ -5,6 +5,7 @@ import tree as Tree
 import treeOps as to
 import deepdiff
 import operator as op
+import string
 
 @pytest.fixture
 def ref_bst():
@@ -221,3 +222,19 @@ def test_convert_to_AVL(ref_bst):
     cond = diff_list == [{}] * 9
 
     assert cond
+
+def test_text_to_tree():
+    ''' The reference paragraph (par nr. 151) reads as follows:
+    Und so lang du das nicht hast,
+    Dieses: Stirb und werde!
+    Bist du nur ein trüber Gast
+    Auf der dunklen Erde.
+    '''
+    path = "../data/Goethe.txt"
+    regex = "(?<!\d )["+string.punctuation+"](?!\d)"
+    treelist = to.text_to_tree(path, regex=regex, balanced=False)
+
+    ref = "Auf Bist Dieses Erde Gast Stirb Und das der du du dunklen ein hast lang nicht nur so trüber und werde \n"
+    parnr = 151
+
+    assert treelist[parnr].__str__() == ref
