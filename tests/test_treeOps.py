@@ -65,3 +65,67 @@ def ref_bst():
 
     return t, nodes_tuple
 
+def test_list_to_tree():
+    dlist = [6, 10, 14, 3, 4, 1, 8, 13, 7]
+    t = to.list_to_tree(dlist, rootVal=8, balanced=False)
+
+    ref_rep = [
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 1, 'right': 4, 'parent': 6,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+    {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 6, 'left': 3, 'right': 7, 'parent': 8,
+     'status': 'unvisited', 'height': 2, 'balance_factor': 1},
+    {'data': 7, 'left': 'None', 'right': 'None', 'parent': 6,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 8, 'left': 6, 'right': 10, 'parent': 'None',
+     'status': 'unvisited', 'height': 3, 'balance_factor': 0},
+    {'data': 10, 'left': 'None', 'right': 14, 'parent': 8,
+     'status': 'unvisited', 'height': 2, 'balance_factor': -2},
+    {'data': 13, 'left': 'None', 'right': 'None', 'parent': 14,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 14, 'left': 13, 'right': 'None', 'parent': 10,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 1}]
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 9
+
+    assert cond
+
+def test_list_to_tree_balanced():
+    dlist = [6, 10, 14, 3, 4, 1, 8, 13, 7]
+    t = to.list_to_tree(dlist, rootVal=8, balanced=True)
+
+    ref_rep = [
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 3, 'left': 1, 'right': 'None', 'parent': 4,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 1},
+    {'data': 4, 'left': 3, 'right': 6, 'parent': 8,
+     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
+    {'data': 6, 'left': 'None', 'right': 7, 'parent': 4,
+     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+    {'data': 7, 'left': 'None', 'right': 'None', 'parent': 6,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 8, 'left': 4, 'right': 13, 'parent': 'None',
+     'status': 'unvisited', 'height': 3, 'balance_factor': 1},
+    {'data': 10, 'left': 'None', 'right': 'None', 'parent': 13,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+    {'data': 13, 'left': 10, 'right': 14, 'parent': 8,
+     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+    {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
+     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+
+    rep = t.verbose_rep(1)
+    rep = sorted(rep, key=op.itemgetter('data'))
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 9
+
+    assert cond
+
