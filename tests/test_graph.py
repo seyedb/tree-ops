@@ -59,3 +59,42 @@ def test_getData(generic_graphNode):
 def test_setData(generic_graphNode):
     generic_graphNode._setData('B')
     assert generic_graphNode.data == 'B'
+
+def test_addAdjNode(generic_graphNode):
+    adj_node = Graph.graph().graphNode('B')
+    generic_graphNode._addAdjNode(adj_node, weight=2)
+    l = [[k.data, v] for k, v in generic_graphNode.children.items()]
+    assert l == [['B', [2]]]
+
+def test_getChildren(generic_graphNode):
+    adj_node = Graph.graph().graphNode('B')
+    generic_graphNode._addAdjNode(adj_node, weight=2)
+    l = [n.data for n in generic_graphNode._getChildren()]
+    assert l == ['B']
+
+def test_getDistance(generic_graphNode):
+    assert generic_graphNode._getDistance() == float('inf')
+
+def test_setDistance(generic_graphNode):
+    generic_graphNode._setDistance(2.2)
+    assert generic_graphNode.distance == 2.2
+
+def test_getPrevious(generic_graphNode):
+    assert generic_graphNode._getPrevious() == None
+
+def test_setPrevious(generic_graphNode):
+    n = Graph.graph().graphNode('B')
+    generic_graphNode._setPrevious(n)
+    assert generic_graphNode.previous == n
+
+def test_getWeight(generic_graphNode):
+    adj_node = Graph.graph().graphNode('B')
+    generic_graphNode._addAdjNode(adj_node, weight=2)
+    assert generic_graphNode._getWeight(adj_node) == [2.0]
+
+def test_isAdjacent(generic_graphNode):
+    n = Graph.graph().graphNode('B')
+    adj_node = Graph.graph().graphNode('B')
+    generic_graphNode._addAdjNode(adj_node, weight=2)
+
+    assert generic_graphNode._isAdjacent(adj_node) and not generic_graphNode._isAdjacent(n)
