@@ -1,0 +1,2000 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>tree API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>tree</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+from collections import deque
+
+class node_status(Enum):
+    &#34;&#34;&#34;List of all possible visit status of each node (tree traversal).&#34;&#34;&#34;
+    UNVISITED = 0
+    VISITED = 1
+    VISITING = 2
+
+class tree(object):
+    &#34;&#34;&#34;The main (binary search) tree class.&#34;&#34;&#34;
+    def __init__(self, root=None):
+        &#34;&#34;&#34;Initializes a tree with its root node.&#34;&#34;&#34;
+        self.root = root
+        if root: self.root.parent = None
+
+    class treeNode(object):
+        &#34;&#34;&#34;The main tree node class (defined as an inner class of the tree class).&#34;&#34;&#34;
+        def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
+            &#34;&#34;&#34;Initializes a tree node.
+            Attributes:
+                data (any type): the node value.
+                left (treeNode): the left child.
+                right (treeNode): the right child.
+                status (node_status): the visit status (tree traversal).
+                parent (treeNode): the parent node.
+                height (int): the height of the tree rooted at the node.
+                balance_factor (int): difference between the height of the left and the right subtrees.
+            &#34;&#34;&#34;
+            self.data = data
+            self.left = None
+            self.right = None
+            self.status = status
+            # the following are used in tree balancing algorithms
+            self.parent = None
+            self.height = 0
+            self.balance_factor = balance_factor
+
+        # comparison operators
+        def __lt__(self, other):
+            return self.data &lt; other.data
+
+        def __le__(self, other):
+            return self.data &lt; other.data or self.data == other.data
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data &gt; other.data
+#
+#        def __ge__(self, other):
+#            return self.data &gt; other.data or self.data == other.data
+
+        def __str__(self):
+            &#34;&#34;&#34;Returns a string representation of a treeNode.&#34;&#34;&#34;
+            if self.status is node_status.UNVISITED:
+                stat = &#39;unvisited&#39;
+            elif self.status is node_status.VISITED:
+                stat = &#39;visited&#39;
+            else:
+                stat = &#39;visiting&#39;
+
+            res = &#39;data: {},\t&#39;.format(self.data)
+            res += &#39;left: {},\t&#39;.format(&#39;None&#39; if self.left is None else self.left.data)
+            res += &#39;right: {},\t&#39;.format(&#39;None&#39; if self.right is None else self.right.data)
+            res += &#39;status: {},\t&#39;.format(stat)
+            res += &#39;parent: {},\t&#39;.format(&#39;None&#39; if self.parent is None else self.parent.data)
+            res += &#39;height: {},\t&#39;.format(self.height)
+            res += &#39;balance factor: {}&#39;.format(self.balance_factor)
+            return res
+
+        def _getStatus(self):
+            &#34;&#34;&#34;Gets the visit status of a tree node.&#34;&#34;&#34;
+            return self.status
+    
+        def _setStatus(self, status):
+            &#34;&#34;&#34;Sets the visit status of a tree node to a given value.
+    
+            Args:
+                status (node_status): the new visit status to be assigned to the node.
+            &#34;&#34;&#34;
+            self.status = status
+
+    def __contains__(self, data):
+        &#34;&#34;&#34;Checks if a tree contains a given data.
+
+        Args:
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (boolean) True if the tree contains the data, False otherwise.
+        &#34;&#34;&#34;
+        if self.root is not None:
+            return self._containsData(data, self.root)
+        else:
+            return False
+
+    def _containsData(self, data, node):
+        &#34;&#34;&#34;(helper function) Checks if a (sub)tree rooted at a given node contains a given data.
+
+        Args:
+            data (node val data type): the data to be found in the tree.
+            node (treeNode): the (root) node at which the recursive search begins.
+        Returns:
+            (boolean) True if the (sub)tree rooted at node contains the data, False otherwise.
+        &#34;&#34;&#34;
+        if node.data == data:
+            return True
+        elif (data &lt; node.data and node.left is not None):
+            return self._containsData(data, node.left)
+        elif (data &gt; node.data and node.right is not None):
+            return self._containsData(data, node.right)
+            
+        return False
+
+    def __str__(self):
+        &#34;&#34;&#34;Represents a tree with a string starting from its root.&#34;&#34;&#34;
+        res = &#39;\n&#39;
+        if self.root is not None:
+            return self._strTree(self.root) + res
+        return res
+
+    def _strTree(self, node):
+        &#34;&#34;&#34;(helper function) Returns string representation of a (sub)tree rooted at a given node.
+        NOTE:
+            - The output must be in ascending order in case of BST.
+
+        Args:
+            node (treeNode): the tree node at which the printing starts.
+        Returns:
+            (str) a space-delimited string representing the data stored in the tree.
+        &#34;&#34;&#34;
+        res = &#39;&#39;
+        if node is not None:
+            res += self._strTree(node.left)
+            res += &#39;{} &#39;.format(node.data)
+            res += self._strTree(node.right)
+        return res
+
+    def verbose_rep(self, verb_level=0):
+        &#34;&#34;&#34;Returns a verbose representation of the tree as a list of dictionaries. The dict keys are 
+           the instance attributes of the nodes and dict values are the values of the attributes. The
+           ordering of nodes in the list follows an in-order pattern.
+
+        Args:
+            verb_level (0 or 1): the verbosity level.
+        Returns:
+            (list of dict) a list of dictionaries representing the tree.
+        &#34;&#34;&#34;
+        representation = []
+        if self.root is not None:
+            self._verboseRep(self.root, representation, verb_level)
+
+        return representation
+
+    def _verboseRep(self, node, rep, verb_level=0):
+        &#34;&#34;&#34;(helper function) Returns a list of dict representation of the (sub)tree rooted at the given node.
+
+        Args:
+            node (treeNode): the node where the procedure (inorder visit of the tree nodes) starts.
+            rep (list): the list of dict representation to be constructed.
+            verb_level (0 or 1): the verbosity level.
+        Returns:
+            (list of dict) a list of dictionaries containing the values of the instance attributes of
+            all the nodes in the (sub)tree.
+        &#34;&#34;&#34;
+        assert(verb_level in {0, 1}), &#39;Invalid verbosity level!&#39;
+
+        if node is not None:
+            self._verboseRep(node.left, rep, verb_level)
+
+            if node.status is node_status.UNVISITED:
+                stat = &#39;unvisited&#39;
+            elif node.status is node_status.VISITED:
+                stat = &#39;visited&#39;
+            else:
+                stat = &#39;visiting&#39;
+
+            attrs = {}
+            attrs[&#39;data&#39;] = node.data
+            if verb_level == 0:
+                attrs[&#39;left&#39;] = &#39;None&#39; if node.left is None else node.left.data
+                attrs[&#39;right&#39;] = &#39;None&#39; if node.right is None else node.right.data
+            elif verb_level == 1:
+                attrs[&#39;left&#39;] = &#39;None&#39; if node.left is None else node.left.data
+                attrs[&#39;right&#39;] = &#39;None&#39; if node.right is None else node.right.data
+                attrs[&#39;parent&#39;] = &#39;None&#39; if node.parent is None else node.parent.data
+                attrs[&#39;status&#39;] = stat
+                attrs[&#39;height&#39;] = node.height
+                attrs[&#39;balance_factor&#39;] = node.balance_factor
+            rep.append(attrs)
+
+            self._verboseRep(node.right, rep, verb_level)
+
+    def update_height(self):
+        &#34;&#34;&#34;Updates the height of every node of a given tree.&#34;&#34;&#34;
+        self._updateHeight(self.root)
+
+    def _updateHeight(self, node):
+        &#34;&#34;&#34;(helper function) Recursively updates the height of each node starting from the given node 
+        all the way down.
+        
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        Returns:
+            (tree) the input tree where every node of its subtree rooted at the input node have updated heights.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._updateHeight(node.left)
+            node.height = self._calcHeight(node)
+            self._updateHeight(node.right)
+
+    def _calcHeight(self, node):
+        &#34;&#34;&#34;(helper function) Calculates the height of the tree rooted at a given node.
+
+        Returns:
+            (int) the height of the tree at the input node.
+        &#34;&#34;&#34;
+        if node is None:
+            return -1
+        else:
+            lheight = self._calcHeight(node.left)
+            rheight = self._calcHeight(node.right)
+            return max(lheight, rheight) + 1
+
+    def update_balance_factor(self):
+        &#34;&#34;&#34;Updates the balance factor of every node of a given tree.&#34;&#34;&#34;
+        self._updateBalanceFactor(self.root)
+
+    def _updateBalanceFactor(self, node):
+        &#34;&#34;&#34;(helper function) Recursively updates the balance factor of each node starting from the given node 
+        all the way down.
+        
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        Returns:
+            (tree) the input tree where every node of its subtrees rooted at the input node have updated balance_factor.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._updateBalanceFactor(node.left)
+            self._calcBalanceFactor(node)
+            self._updateBalanceFactor(node.right)
+
+    def _calcBalanceFactor(self, node):
+        &#34;&#34;&#34;(helper function) Calculates the balance factor of the tree rooted a given tree node.
+
+        Returns:
+            (treeNode) the input tree node with updated balance factor.
+        &#34;&#34;&#34;
+        lheight = self._calcHeight(node.left)
+        rheight = self._calcHeight(node.right)
+        node.balance_factor = lheight - rheight
+
+    def reset_status(self):
+        &#34;&#34;&#34;Resets the visit status of all the nodes in a tree to UNVISITED.&#34;&#34;&#34;
+        self._resetStatus(self.root)
+
+    def _resetStatus(self, node):
+        &#34;&#34;&#34;(helper function) Resets the visit status of each node below the given node to UNVISITED 
+        after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
+        following an in-order fashion.
+
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._resetStatus(node.left)
+            node._setStatus(node_status.UNVISITED)
+            self._resetStatus(node.right)
+
+    def add_node(self, data, balanced=False):
+        &#34;&#34;&#34;Adds a node to a tree.
+
+        Args:
+            data (node val data type): the value to be assigned to the new tree node.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with the new node inserted at one of its leaves.
+        &#34;&#34;&#34;
+        if self.root is None:
+            self.root = self.treeNode(data)
+        else:
+            self.root = self._addNode(self.root, data, balanced)
+
+    def _addNode(self, node, data, balanced=False):
+        &#34;&#34;&#34;(helper function) Finds the right location for the new node according to the BST-property.
+
+        Args:
+            data (node val data type): the value to be assigned to the new node.
+            node (treeNode): the node at which the recursive approach to insert a new node starts.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with the new node inserted at one of its leaves.
+        &#34;&#34;&#34;
+        if data &lt; node.data:
+            if node.left is not None:
+                lnode = self._addNode(node.left, data, balanced)
+            else:
+                lnode = self.treeNode(data)
+
+            node.left = lnode
+            lnode.parent = node
+        else:
+            if node.right is not None:
+                rnode = self._addNode(node.right, data, balanced)
+            else:
+                rnode = self.treeNode(data)
+
+            node.right = rnode
+            rnode.parent = node
+        
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
+
+    def insert_node(self, data, balanced=False):
+        &#34;&#34;&#34;Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
+        (see documentation of _insertNode for more details).
+
+        Args:
+            data (node val data type): the value to be assigned to the new tree node.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with a new node.
+        &#34;&#34;&#34;
+        if self.root is None:
+            self.root = self.treeNode(data)
+        else:
+            self._insertNode(self.root, data, balanced)
+
+    def _insertNode(self, node, data, balanced=False):
+        &#34;&#34;&#34;(helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
+        (breadth-first):
+            traversing down the tree from the given starting point, if a node N is found whose left 
+            node is empty, a new node with the given data is created as N.left, else if a node N is 
+            found whose right node is empty, the new node is created as N.right. 
+
+        Args:
+            data (node val data type): the value to be assigned to the new node.
+            node (treeNode): the node at which the traversal to insert a new node starts.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with a new node.
+        &#34;&#34;&#34;
+        Q = deque()
+        Q.append(node)
+
+        while Q:
+            node = Q.popleft()
+
+            if node.left is None:
+                lnode = self.treeNode(data)
+                node.left = lnode
+                lnode.parent = node
+                break
+            else:
+                Q.append(node.left)
+
+            if node.right is None:
+                rnode = self.treeNode(data)
+                node.right = rnode
+                rnode.parent = node
+                break
+            else:
+                Q.append(node.right)
+
+        self.update_height()
+        self.update_balance_factor()
+
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
+
+    def inorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Inorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the inorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            path = self.inorder_traversal(node.left, path)
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+            path = self.inorder_traversal(node.right, path)
+
+        return path
+
+    def preorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Preorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the preorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+            path = self.preorder_traversal(node.left, path)
+            path = self.preorder_traversal(node.right, path)
+
+        return path
+
+    def postorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Postorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the postorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            path = self.postorder_traversal(node.left, path)
+            path = self.postorder_traversal(node.right, path)
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+
+        return path
+
+    def find_node(self, data):
+        &#34;&#34;&#34;Finds a node in a tree.
+        
+        Args:
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (treeNode) the tree node that contains the given data.   
+        &#34;&#34;&#34;
+        if self.root is not None:
+            return self._findNode(self.root, data)
+        else:
+            return None
+
+    def _findNode(self, node, data):
+        &#34;&#34;&#34;(helper function) Finds a given data in a tree.
+        
+        Args:
+            node (treeNode): the node at which the recursive search begins.
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (treeNode) the tree node that contains the given data.
+        &#34;&#34;&#34;
+        if node.data == data:
+            return node
+        elif (data &lt; node.data and node.left is not None):
+            return self._findNode(node.left, data)
+        elif (data &gt; node.data and node.right is not None):
+            return self._findNode(node.right, data)
+
+    def DFS(self, start, path=None):
+        &#34;&#34;&#34;Depth-First Search (DFS).
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+            path (list of treeNode): the DFS path (empty path to be filled with nodes).
+        Returns:
+            (list of treeNode) the full DFS path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        s = self.find_node(start.data)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        children = []
+        if s.left is not None: children.append(s.left)
+        if s.right is not None: children.append(s.right)
+
+        for child in children:
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                path = self.DFS(child, path)
+
+        return path
+        
+    def BFS(self, start):
+        &#34;&#34;&#34;Breadth-First Search (BFS).
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+        Returns:
+            (list of treeNode) the full BFS path.
+        &#34;&#34;&#34;
+        s = self.find_node(start.data)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            children = []
+            if k.left is not None: children.append(k.left)
+            if k.right is not None: children.append(k.right)
+            for child in children:
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path
+
+    def is_balanced(self):
+        &#34;&#34;&#34;Checks whether or not a tree (BST or not) is balanced.
+
+        Returns:
+            (bool) True when the tree is balanced, False otherwise.
+        &#34;&#34;&#34;
+        return self._isBalanced(self.root) &gt; -1
+
+    def _isBalanced(self, node):
+        &#34;&#34;&#34;(helper function) Checks if a BST is balanced.
+        
+        Args:
+            node (treeNode): the tree node where the recursive procedure starts.
+        Returns:
+            (int) -1 if the tree (subtree) is not balanced, otherwise returns the height of the 
+                  tree (subtree).
+        &#34;&#34;&#34;
+        if node is None:
+            return 0
+
+        lheight = self._isBalanced(node.left)
+        if lheight == -1: return -1
+
+        rheight = self._isBalanced(node.right)
+        if rheight == -1: return -1
+
+        if abs(lheight - rheight) &gt; 1: return -1
+
+        return max(lheight, rheight) + 1
+
+    def _balanceByRecursion(self, nodes, start, end):
+        &#34;&#34;&#34;(helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
+        the recursive step.
+        NOTE:
+            - nodes must be a list of consecutive nodes in an inorder sense.
+            - nodes that come before or after the list will NOT be updated, i.e. their height, 
+            balance_factor, parent, left and right nodes will remain unchanged.
+
+        Args:
+            nodes (list of treeNode): a subset of the node list over which a recursion step is taken.
+            start (int): the index of the left-most element of the list over which the currect step 
+            of recursion is performed.
+            end (int): the index of the right-most element of the list over which the current step 
+            of recursion is performed.
+        Returns:
+            (treeNode) the root node of the constructed balanced tree after recursion is completed.
+        &#34;&#34;&#34;
+        if start &gt; end:
+            return None
+
+        mid = start + (end - start)//2
+
+        node = nodes[mid]
+        node.left = self._balanceByRecursion(nodes, start, mid - 1)
+        node.right = self._balanceByRecursion(nodes, mid + 1, end)
+
+        if node.left: node.left.parent = node
+        if node.right: node.right.parent = node
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+
+        return node
+
+    def _convertToAVL(self, node, res):
+        &#34;&#34;&#34;(helper function) Converts a tree rooted at node into an AVL tree.
+            - perform an inorder traversal of the tree;
+            - insert the visited node into another (AVL) tree preserving balance.
+
+        Args:
+            node (treeNode): the root node of the (sub)tree to be traversed/converted.
+            res (tree): the resulted AVL tree (can be non-empty but must be balanced).
+        Returns:
+            (tree) res (a balanced tree) with nodes imported from the input tree.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._convertToAVL(node.left, res)
+            res.add_node(node.data, balanced=True)
+            self._convertToAVL(node.right, res)
+
+        return res
+
+    def _rebalanceSubtree(self, node):
+        &#34;&#34;&#34;(helper function) Rebalances a subtree rooted at a given node using rotation operations.
+
+        Args:
+            node (treeNode): root of the subtree to be rebalanced.
+        Returns:
+            (treeNode) the root of the rebalanced subtree.
+        &#34;&#34;&#34;
+        # left imbalance
+        if node.balance_factor &gt; 1:
+            # left-right imbalance
+            if node.left.balance_factor &lt; 0:
+                node.left = self._rotateLeft(node.left)
+                return self._rotateRight(node)
+            # left-left imbalance
+            else:
+                return self._rotateRight(node)
+        # right imbalance
+        elif node.balance_factor &lt; -1:
+            # right-left imbalance
+            if node.right.balance_factor &gt; 0:
+                node.right = self._rotateRight(node.right)
+                return self._rotateLeft(node)
+            # right-right imbalance
+            else:
+                return self._rotateLeft(node)
+        # balance_factor is in {-1, 0, 1}, the node is already balanced
+        else:
+            return node
+
+    def _rotateRight(self, node):
+        &#34;&#34;&#34;(helper function) Performs right rotation of subtree rooted at node.
+
+        Args:
+            node (treeNode): the parent node of the subtree to rotate.
+        Returns:
+            (treeNode) root of the new tree.
+        &#34;&#34;&#34;
+        assert(node.left is not None)
+
+        pivot = node.left
+        node.left = pivot.right
+        if pivot.right is not None:
+            pivot.right.parent = node
+        pivot.right = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._calcBalanceFactor(pivot)
+
+        return pivot
+
+    def _rotateLeft(self, node):
+        &#34;&#34;&#34;(helper function) Performs left rotation of subtree rooted at node.
+
+        Args:
+            node (treeNode): the parent node of the subtree to rotate.
+        Returns:
+            (treeNode) root of the new tree.
+        &#34;&#34;&#34;
+        assert(node.right is not None)
+
+        pivot = node.right
+        node.right = pivot.left
+        if pivot.left is not None:
+            pivot.left.parent = node
+        pivot.left = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._calcBalanceFactor(pivot)
+
+        return pivot</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="tree.node_status"><code class="flex name class">
+<span>class <span class="ident">node_status</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List of all possible visit status of each node (tree traversal).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class node_status(Enum):
+    &#34;&#34;&#34;List of all possible visit status of each node (tree traversal).&#34;&#34;&#34;
+    UNVISITED = 0
+    VISITED = 1
+    VISITING = 2</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="tree.node_status.UNVISITED"><code class="name">var <span class="ident">UNVISITED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="tree.node_status.VISITED"><code class="name">var <span class="ident">VISITED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="tree.node_status.VISITING"><code class="name">var <span class="ident">VISITING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="tree.tree"><code class="flex name class">
+<span>class <span class="ident">tree</span></span>
+<span>(</span><span>root=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The main (binary search) tree class.</p>
+<p>Initializes a tree with its root node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class tree(object):
+    &#34;&#34;&#34;The main (binary search) tree class.&#34;&#34;&#34;
+    def __init__(self, root=None):
+        &#34;&#34;&#34;Initializes a tree with its root node.&#34;&#34;&#34;
+        self.root = root
+        if root: self.root.parent = None
+
+    class treeNode(object):
+        &#34;&#34;&#34;The main tree node class (defined as an inner class of the tree class).&#34;&#34;&#34;
+        def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
+            &#34;&#34;&#34;Initializes a tree node.
+            Attributes:
+                data (any type): the node value.
+                left (treeNode): the left child.
+                right (treeNode): the right child.
+                status (node_status): the visit status (tree traversal).
+                parent (treeNode): the parent node.
+                height (int): the height of the tree rooted at the node.
+                balance_factor (int): difference between the height of the left and the right subtrees.
+            &#34;&#34;&#34;
+            self.data = data
+            self.left = None
+            self.right = None
+            self.status = status
+            # the following are used in tree balancing algorithms
+            self.parent = None
+            self.height = 0
+            self.balance_factor = balance_factor
+
+        # comparison operators
+        def __lt__(self, other):
+            return self.data &lt; other.data
+
+        def __le__(self, other):
+            return self.data &lt; other.data or self.data == other.data
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data &gt; other.data
+#
+#        def __ge__(self, other):
+#            return self.data &gt; other.data or self.data == other.data
+
+        def __str__(self):
+            &#34;&#34;&#34;Returns a string representation of a treeNode.&#34;&#34;&#34;
+            if self.status is node_status.UNVISITED:
+                stat = &#39;unvisited&#39;
+            elif self.status is node_status.VISITED:
+                stat = &#39;visited&#39;
+            else:
+                stat = &#39;visiting&#39;
+
+            res = &#39;data: {},\t&#39;.format(self.data)
+            res += &#39;left: {},\t&#39;.format(&#39;None&#39; if self.left is None else self.left.data)
+            res += &#39;right: {},\t&#39;.format(&#39;None&#39; if self.right is None else self.right.data)
+            res += &#39;status: {},\t&#39;.format(stat)
+            res += &#39;parent: {},\t&#39;.format(&#39;None&#39; if self.parent is None else self.parent.data)
+            res += &#39;height: {},\t&#39;.format(self.height)
+            res += &#39;balance factor: {}&#39;.format(self.balance_factor)
+            return res
+
+        def _getStatus(self):
+            &#34;&#34;&#34;Gets the visit status of a tree node.&#34;&#34;&#34;
+            return self.status
+    
+        def _setStatus(self, status):
+            &#34;&#34;&#34;Sets the visit status of a tree node to a given value.
+    
+            Args:
+                status (node_status): the new visit status to be assigned to the node.
+            &#34;&#34;&#34;
+            self.status = status
+
+    def __contains__(self, data):
+        &#34;&#34;&#34;Checks if a tree contains a given data.
+
+        Args:
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (boolean) True if the tree contains the data, False otherwise.
+        &#34;&#34;&#34;
+        if self.root is not None:
+            return self._containsData(data, self.root)
+        else:
+            return False
+
+    def _containsData(self, data, node):
+        &#34;&#34;&#34;(helper function) Checks if a (sub)tree rooted at a given node contains a given data.
+
+        Args:
+            data (node val data type): the data to be found in the tree.
+            node (treeNode): the (root) node at which the recursive search begins.
+        Returns:
+            (boolean) True if the (sub)tree rooted at node contains the data, False otherwise.
+        &#34;&#34;&#34;
+        if node.data == data:
+            return True
+        elif (data &lt; node.data and node.left is not None):
+            return self._containsData(data, node.left)
+        elif (data &gt; node.data and node.right is not None):
+            return self._containsData(data, node.right)
+            
+        return False
+
+    def __str__(self):
+        &#34;&#34;&#34;Represents a tree with a string starting from its root.&#34;&#34;&#34;
+        res = &#39;\n&#39;
+        if self.root is not None:
+            return self._strTree(self.root) + res
+        return res
+
+    def _strTree(self, node):
+        &#34;&#34;&#34;(helper function) Returns string representation of a (sub)tree rooted at a given node.
+        NOTE:
+            - The output must be in ascending order in case of BST.
+
+        Args:
+            node (treeNode): the tree node at which the printing starts.
+        Returns:
+            (str) a space-delimited string representing the data stored in the tree.
+        &#34;&#34;&#34;
+        res = &#39;&#39;
+        if node is not None:
+            res += self._strTree(node.left)
+            res += &#39;{} &#39;.format(node.data)
+            res += self._strTree(node.right)
+        return res
+
+    def verbose_rep(self, verb_level=0):
+        &#34;&#34;&#34;Returns a verbose representation of the tree as a list of dictionaries. The dict keys are 
+           the instance attributes of the nodes and dict values are the values of the attributes. The
+           ordering of nodes in the list follows an in-order pattern.
+
+        Args:
+            verb_level (0 or 1): the verbosity level.
+        Returns:
+            (list of dict) a list of dictionaries representing the tree.
+        &#34;&#34;&#34;
+        representation = []
+        if self.root is not None:
+            self._verboseRep(self.root, representation, verb_level)
+
+        return representation
+
+    def _verboseRep(self, node, rep, verb_level=0):
+        &#34;&#34;&#34;(helper function) Returns a list of dict representation of the (sub)tree rooted at the given node.
+
+        Args:
+            node (treeNode): the node where the procedure (inorder visit of the tree nodes) starts.
+            rep (list): the list of dict representation to be constructed.
+            verb_level (0 or 1): the verbosity level.
+        Returns:
+            (list of dict) a list of dictionaries containing the values of the instance attributes of
+            all the nodes in the (sub)tree.
+        &#34;&#34;&#34;
+        assert(verb_level in {0, 1}), &#39;Invalid verbosity level!&#39;
+
+        if node is not None:
+            self._verboseRep(node.left, rep, verb_level)
+
+            if node.status is node_status.UNVISITED:
+                stat = &#39;unvisited&#39;
+            elif node.status is node_status.VISITED:
+                stat = &#39;visited&#39;
+            else:
+                stat = &#39;visiting&#39;
+
+            attrs = {}
+            attrs[&#39;data&#39;] = node.data
+            if verb_level == 0:
+                attrs[&#39;left&#39;] = &#39;None&#39; if node.left is None else node.left.data
+                attrs[&#39;right&#39;] = &#39;None&#39; if node.right is None else node.right.data
+            elif verb_level == 1:
+                attrs[&#39;left&#39;] = &#39;None&#39; if node.left is None else node.left.data
+                attrs[&#39;right&#39;] = &#39;None&#39; if node.right is None else node.right.data
+                attrs[&#39;parent&#39;] = &#39;None&#39; if node.parent is None else node.parent.data
+                attrs[&#39;status&#39;] = stat
+                attrs[&#39;height&#39;] = node.height
+                attrs[&#39;balance_factor&#39;] = node.balance_factor
+            rep.append(attrs)
+
+            self._verboseRep(node.right, rep, verb_level)
+
+    def update_height(self):
+        &#34;&#34;&#34;Updates the height of every node of a given tree.&#34;&#34;&#34;
+        self._updateHeight(self.root)
+
+    def _updateHeight(self, node):
+        &#34;&#34;&#34;(helper function) Recursively updates the height of each node starting from the given node 
+        all the way down.
+        
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        Returns:
+            (tree) the input tree where every node of its subtree rooted at the input node have updated heights.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._updateHeight(node.left)
+            node.height = self._calcHeight(node)
+            self._updateHeight(node.right)
+
+    def _calcHeight(self, node):
+        &#34;&#34;&#34;(helper function) Calculates the height of the tree rooted at a given node.
+
+        Returns:
+            (int) the height of the tree at the input node.
+        &#34;&#34;&#34;
+        if node is None:
+            return -1
+        else:
+            lheight = self._calcHeight(node.left)
+            rheight = self._calcHeight(node.right)
+            return max(lheight, rheight) + 1
+
+    def update_balance_factor(self):
+        &#34;&#34;&#34;Updates the balance factor of every node of a given tree.&#34;&#34;&#34;
+        self._updateBalanceFactor(self.root)
+
+    def _updateBalanceFactor(self, node):
+        &#34;&#34;&#34;(helper function) Recursively updates the balance factor of each node starting from the given node 
+        all the way down.
+        
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        Returns:
+            (tree) the input tree where every node of its subtrees rooted at the input node have updated balance_factor.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._updateBalanceFactor(node.left)
+            self._calcBalanceFactor(node)
+            self._updateBalanceFactor(node.right)
+
+    def _calcBalanceFactor(self, node):
+        &#34;&#34;&#34;(helper function) Calculates the balance factor of the tree rooted a given tree node.
+
+        Returns:
+            (treeNode) the input tree node with updated balance factor.
+        &#34;&#34;&#34;
+        lheight = self._calcHeight(node.left)
+        rheight = self._calcHeight(node.right)
+        node.balance_factor = lheight - rheight
+
+    def reset_status(self):
+        &#34;&#34;&#34;Resets the visit status of all the nodes in a tree to UNVISITED.&#34;&#34;&#34;
+        self._resetStatus(self.root)
+
+    def _resetStatus(self, node):
+        &#34;&#34;&#34;(helper function) Resets the visit status of each node below the given node to UNVISITED 
+        after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
+        following an in-order fashion.
+
+        Args:
+            node (treeNode): the tree node at which the procedure starts.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._resetStatus(node.left)
+            node._setStatus(node_status.UNVISITED)
+            self._resetStatus(node.right)
+
+    def add_node(self, data, balanced=False):
+        &#34;&#34;&#34;Adds a node to a tree.
+
+        Args:
+            data (node val data type): the value to be assigned to the new tree node.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with the new node inserted at one of its leaves.
+        &#34;&#34;&#34;
+        if self.root is None:
+            self.root = self.treeNode(data)
+        else:
+            self.root = self._addNode(self.root, data, balanced)
+
+    def _addNode(self, node, data, balanced=False):
+        &#34;&#34;&#34;(helper function) Finds the right location for the new node according to the BST-property.
+
+        Args:
+            data (node val data type): the value to be assigned to the new node.
+            node (treeNode): the node at which the recursive approach to insert a new node starts.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with the new node inserted at one of its leaves.
+        &#34;&#34;&#34;
+        if data &lt; node.data:
+            if node.left is not None:
+                lnode = self._addNode(node.left, data, balanced)
+            else:
+                lnode = self.treeNode(data)
+
+            node.left = lnode
+            lnode.parent = node
+        else:
+            if node.right is not None:
+                rnode = self._addNode(node.right, data, balanced)
+            else:
+                rnode = self.treeNode(data)
+
+            node.right = rnode
+            rnode.parent = node
+        
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
+
+    def insert_node(self, data, balanced=False):
+        &#34;&#34;&#34;Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
+        (see documentation of _insertNode for more details).
+
+        Args:
+            data (node val data type): the value to be assigned to the new tree node.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with a new node.
+        &#34;&#34;&#34;
+        if self.root is None:
+            self.root = self.treeNode(data)
+        else:
+            self._insertNode(self.root, data, balanced)
+
+    def _insertNode(self, node, data, balanced=False):
+        &#34;&#34;&#34;(helper function) Inserts a node in a binary tree (not necessarily BST) in level order 
+        (breadth-first):
+            traversing down the tree from the given starting point, if a node N is found whose left 
+            node is empty, a new node with the given data is created as N.left, else if a node N is 
+            found whose right node is empty, the new node is created as N.right. 
+
+        Args:
+            data (node val data type): the value to be assigned to the new node.
+            node (treeNode): the node at which the traversal to insert a new node starts.
+            balanced (boolean): if True rebalance the current root after adding the new node.
+        Returns:
+            (tree) tree updated with a new node.
+        &#34;&#34;&#34;
+        Q = deque()
+        Q.append(node)
+
+        while Q:
+            node = Q.popleft()
+
+            if node.left is None:
+                lnode = self.treeNode(data)
+                node.left = lnode
+                lnode.parent = node
+                break
+            else:
+                Q.append(node.left)
+
+            if node.right is None:
+                rnode = self.treeNode(data)
+                node.right = rnode
+                rnode.parent = node
+                break
+            else:
+                Q.append(node.right)
+
+        self.update_height()
+        self.update_balance_factor()
+
+        if balanced:
+            return self._rebalanceSubtree(node)
+        else:
+            return node
+
+    def inorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Inorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the inorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            path = self.inorder_traversal(node.left, path)
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+            path = self.inorder_traversal(node.right, path)
+
+        return path
+
+    def preorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Preorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the preorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+            path = self.preorder_traversal(node.left, path)
+            path = self.preorder_traversal(node.right, path)
+
+        return path
+
+    def postorder_traversal(self, node, path=None):
+        &#34;&#34;&#34;Postorder Traversal.
+
+        Args:
+            node (treeNode): the tree node at with the postorder traversal starts.
+            path (list of treeNode): the traversal path.
+        Returns:
+            (tree) the input tree with all its nodes visited once while traversing 
+                   all nodes have visit status VISITED at this point.
+            (list of treeNode) the full traversal path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        if node is not None:
+            path = self.postorder_traversal(node.left, path)
+            path = self.postorder_traversal(node.right, path)
+            node._setStatus(node_status.VISITED)
+            path.append(node)
+
+        return path
+
+    def find_node(self, data):
+        &#34;&#34;&#34;Finds a node in a tree.
+        
+        Args:
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (treeNode) the tree node that contains the given data.   
+        &#34;&#34;&#34;
+        if self.root is not None:
+            return self._findNode(self.root, data)
+        else:
+            return None
+
+    def _findNode(self, node, data):
+        &#34;&#34;&#34;(helper function) Finds a given data in a tree.
+        
+        Args:
+            node (treeNode): the node at which the recursive search begins.
+            data (node val data type): the data to be found in the tree.
+        Returns:
+            (treeNode) the tree node that contains the given data.
+        &#34;&#34;&#34;
+        if node.data == data:
+            return node
+        elif (data &lt; node.data and node.left is not None):
+            return self._findNode(node.left, data)
+        elif (data &gt; node.data and node.right is not None):
+            return self._findNode(node.right, data)
+
+    def DFS(self, start, path=None):
+        &#34;&#34;&#34;Depth-First Search (DFS).
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+            path (list of treeNode): the DFS path (empty path to be filled with nodes).
+        Returns:
+            (list of treeNode) the full DFS path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        s = self.find_node(start.data)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        children = []
+        if s.left is not None: children.append(s.left)
+        if s.right is not None: children.append(s.right)
+
+        for child in children:
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                path = self.DFS(child, path)
+
+        return path
+        
+    def BFS(self, start):
+        &#34;&#34;&#34;Breadth-First Search (BFS).
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+        Returns:
+            (list of treeNode) the full BFS path.
+        &#34;&#34;&#34;
+        s = self.find_node(start.data)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            children = []
+            if k.left is not None: children.append(k.left)
+            if k.right is not None: children.append(k.right)
+            for child in children:
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path
+
+    def is_balanced(self):
+        &#34;&#34;&#34;Checks whether or not a tree (BST or not) is balanced.
+
+        Returns:
+            (bool) True when the tree is balanced, False otherwise.
+        &#34;&#34;&#34;
+        return self._isBalanced(self.root) &gt; -1
+
+    def _isBalanced(self, node):
+        &#34;&#34;&#34;(helper function) Checks if a BST is balanced.
+        
+        Args:
+            node (treeNode): the tree node where the recursive procedure starts.
+        Returns:
+            (int) -1 if the tree (subtree) is not balanced, otherwise returns the height of the 
+                  tree (subtree).
+        &#34;&#34;&#34;
+        if node is None:
+            return 0
+
+        lheight = self._isBalanced(node.left)
+        if lheight == -1: return -1
+
+        rheight = self._isBalanced(node.right)
+        if rheight == -1: return -1
+
+        if abs(lheight - rheight) &gt; 1: return -1
+
+        return max(lheight, rheight) + 1
+
+    def _balanceByRecursion(self, nodes, start, end):
+        &#34;&#34;&#34;(helper function) Converts a binary tree to a balanced binary tree by recursion. Performs
+        the recursive step.
+        NOTE:
+            - nodes must be a list of consecutive nodes in an inorder sense.
+            - nodes that come before or after the list will NOT be updated, i.e. their height, 
+            balance_factor, parent, left and right nodes will remain unchanged.
+
+        Args:
+            nodes (list of treeNode): a subset of the node list over which a recursion step is taken.
+            start (int): the index of the left-most element of the list over which the currect step 
+            of recursion is performed.
+            end (int): the index of the right-most element of the list over which the current step 
+            of recursion is performed.
+        Returns:
+            (treeNode) the root node of the constructed balanced tree after recursion is completed.
+        &#34;&#34;&#34;
+        if start &gt; end:
+            return None
+
+        mid = start + (end - start)//2
+
+        node = nodes[mid]
+        node.left = self._balanceByRecursion(nodes, start, mid - 1)
+        node.right = self._balanceByRecursion(nodes, mid + 1, end)
+
+        if node.left: node.left.parent = node
+        if node.right: node.right.parent = node
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+
+        return node
+
+    def _convertToAVL(self, node, res):
+        &#34;&#34;&#34;(helper function) Converts a tree rooted at node into an AVL tree.
+            - perform an inorder traversal of the tree;
+            - insert the visited node into another (AVL) tree preserving balance.
+
+        Args:
+            node (treeNode): the root node of the (sub)tree to be traversed/converted.
+            res (tree): the resulted AVL tree (can be non-empty but must be balanced).
+        Returns:
+            (tree) res (a balanced tree) with nodes imported from the input tree.
+        &#34;&#34;&#34;
+        if node is not None:
+            self._convertToAVL(node.left, res)
+            res.add_node(node.data, balanced=True)
+            self._convertToAVL(node.right, res)
+
+        return res
+
+    def _rebalanceSubtree(self, node):
+        &#34;&#34;&#34;(helper function) Rebalances a subtree rooted at a given node using rotation operations.
+
+        Args:
+            node (treeNode): root of the subtree to be rebalanced.
+        Returns:
+            (treeNode) the root of the rebalanced subtree.
+        &#34;&#34;&#34;
+        # left imbalance
+        if node.balance_factor &gt; 1:
+            # left-right imbalance
+            if node.left.balance_factor &lt; 0:
+                node.left = self._rotateLeft(node.left)
+                return self._rotateRight(node)
+            # left-left imbalance
+            else:
+                return self._rotateRight(node)
+        # right imbalance
+        elif node.balance_factor &lt; -1:
+            # right-left imbalance
+            if node.right.balance_factor &gt; 0:
+                node.right = self._rotateRight(node.right)
+                return self._rotateLeft(node)
+            # right-right imbalance
+            else:
+                return self._rotateLeft(node)
+        # balance_factor is in {-1, 0, 1}, the node is already balanced
+        else:
+            return node
+
+    def _rotateRight(self, node):
+        &#34;&#34;&#34;(helper function) Performs right rotation of subtree rooted at node.
+
+        Args:
+            node (treeNode): the parent node of the subtree to rotate.
+        Returns:
+            (treeNode) root of the new tree.
+        &#34;&#34;&#34;
+        assert(node.left is not None)
+
+        pivot = node.left
+        node.left = pivot.right
+        if pivot.right is not None:
+            pivot.right.parent = node
+        pivot.right = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._calcBalanceFactor(pivot)
+
+        return pivot
+
+    def _rotateLeft(self, node):
+        &#34;&#34;&#34;(helper function) Performs left rotation of subtree rooted at node.
+
+        Args:
+            node (treeNode): the parent node of the subtree to rotate.
+        Returns:
+            (treeNode) root of the new tree.
+        &#34;&#34;&#34;
+        assert(node.right is not None)
+
+        pivot = node.right
+        node.right = pivot.left
+        if pivot.left is not None:
+            pivot.left.parent = node
+        pivot.left = node
+
+        pivot.parent = node.parent
+        node.parent = pivot
+
+        # if the rotation is happening at a node in the middle of a tree
+        if pivot.parent is not None:
+            if pivot.parent.right == node:
+                pivot.parent.right = pivot
+            elif pivot.parent.left == node:
+                pivot.parent.left = pivot
+
+        if self.root == node:
+            self.root = pivot
+
+        self._updateHeight(node)
+        self._calcBalanceFactor(node)
+        self._updateHeight(pivot)
+        self._calcBalanceFactor(pivot)
+
+        return pivot</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="tree.tree.treeNode"><code class="name">var <span class="ident">treeNode</span></code></dt>
+<dd>
+<div class="desc"><p>The main tree node class (defined as an inner class of the tree class).</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="tree.tree.BFS"><code class="name flex">
+<span>def <span class="ident">BFS</span></span>(<span>self, start)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Breadth-First Search (BFS).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>treeNode</code></dt>
+<dd>the node where the traversal starts.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of treeNode) the full BFS path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def BFS(self, start):
+    &#34;&#34;&#34;Breadth-First Search (BFS).
+
+    Args:
+        start (treeNode): the node where the traversal starts.
+    Returns:
+        (list of treeNode) the full BFS path.
+    &#34;&#34;&#34;
+    s = self.find_node(start.data)
+    if s is None:
+        return
+    s._setStatus(node_status.VISITED)
+    path = []
+
+    Q = deque()
+    Q.append(s)
+    while Q:
+        k = Q.popleft()
+
+        children = []
+        if k.left is not None: children.append(k.left)
+        if k.right is not None: children.append(k.right)
+        for child in children:
+            if child._getStatus() == node_status.UNVISITED:
+                child._setStatus(node_status.VISITED)
+                Q.append(child)
+
+        k._setStatus(node_status.VISITED)
+        path.append(k)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.DFS"><code class="name flex">
+<span>def <span class="ident">DFS</span></span>(<span>self, start, path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Depth-First Search (DFS).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>treeNode</code></dt>
+<dd>the node where the traversal starts.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>treeNode</code></dt>
+<dd>the DFS path (empty path to be filled with nodes).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of treeNode) the full DFS path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def DFS(self, start, path=None):
+    &#34;&#34;&#34;Depth-First Search (DFS).
+
+    Args:
+        start (treeNode): the node where the traversal starts.
+        path (list of treeNode): the DFS path (empty path to be filled with nodes).
+    Returns:
+        (list of treeNode) the full DFS path.
+    &#34;&#34;&#34;
+    if path is None:
+        path = []
+
+    s = self.find_node(start.data)
+    if s is None:
+        return
+
+    if len(path) == 0: path.append(s)
+
+    s._setStatus(node_status.VISITED)
+
+    children = []
+    if s.left is not None: children.append(s.left)
+    if s.right is not None: children.append(s.right)
+
+    for child in children:
+        if child._getStatus() == node_status.UNVISITED:
+            path.append(child)
+            path = self.DFS(child, path)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.add_node"><code class="name flex">
+<span>def <span class="ident">add_node</span></span>(<span>self, data, balanced=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds a node to a tree.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the value to be assigned to the new tree node.</dd>
+<dt><strong><code>balanced</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>if True rebalance the current root after adding the new node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) tree updated with the new node inserted at one of its leaves.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_node(self, data, balanced=False):
+    &#34;&#34;&#34;Adds a node to a tree.
+
+    Args:
+        data (node val data type): the value to be assigned to the new tree node.
+        balanced (boolean): if True rebalance the current root after adding the new node.
+    Returns:
+        (tree) tree updated with the new node inserted at one of its leaves.
+    &#34;&#34;&#34;
+    if self.root is None:
+        self.root = self.treeNode(data)
+    else:
+        self.root = self._addNode(self.root, data, balanced)</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.find_node"><code class="name flex">
+<span>def <span class="ident">find_node</span></span>(<span>self, data)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Finds a node in a tree.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data to be found in the tree.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(treeNode) the tree node that contains the given data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def find_node(self, data):
+    &#34;&#34;&#34;Finds a node in a tree.
+    
+    Args:
+        data (node val data type): the data to be found in the tree.
+    Returns:
+        (treeNode) the tree node that contains the given data.   
+    &#34;&#34;&#34;
+    if self.root is not None:
+        return self._findNode(self.root, data)
+    else:
+        return None</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.inorder_traversal"><code class="name flex">
+<span>def <span class="ident">inorder_traversal</span></span>(<span>self, node, path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Inorder Traversal.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>node</code></strong> :&ensp;<code>treeNode</code></dt>
+<dd>the tree node at with the inorder traversal starts.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>treeNode</code></dt>
+<dd>the traversal path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) the input tree with all its nodes visited once while traversing
+all nodes have visit status VISITED at this point.
+(list of treeNode) the full traversal path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def inorder_traversal(self, node, path=None):
+    &#34;&#34;&#34;Inorder Traversal.
+
+    Args:
+        node (treeNode): the tree node at with the inorder traversal starts.
+        path (list of treeNode): the traversal path.
+    Returns:
+        (tree) the input tree with all its nodes visited once while traversing 
+               all nodes have visit status VISITED at this point.
+        (list of treeNode) the full traversal path.
+    &#34;&#34;&#34;
+    if path is None:
+        path = []
+
+    if node is not None:
+        path = self.inorder_traversal(node.left, path)
+        node._setStatus(node_status.VISITED)
+        path.append(node)
+        path = self.inorder_traversal(node.right, path)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.insert_node"><code class="name flex">
+<span>def <span class="ident">insert_node</span></span>(<span>self, data, balanced=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Inserts a node in a tree in level order (uses _insertNode with the root as the starting node)
+(see documentation of _insertNode for more details).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the value to be assigned to the new tree node.</dd>
+<dt><strong><code>balanced</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>if True rebalance the current root after adding the new node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) tree updated with a new node.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def insert_node(self, data, balanced=False):
+    &#34;&#34;&#34;Inserts a node in a tree in level order (uses _insertNode with the root as the starting node) 
+    (see documentation of _insertNode for more details).
+
+    Args:
+        data (node val data type): the value to be assigned to the new tree node.
+        balanced (boolean): if True rebalance the current root after adding the new node.
+    Returns:
+        (tree) tree updated with a new node.
+    &#34;&#34;&#34;
+    if self.root is None:
+        self.root = self.treeNode(data)
+    else:
+        self._insertNode(self.root, data, balanced)</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.is_balanced"><code class="name flex">
+<span>def <span class="ident">is_balanced</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks whether or not a tree (BST or not) is balanced.</p>
+<h2 id="returns">Returns</h2>
+<p>(bool) True when the tree is balanced, False otherwise.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_balanced(self):
+    &#34;&#34;&#34;Checks whether or not a tree (BST or not) is balanced.
+
+    Returns:
+        (bool) True when the tree is balanced, False otherwise.
+    &#34;&#34;&#34;
+    return self._isBalanced(self.root) &gt; -1</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.postorder_traversal"><code class="name flex">
+<span>def <span class="ident">postorder_traversal</span></span>(<span>self, node, path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Postorder Traversal.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>node</code></strong> :&ensp;<code>treeNode</code></dt>
+<dd>the tree node at with the postorder traversal starts.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>treeNode</code></dt>
+<dd>the traversal path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) the input tree with all its nodes visited once while traversing
+all nodes have visit status VISITED at this point.
+(list of treeNode) the full traversal path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def postorder_traversal(self, node, path=None):
+    &#34;&#34;&#34;Postorder Traversal.
+
+    Args:
+        node (treeNode): the tree node at with the postorder traversal starts.
+        path (list of treeNode): the traversal path.
+    Returns:
+        (tree) the input tree with all its nodes visited once while traversing 
+               all nodes have visit status VISITED at this point.
+        (list of treeNode) the full traversal path.
+    &#34;&#34;&#34;
+    if path is None:
+        path = []
+
+    if node is not None:
+        path = self.postorder_traversal(node.left, path)
+        path = self.postorder_traversal(node.right, path)
+        node._setStatus(node_status.VISITED)
+        path.append(node)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.preorder_traversal"><code class="name flex">
+<span>def <span class="ident">preorder_traversal</span></span>(<span>self, node, path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Preorder Traversal.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>node</code></strong> :&ensp;<code>treeNode</code></dt>
+<dd>the tree node at with the preorder traversal starts.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>treeNode</code></dt>
+<dd>the traversal path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) the input tree with all its nodes visited once while traversing
+all nodes have visit status VISITED at this point.
+(list of treeNode) the full traversal path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def preorder_traversal(self, node, path=None):
+    &#34;&#34;&#34;Preorder Traversal.
+
+    Args:
+        node (treeNode): the tree node at with the preorder traversal starts.
+        path (list of treeNode): the traversal path.
+    Returns:
+        (tree) the input tree with all its nodes visited once while traversing 
+               all nodes have visit status VISITED at this point.
+        (list of treeNode) the full traversal path.
+    &#34;&#34;&#34;
+    if path is None:
+        path = []
+
+    if node is not None:
+        node._setStatus(node_status.VISITED)
+        path.append(node)
+        path = self.preorder_traversal(node.left, path)
+        path = self.preorder_traversal(node.right, path)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.reset_status"><code class="name flex">
+<span>def <span class="ident">reset_status</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets the visit status of all the nodes in a tree to UNVISITED.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset_status(self):
+    &#34;&#34;&#34;Resets the visit status of all the nodes in a tree to UNVISITED.&#34;&#34;&#34;
+    self._resetStatus(self.root)</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.update_balance_factor"><code class="name flex">
+<span>def <span class="ident">update_balance_factor</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates the balance factor of every node of a given tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_balance_factor(self):
+    &#34;&#34;&#34;Updates the balance factor of every node of a given tree.&#34;&#34;&#34;
+    self._updateBalanceFactor(self.root)</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.update_height"><code class="name flex">
+<span>def <span class="ident">update_height</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates the height of every node of a given tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_height(self):
+    &#34;&#34;&#34;Updates the height of every node of a given tree.&#34;&#34;&#34;
+    self._updateHeight(self.root)</code></pre>
+</details>
+</dd>
+<dt id="tree.tree.verbose_rep"><code class="name flex">
+<span>def <span class="ident">verbose_rep</span></span>(<span>self, verb_level=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a verbose representation of the tree as a list of dictionaries. The dict keys are
+the instance attributes of the nodes and dict values are the values of the attributes. The
+ordering of nodes in the list follows an in-order pattern.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>verb_level</code></strong> :&ensp;<code>0</code> or <code>1</code></dt>
+<dd>the verbosity level.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of dict) a list of dictionaries representing the tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def verbose_rep(self, verb_level=0):
+    &#34;&#34;&#34;Returns a verbose representation of the tree as a list of dictionaries. The dict keys are 
+       the instance attributes of the nodes and dict values are the values of the attributes. The
+       ordering of nodes in the list follows an in-order pattern.
+
+    Args:
+        verb_level (0 or 1): the verbosity level.
+    Returns:
+        (list of dict) a list of dictionaries representing the tree.
+    &#34;&#34;&#34;
+    representation = []
+    if self.root is not None:
+        self._verboseRep(self.root, representation, verb_level)
+
+    return representation</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="tree.node_status" href="#tree.node_status">node_status</a></code></h4>
+<ul class="">
+<li><code><a title="tree.node_status.UNVISITED" href="#tree.node_status.UNVISITED">UNVISITED</a></code></li>
+<li><code><a title="tree.node_status.VISITED" href="#tree.node_status.VISITED">VISITED</a></code></li>
+<li><code><a title="tree.node_status.VISITING" href="#tree.node_status.VISITING">VISITING</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="tree.tree" href="#tree.tree">tree</a></code></h4>
+<ul class="">
+<li><code><a title="tree.tree.BFS" href="#tree.tree.BFS">BFS</a></code></li>
+<li><code><a title="tree.tree.DFS" href="#tree.tree.DFS">DFS</a></code></li>
+<li><code><a title="tree.tree.add_node" href="#tree.tree.add_node">add_node</a></code></li>
+<li><code><a title="tree.tree.find_node" href="#tree.tree.find_node">find_node</a></code></li>
+<li><code><a title="tree.tree.inorder_traversal" href="#tree.tree.inorder_traversal">inorder_traversal</a></code></li>
+<li><code><a title="tree.tree.insert_node" href="#tree.tree.insert_node">insert_node</a></code></li>
+<li><code><a title="tree.tree.is_balanced" href="#tree.tree.is_balanced">is_balanced</a></code></li>
+<li><code><a title="tree.tree.postorder_traversal" href="#tree.tree.postorder_traversal">postorder_traversal</a></code></li>
+<li><code><a title="tree.tree.preorder_traversal" href="#tree.tree.preorder_traversal">preorder_traversal</a></code></li>
+<li><code><a title="tree.tree.reset_status" href="#tree.tree.reset_status">reset_status</a></code></li>
+<li><code><a title="tree.tree.treeNode" href="#tree.tree.treeNode">treeNode</a></code></li>
+<li><code><a title="tree.tree.update_balance_factor" href="#tree.tree.update_balance_factor">update_balance_factor</a></code></li>
+<li><code><a title="tree.tree.update_height" href="#tree.tree.update_height">update_height</a></code></li>
+<li><code><a title="tree.tree.verbose_rep" href="#tree.tree.verbose_rep">verbose_rep</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>graph API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>graph</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from enum import Enum
+from collections import deque, defaultdict
+from functools import partial
+
+class node_status(Enum):
+    &#34;&#34;&#34;List of possible visit status of graph nodes (graph traversal).&#34;&#34;&#34;
+    UNVISITED = 0
+    VISITED = 1
+    VISITING = 2
+
+class graph(object):
+    def __init__(self):
+        &#34;&#34;&#34;Initializes a graph with a nested defaultdict of graphNodes.
+        example: {&#39;A&#39;: {&#39;B&#39;: [2, 3], &#39;C&#39;: [5, 1]}}
+        &#34;&#34;&#34;
+        self.vertices = defaultdict(partial(defaultdict, list))
+
+    class graphNode(object):
+        def __init__(self, data=None, status=node_status.UNVISITED):
+            &#34;&#34;&#34;Initializes a graph node.
+            Attributes:
+                data (any type): the node value.
+                children (dict): a dictionary of the children (adjacent nodes).
+                status (node_status): the visit status of the node (graph traversal).
+                distance (float): the distance from a source node to this node.
+                previous (graphNode): predecessor of this node in an optimal path from 
+                a predefined source in a shortest path algorithm.
+            &#34;&#34;&#34;
+            self.data = data
+            self.children = defaultdict(list)
+            self.status = status
+            self.distance = float(&#39;inf&#39;)
+            self.previous = None
+
+        # comparison operators
+        def __lt__(self, other):
+            return self.data &lt; other.data
+
+        def __le__(self, other):
+            return self.data &lt; other.data or self.data == other.data
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data &gt; other.data
+#
+#        def __ge__(self, other):
+#            return self.data &gt; other.data or self.data == other.data
+
+        def __str__(self):
+            &#34;&#34;&#34;Prints the data assigned to this node, and list of its children with the weight of the 
+            edges connecting them.
+            &#34;&#34;&#34;
+            res = &#34;&#39;{}&#39;: {}&#34;.format(self._getData(), 
+                            [[node._getData(), self._getWeight(node)] for node in self._getChildren()])
+            return res
+
+        def _getStatus(self):
+            &#34;&#34;&#34;Returns the current visit status of a node.&#34;&#34;&#34;
+            return self.status
+
+        def _setStatus(self, status):
+            &#34;&#34;&#34;Sets the visit status of a node.
+
+            Args:
+                status (node_status): the new visit status.
+            Returns:
+                (graphNode) the node with its status updated with the given status.
+            &#34;&#34;&#34;
+            self.status = status
+
+        def _getData(self):
+            &#34;&#34;&#34;Returns the data assigned to this node.&#34;&#34;&#34;
+            return self.data
+       
+        def _setData(self, data):
+            &#34;&#34;&#34;Sets the data of this node to a given value.
+
+            Args:
+                data (node val data type): the new data to be assigned to this node.
+            Returns:
+                (graphNode) the node with updated data.
+            &#34;&#34;&#34; 
+            self.data = data
+
+        def _addAdjNode(self, node, weight=0):
+            &#34;&#34;&#34;Adds an adjacent node to this node.
+
+            Args:
+                node (graphNode): the new adjacent node.
+                weight (int): the weight of the edge connecting this node to the new node.
+            Returns:
+                (graphNode) this node with its dictionary of children updated with a new node added.
+            &#34;&#34;&#34;
+            self.children[node].append(weight) if weight not in self.children[node] \
+                                               else self.children[node]
+
+        def _getChildren(self):
+            &#34;&#34;&#34;Returns the keys of the dict of children of this node.
+
+            Returns:
+                (dict_keys) keys of the dictionary of children of this node.
+            &#34;&#34;&#34;
+            return self.children.keys()
+
+        def _getDistance(self):
+            &#34;&#34;&#34;Returns the value of the distance instance attribute of this node.&#34;&#34;&#34;
+            return self.distance
+
+        def _setDistance(self, distance):
+            &#34;&#34;&#34;Sets the instance attribute distance to a given value.
+
+            Args:
+                distance (float): the new distance.
+            Returns:
+                (graphNode) the node with its distance updated with the given value.
+            &#34;&#34;&#34;
+            self.distance = distance
+
+        def _getPrevious(self):
+            &#34;&#34;&#34;Returns the value of the previous instance attribute of this node.&#34;&#34;&#34;
+            return self.previous
+
+        def _setPrevious(self, node):
+            &#34;&#34;&#34;Sets the instance attribute previous to a given node.
+
+            Args:
+                node (graphNode): the new previous.
+            Returns:
+                (graphNode) this node with its previous updated with the given node.
+            &#34;&#34;&#34;
+            self.previous = node
+
+        def _getWeight(self, adjNode):
+            &#34;&#34;&#34;Returns the weight of the edge between this node and the given node if they are adjacent,
+            otherwise returns None.
+            &#34;&#34;&#34;
+            if adjNode in self.children:
+                return self.children[adjNode]
+            else:
+                return None
+
+        def _isAdjacent(self, node):
+            &#34;&#34;&#34;Returns True of this node is adjacent to the give node, else False.
+
+            Returns:
+                (boolean) whether or not this node and the given node are adjacent.
+            &#34;&#34;&#34;
+            return node in self.children
+
+    def __str__(self):
+        &#34;&#34;&#34;Returns a string representing the vertices and edges of this graph.&#34;&#34;&#34;
+        res = &#39;&#39;
+        for vertex in self._getVerticesDict():
+            res += vertex.__str__() + &#39;\n&#39;
+
+        return res
+
+    def reset(self):
+        &#34;&#34;&#34;Resets the attributes of all the nodes in a graph to their default values.&#34;&#34;&#34;
+        for vx in self._getVerticesDict():
+            vx._setStatus(node_status.UNVISITED)
+            vx._setDistance(float(&#39;inf&#39;))
+            vx._setPrevious(None)
+
+    def __contains__(self, VxData):
+        &#34;&#34;&#34;Checks whether or not the graph contains a given data.
+
+        Args:
+            VxData (node val data type): the data to be searched for.
+        Returns:
+            (boolean) True if VxData is found, otherwise False.
+        &#34;&#34;&#34;
+        data = [k._getData() for k in self._getVerticesDict().keys()]
+        return VxData in data
+
+    def _getVerticesDict(self):
+        &#34;&#34;&#34;(helper function) Returns a nested (default) dictionary of the vertices of the graph.
+
+        Returns:
+            (defaultdict) the default dictionary of vertices of the graph.
+        &#34;&#34;&#34;
+        return self.vertices
+
+    def _getEdges(self):
+        &#34;&#34;&#34;Returns a set of edges of the graph. 
+        NOTE:
+            - If there is an edge between v1, v2 with weight w, both (v1, v2, w) and (v2, v1, w) are
+            included. This is necessary for Bellman-Ford shortest path algorithm and also make it general
+            for directed graphs.
+        
+        Returns:
+            (set of tuples): set of edges represented as (v1, v2, w).
+        &#34;&#34;&#34;
+        vertices = self._getVerticesDict()
+
+        edges = set()
+        for vx, vxchildren in vertices.items():
+            for child, weight in vxchildren.items():
+                # uncomment the following line to have only unique edges
+#                tmp = sorted([vx, child])
+                tmp = [vx, child]
+                for i in range(len(weight)):
+                    edges.add((tmp[0], tmp[1], weight[i]))
+
+        return edges
+
+    def _getVertex(self, VxData):
+        &#34;&#34;&#34;(helper function) Returns a graph node that holds the given data.
+
+        Args:
+            VxData (node val data type): the data to be searched for.
+        Returns:
+            (graphNode) the graph node from this graph that has data equal to the given data.
+        &#34;&#34;&#34;
+        if VxData not in self:
+            print(&#34;Vertex {} doesn&#39;t exist.&#34;.format(VxData))
+            return None
+
+        for vertex in self._getVerticesDict():
+            if vertex._getData() == VxData:
+                return vertex
+
+    def add_vertex(self, VxData):
+        &#34;&#34;&#34;Adds a vertex to the graph.
+
+        Args:
+            VxData (node val data type): the data to be added to the graph.
+        Returns:
+            (graph) this graph with a new node added to it as a new vertex.
+        &#34;&#34;&#34;
+        vx = self.graphNode(VxData)
+
+        if VxData in self._getVerticesDict():
+            print(&#34;Vertex {} already exists.&#34;.format(VxData))
+        else:
+            self.vertices[vx] = defaultdict(list)
+
+    def add_edge(self, fromVxData, toVxData, weight=0.0, directed=False):
+        &#34;&#34;&#34;Adds an edge to the graph given the data stored in the nodes at its ends.
+
+        Args:
+            fromVxData (node val data type): data of the &#34;from&#34; node.
+            toVxData (node val data type): data of the &#34;to&#34; node.
+            weight (float): weight of the edge.
+            directed (boolean): whether or not the edge is directed from fromVxData to toVxData.
+        Returns:
+            (graph) this graph updated with a new edge added to it.
+        &#34;&#34;&#34;
+        if fromVxData not in self:
+            print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(fromVxData))
+            return
+
+        if toVxData not in self:
+            print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(toVxData))
+            return
+
+        a = self._getVertex(fromVxData)
+        b = self._getVertex(toVxData)
+
+        edges = self._getEdges()
+        msg = &#34;The edge ({}, {}, {}) already exists!&#34;
+        msgcmpl = msg + &#34; ({}, {}, {}) will be created.&#34;
+
+        if directed:
+            if (a, b, weight) in edges:
+                print(msg.format(fromVxData, toVxData, weight))
+                return
+
+            a._addAdjNode(b, weight)
+            self.vertices[a][b].append(weight)
+
+        elif not directed:
+            if (a, b, weight) in edges and (b, a, weight) not in edges:
+                print(msgcmpl.format(fromVxData, toVxData, weight, toVxData, fromVxData, weight))
+                b._addAdjNode(a, weight)
+                self.vertices[b][a].append(weight)
+                return
+
+            elif (b, a, weight) in edges and (a, b, weight) not in edges:
+                print(msgcmpl.format(toVxData, fromVxData, weight, fromVxData, toVxData, weight))
+                a._addAdjNode(b, weight)
+                self.vertices[a][b].append(weight)
+                return
+
+            elif (a, b, weight) in edges and (b, a, weight) in edges:
+                return
+
+            a._addAdjNode(b, weight)
+            b._addAdjNode(a, weight)
+            self.vertices[a][b].append(weight)
+            self.vertices[b][a].append(weight)
+
+    def _isMultigraph(self):
+        &#34;&#34;&#34;(helper function) Checks whether or not the graph is a multigraph.&#34;&#34;&#34;
+        vertices = self._getVerticesDict()
+
+        for vx, vxchildren in vertices.items():
+            for weight in vxchildren.values():
+                if len(weight) &gt; 1:
+                    return True
+
+        return False
+
+    def DFS(self, start, path=None):
+        &#34;&#34;&#34;Depth-First Search (DFS).
+
+        Args:
+            start (node val data type): the key value of the node where the search starts.
+            path (list of graphNode): the DFS path (empty path to be filled with nodes).
+        Returns:
+            (list of graphNode) the full DFS path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        s = self._getVertex(start)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        for child in s._getChildren():
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                path = self.DFS(child._getData(), path)
+
+        return path
+
+    def BFS(self, start):
+        &#34;&#34;&#34;Breadth-First Search (BFS).
+
+        Args:
+            start (node val data type): the key value of the node where the search starts.
+        Returns:
+            (list of graphNode) the full BFS path.
+        &#34;&#34;&#34;
+        s = self._getVertex(start)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            for child in k._getChildren():
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="graph.graph"><code class="flex name class">
+<span>class <span class="ident">graph</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initializes a graph with a nested defaultdict of graphNodes.
+example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class graph(object):
+    def __init__(self):
+        &#34;&#34;&#34;Initializes a graph with a nested defaultdict of graphNodes.
+        example: {&#39;A&#39;: {&#39;B&#39;: [2, 3], &#39;C&#39;: [5, 1]}}
+        &#34;&#34;&#34;
+        self.vertices = defaultdict(partial(defaultdict, list))
+
+    class graphNode(object):
+        def __init__(self, data=None, status=node_status.UNVISITED):
+            &#34;&#34;&#34;Initializes a graph node.
+            Attributes:
+                data (any type): the node value.
+                children (dict): a dictionary of the children (adjacent nodes).
+                status (node_status): the visit status of the node (graph traversal).
+                distance (float): the distance from a source node to this node.
+                previous (graphNode): predecessor of this node in an optimal path from 
+                a predefined source in a shortest path algorithm.
+            &#34;&#34;&#34;
+            self.data = data
+            self.children = defaultdict(list)
+            self.status = status
+            self.distance = float(&#39;inf&#39;)
+            self.previous = None
+
+        # comparison operators
+        def __lt__(self, other):
+            return self.data &lt; other.data
+
+        def __le__(self, other):
+            return self.data &lt; other.data or self.data == other.data
+
+        # the following are optional
+#        def __ne__(self, other):
+#            return self.data != other.data
+#
+#        def __gt__(self, other):
+#            return self.data &gt; other.data
+#
+#        def __ge__(self, other):
+#            return self.data &gt; other.data or self.data == other.data
+
+        def __str__(self):
+            &#34;&#34;&#34;Prints the data assigned to this node, and list of its children with the weight of the 
+            edges connecting them.
+            &#34;&#34;&#34;
+            res = &#34;&#39;{}&#39;: {}&#34;.format(self._getData(), 
+                            [[node._getData(), self._getWeight(node)] for node in self._getChildren()])
+            return res
+
+        def _getStatus(self):
+            &#34;&#34;&#34;Returns the current visit status of a node.&#34;&#34;&#34;
+            return self.status
+
+        def _setStatus(self, status):
+            &#34;&#34;&#34;Sets the visit status of a node.
+
+            Args:
+                status (node_status): the new visit status.
+            Returns:
+                (graphNode) the node with its status updated with the given status.
+            &#34;&#34;&#34;
+            self.status = status
+
+        def _getData(self):
+            &#34;&#34;&#34;Returns the data assigned to this node.&#34;&#34;&#34;
+            return self.data
+       
+        def _setData(self, data):
+            &#34;&#34;&#34;Sets the data of this node to a given value.
+
+            Args:
+                data (node val data type): the new data to be assigned to this node.
+            Returns:
+                (graphNode) the node with updated data.
+            &#34;&#34;&#34; 
+            self.data = data
+
+        def _addAdjNode(self, node, weight=0):
+            &#34;&#34;&#34;Adds an adjacent node to this node.
+
+            Args:
+                node (graphNode): the new adjacent node.
+                weight (int): the weight of the edge connecting this node to the new node.
+            Returns:
+                (graphNode) this node with its dictionary of children updated with a new node added.
+            &#34;&#34;&#34;
+            self.children[node].append(weight) if weight not in self.children[node] \
+                                               else self.children[node]
+
+        def _getChildren(self):
+            &#34;&#34;&#34;Returns the keys of the dict of children of this node.
+
+            Returns:
+                (dict_keys) keys of the dictionary of children of this node.
+            &#34;&#34;&#34;
+            return self.children.keys()
+
+        def _getDistance(self):
+            &#34;&#34;&#34;Returns the value of the distance instance attribute of this node.&#34;&#34;&#34;
+            return self.distance
+
+        def _setDistance(self, distance):
+            &#34;&#34;&#34;Sets the instance attribute distance to a given value.
+
+            Args:
+                distance (float): the new distance.
+            Returns:
+                (graphNode) the node with its distance updated with the given value.
+            &#34;&#34;&#34;
+            self.distance = distance
+
+        def _getPrevious(self):
+            &#34;&#34;&#34;Returns the value of the previous instance attribute of this node.&#34;&#34;&#34;
+            return self.previous
+
+        def _setPrevious(self, node):
+            &#34;&#34;&#34;Sets the instance attribute previous to a given node.
+
+            Args:
+                node (graphNode): the new previous.
+            Returns:
+                (graphNode) this node with its previous updated with the given node.
+            &#34;&#34;&#34;
+            self.previous = node
+
+        def _getWeight(self, adjNode):
+            &#34;&#34;&#34;Returns the weight of the edge between this node and the given node if they are adjacent,
+            otherwise returns None.
+            &#34;&#34;&#34;
+            if adjNode in self.children:
+                return self.children[adjNode]
+            else:
+                return None
+
+        def _isAdjacent(self, node):
+            &#34;&#34;&#34;Returns True of this node is adjacent to the give node, else False.
+
+            Returns:
+                (boolean) whether or not this node and the given node are adjacent.
+            &#34;&#34;&#34;
+            return node in self.children
+
+    def __str__(self):
+        &#34;&#34;&#34;Returns a string representing the vertices and edges of this graph.&#34;&#34;&#34;
+        res = &#39;&#39;
+        for vertex in self._getVerticesDict():
+            res += vertex.__str__() + &#39;\n&#39;
+
+        return res
+
+    def reset(self):
+        &#34;&#34;&#34;Resets the attributes of all the nodes in a graph to their default values.&#34;&#34;&#34;
+        for vx in self._getVerticesDict():
+            vx._setStatus(node_status.UNVISITED)
+            vx._setDistance(float(&#39;inf&#39;))
+            vx._setPrevious(None)
+
+    def __contains__(self, VxData):
+        &#34;&#34;&#34;Checks whether or not the graph contains a given data.
+
+        Args:
+            VxData (node val data type): the data to be searched for.
+        Returns:
+            (boolean) True if VxData is found, otherwise False.
+        &#34;&#34;&#34;
+        data = [k._getData() for k in self._getVerticesDict().keys()]
+        return VxData in data
+
+    def _getVerticesDict(self):
+        &#34;&#34;&#34;(helper function) Returns a nested (default) dictionary of the vertices of the graph.
+
+        Returns:
+            (defaultdict) the default dictionary of vertices of the graph.
+        &#34;&#34;&#34;
+        return self.vertices
+
+    def _getEdges(self):
+        &#34;&#34;&#34;Returns a set of edges of the graph. 
+        NOTE:
+            - If there is an edge between v1, v2 with weight w, both (v1, v2, w) and (v2, v1, w) are
+            included. This is necessary for Bellman-Ford shortest path algorithm and also make it general
+            for directed graphs.
+        
+        Returns:
+            (set of tuples): set of edges represented as (v1, v2, w).
+        &#34;&#34;&#34;
+        vertices = self._getVerticesDict()
+
+        edges = set()
+        for vx, vxchildren in vertices.items():
+            for child, weight in vxchildren.items():
+                # uncomment the following line to have only unique edges
+#                tmp = sorted([vx, child])
+                tmp = [vx, child]
+                for i in range(len(weight)):
+                    edges.add((tmp[0], tmp[1], weight[i]))
+
+        return edges
+
+    def _getVertex(self, VxData):
+        &#34;&#34;&#34;(helper function) Returns a graph node that holds the given data.
+
+        Args:
+            VxData (node val data type): the data to be searched for.
+        Returns:
+            (graphNode) the graph node from this graph that has data equal to the given data.
+        &#34;&#34;&#34;
+        if VxData not in self:
+            print(&#34;Vertex {} doesn&#39;t exist.&#34;.format(VxData))
+            return None
+
+        for vertex in self._getVerticesDict():
+            if vertex._getData() == VxData:
+                return vertex
+
+    def add_vertex(self, VxData):
+        &#34;&#34;&#34;Adds a vertex to the graph.
+
+        Args:
+            VxData (node val data type): the data to be added to the graph.
+        Returns:
+            (graph) this graph with a new node added to it as a new vertex.
+        &#34;&#34;&#34;
+        vx = self.graphNode(VxData)
+
+        if VxData in self._getVerticesDict():
+            print(&#34;Vertex {} already exists.&#34;.format(VxData))
+        else:
+            self.vertices[vx] = defaultdict(list)
+
+    def add_edge(self, fromVxData, toVxData, weight=0.0, directed=False):
+        &#34;&#34;&#34;Adds an edge to the graph given the data stored in the nodes at its ends.
+
+        Args:
+            fromVxData (node val data type): data of the &#34;from&#34; node.
+            toVxData (node val data type): data of the &#34;to&#34; node.
+            weight (float): weight of the edge.
+            directed (boolean): whether or not the edge is directed from fromVxData to toVxData.
+        Returns:
+            (graph) this graph updated with a new edge added to it.
+        &#34;&#34;&#34;
+        if fromVxData not in self:
+            print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(fromVxData))
+            return
+
+        if toVxData not in self:
+            print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(toVxData))
+            return
+
+        a = self._getVertex(fromVxData)
+        b = self._getVertex(toVxData)
+
+        edges = self._getEdges()
+        msg = &#34;The edge ({}, {}, {}) already exists!&#34;
+        msgcmpl = msg + &#34; ({}, {}, {}) will be created.&#34;
+
+        if directed:
+            if (a, b, weight) in edges:
+                print(msg.format(fromVxData, toVxData, weight))
+                return
+
+            a._addAdjNode(b, weight)
+            self.vertices[a][b].append(weight)
+
+        elif not directed:
+            if (a, b, weight) in edges and (b, a, weight) not in edges:
+                print(msgcmpl.format(fromVxData, toVxData, weight, toVxData, fromVxData, weight))
+                b._addAdjNode(a, weight)
+                self.vertices[b][a].append(weight)
+                return
+
+            elif (b, a, weight) in edges and (a, b, weight) not in edges:
+                print(msgcmpl.format(toVxData, fromVxData, weight, fromVxData, toVxData, weight))
+                a._addAdjNode(b, weight)
+                self.vertices[a][b].append(weight)
+                return
+
+            elif (a, b, weight) in edges and (b, a, weight) in edges:
+                return
+
+            a._addAdjNode(b, weight)
+            b._addAdjNode(a, weight)
+            self.vertices[a][b].append(weight)
+            self.vertices[b][a].append(weight)
+
+    def _isMultigraph(self):
+        &#34;&#34;&#34;(helper function) Checks whether or not the graph is a multigraph.&#34;&#34;&#34;
+        vertices = self._getVerticesDict()
+
+        for vx, vxchildren in vertices.items():
+            for weight in vxchildren.values():
+                if len(weight) &gt; 1:
+                    return True
+
+        return False
+
+    def DFS(self, start, path=None):
+        &#34;&#34;&#34;Depth-First Search (DFS).
+
+        Args:
+            start (node val data type): the key value of the node where the search starts.
+            path (list of graphNode): the DFS path (empty path to be filled with nodes).
+        Returns:
+            (list of graphNode) the full DFS path.
+        &#34;&#34;&#34;
+        if path is None:
+            path = []
+
+        s = self._getVertex(start)
+        if s is None:
+            return
+
+        if len(path) == 0: path.append(s)
+
+        s._setStatus(node_status.VISITED)
+
+        for child in s._getChildren():
+            if child._getStatus() == node_status.UNVISITED:
+                path.append(child)
+                path = self.DFS(child._getData(), path)
+
+        return path
+
+    def BFS(self, start):
+        &#34;&#34;&#34;Breadth-First Search (BFS).
+
+        Args:
+            start (node val data type): the key value of the node where the search starts.
+        Returns:
+            (list of graphNode) the full BFS path.
+        &#34;&#34;&#34;
+        s = self._getVertex(start)
+        if s is None:
+            return
+        s._setStatus(node_status.VISITED)
+        path = []
+
+        Q = deque()
+        Q.append(s)
+        while Q:
+            k = Q.popleft()
+
+            for child in k._getChildren():
+                if child._getStatus() == node_status.UNVISITED:
+                    child._setStatus(node_status.VISITED)
+                    Q.append(child)
+
+            k._setStatus(node_status.VISITED)
+            path.append(k)
+
+        return path</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="graph.graph.graphNode"><code class="name">var <span class="ident">graphNode</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="graph.graph.BFS"><code class="name flex">
+<span>def <span class="ident">BFS</span></span>(<span>self, start)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Breadth-First Search (BFS).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the key value of the node where the search starts.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of graphNode) the full BFS path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def BFS(self, start):
+    &#34;&#34;&#34;Breadth-First Search (BFS).
+
+    Args:
+        start (node val data type): the key value of the node where the search starts.
+    Returns:
+        (list of graphNode) the full BFS path.
+    &#34;&#34;&#34;
+    s = self._getVertex(start)
+    if s is None:
+        return
+    s._setStatus(node_status.VISITED)
+    path = []
+
+    Q = deque()
+    Q.append(s)
+    while Q:
+        k = Q.popleft()
+
+        for child in k._getChildren():
+            if child._getStatus() == node_status.UNVISITED:
+                child._setStatus(node_status.VISITED)
+                Q.append(child)
+
+        k._setStatus(node_status.VISITED)
+        path.append(k)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="graph.graph.DFS"><code class="name flex">
+<span>def <span class="ident">DFS</span></span>(<span>self, start, path=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Depth-First Search (DFS).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>start</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the key value of the node where the search starts.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>graphNode</code></dt>
+<dd>the DFS path (empty path to be filled with nodes).</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of graphNode) the full DFS path.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def DFS(self, start, path=None):
+    &#34;&#34;&#34;Depth-First Search (DFS).
+
+    Args:
+        start (node val data type): the key value of the node where the search starts.
+        path (list of graphNode): the DFS path (empty path to be filled with nodes).
+    Returns:
+        (list of graphNode) the full DFS path.
+    &#34;&#34;&#34;
+    if path is None:
+        path = []
+
+    s = self._getVertex(start)
+    if s is None:
+        return
+
+    if len(path) == 0: path.append(s)
+
+    s._setStatus(node_status.VISITED)
+
+    for child in s._getChildren():
+        if child._getStatus() == node_status.UNVISITED:
+            path.append(child)
+            path = self.DFS(child._getData(), path)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="graph.graph.add_edge"><code class="name flex">
+<span>def <span class="ident">add_edge</span></span>(<span>self, fromVxData, toVxData, weight=0.0, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds an edge to the graph given the data stored in the nodes at its ends.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>fromVxData</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>data of the "from" node.</dd>
+<dt><strong><code>toVxData</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>data of the "to" node.</dd>
+<dt><strong><code>weight</code></strong> :&ensp;<code>float</code></dt>
+<dd>weight of the edge.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>whether or not the edge is directed from fromVxData to toVxData.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) this graph updated with a new edge added to it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_edge(self, fromVxData, toVxData, weight=0.0, directed=False):
+    &#34;&#34;&#34;Adds an edge to the graph given the data stored in the nodes at its ends.
+
+    Args:
+        fromVxData (node val data type): data of the &#34;from&#34; node.
+        toVxData (node val data type): data of the &#34;to&#34; node.
+        weight (float): weight of the edge.
+        directed (boolean): whether or not the edge is directed from fromVxData to toVxData.
+    Returns:
+        (graph) this graph updated with a new edge added to it.
+    &#34;&#34;&#34;
+    if fromVxData not in self:
+        print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(fromVxData))
+        return
+
+    if toVxData not in self:
+        print(&#34;Adding edge failed! Vertex {} doesn&#39;t exist.&#34;.format(toVxData))
+        return
+
+    a = self._getVertex(fromVxData)
+    b = self._getVertex(toVxData)
+
+    edges = self._getEdges()
+    msg = &#34;The edge ({}, {}, {}) already exists!&#34;
+    msgcmpl = msg + &#34; ({}, {}, {}) will be created.&#34;
+
+    if directed:
+        if (a, b, weight) in edges:
+            print(msg.format(fromVxData, toVxData, weight))
+            return
+
+        a._addAdjNode(b, weight)
+        self.vertices[a][b].append(weight)
+
+    elif not directed:
+        if (a, b, weight) in edges and (b, a, weight) not in edges:
+            print(msgcmpl.format(fromVxData, toVxData, weight, toVxData, fromVxData, weight))
+            b._addAdjNode(a, weight)
+            self.vertices[b][a].append(weight)
+            return
+
+        elif (b, a, weight) in edges and (a, b, weight) not in edges:
+            print(msgcmpl.format(toVxData, fromVxData, weight, fromVxData, toVxData, weight))
+            a._addAdjNode(b, weight)
+            self.vertices[a][b].append(weight)
+            return
+
+        elif (a, b, weight) in edges and (b, a, weight) in edges:
+            return
+
+        a._addAdjNode(b, weight)
+        b._addAdjNode(a, weight)
+        self.vertices[a][b].append(weight)
+        self.vertices[b][a].append(weight)</code></pre>
+</details>
+</dd>
+<dt id="graph.graph.add_vertex"><code class="name flex">
+<span>def <span class="ident">add_vertex</span></span>(<span>self, VxData)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Adds a vertex to the graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>VxData</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data to be added to the graph.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) this graph with a new node added to it as a new vertex.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_vertex(self, VxData):
+    &#34;&#34;&#34;Adds a vertex to the graph.
+
+    Args:
+        VxData (node val data type): the data to be added to the graph.
+    Returns:
+        (graph) this graph with a new node added to it as a new vertex.
+    &#34;&#34;&#34;
+    vx = self.graphNode(VxData)
+
+    if VxData in self._getVerticesDict():
+        print(&#34;Vertex {} already exists.&#34;.format(VxData))
+    else:
+        self.vertices[vx] = defaultdict(list)</code></pre>
+</details>
+</dd>
+<dt id="graph.graph.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets the attributes of all the nodes in a graph to their default values.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self):
+    &#34;&#34;&#34;Resets the attributes of all the nodes in a graph to their default values.&#34;&#34;&#34;
+    for vx in self._getVerticesDict():
+        vx._setStatus(node_status.UNVISITED)
+        vx._setDistance(float(&#39;inf&#39;))
+        vx._setPrevious(None)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="graph.node_status"><code class="flex name class">
+<span>class <span class="ident">node_status</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List of possible visit status of graph nodes (graph traversal).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class node_status(Enum):
+    &#34;&#34;&#34;List of possible visit status of graph nodes (graph traversal).&#34;&#34;&#34;
+    UNVISITED = 0
+    VISITED = 1
+    VISITING = 2</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="graph.node_status.UNVISITED"><code class="name">var <span class="ident">UNVISITED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="graph.node_status.VISITED"><code class="name">var <span class="ident">VISITED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="graph.node_status.VISITING"><code class="name">var <span class="ident">VISITING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="graph.graph" href="#graph.graph">graph</a></code></h4>
+<ul class="two-column">
+<li><code><a title="graph.graph.BFS" href="#graph.graph.BFS">BFS</a></code></li>
+<li><code><a title="graph.graph.DFS" href="#graph.graph.DFS">DFS</a></code></li>
+<li><code><a title="graph.graph.add_edge" href="#graph.graph.add_edge">add_edge</a></code></li>
+<li><code><a title="graph.graph.add_vertex" href="#graph.graph.add_vertex">add_vertex</a></code></li>
+<li><code><a title="graph.graph.graphNode" href="#graph.graph.graphNode">graphNode</a></code></li>
+<li><code><a title="graph.graph.reset" href="#graph.graph.reset">reset</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="graph.node_status" href="#graph.node_status">node_status</a></code></h4>
+<ul class="">
+<li><code><a title="graph.node_status.UNVISITED" href="#graph.node_status.UNVISITED">UNVISITED</a></code></li>
+<li><code><a title="graph.node_status.VISITED" href="#graph.node_status.VISITED">VISITED</a></code></li>
+<li><code><a title="graph.node_status.VISITING" href="#graph.node_status.VISITING">VISITING</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

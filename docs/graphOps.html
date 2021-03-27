@@ -1,0 +1,1308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>graphOps API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>graphOps</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#
+import graph
+import heapq as hq
+from collections import deque
+
+def graph_to_adjmat(g):
+    &#34;&#34;&#34;Given a graph returns the corresponding adjacency matrix.
+    
+    Args:
+        g (graph): a graph object.
+    Returns:
+        (2D - nested - list) adjacency matrix: a_ij = 1 if vi and vj are adjacent , 0 otherwise.
+        (2D - nested - list) adjacency matrix: a_ij = weight of the edges between adjacent vertices vi and vj , empty list otherwise.
+    &#34;&#34;&#34;
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    vxdata = []
+    for vx in vertices.keys():
+        vxdata.append(vx._getData())
+
+    adjMat = [[0 for i in range(nvx)] for j in range(nvx)]
+    adjMatw = [[[] for i in range(nvx)] for j in range(nvx)]
+
+    for vx, vxchildren in vertices.items():
+        for child, weight in vxchildren.items():
+            r = vxdata.index(vx._getData())
+            c = vxdata.index(child._getData())
+            adjMat[r][c] = 1
+            adjMatw[r][c] = weight
+    
+    return adjMat, adjMatw
+
+def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
+    &#34;&#34;&#34;Given an adjacency matrix retruns the corresponding (multi)graph.
+
+    Args:
+        adjMat (2d - nested - list): the adjacency matrix.
+        vxdatalist (list): list of data to be assigned to the verices of the graph.
+    Returns:
+        (graph) a graph that has the same adjacency matrix as the given matrix.
+    &#34;&#34;&#34;
+    assert(adjMat), &#34;The adjacency matrix is empty.&#34;
+
+    g = graph.graph()
+
+    nvx = len(adjMat)
+    if vxdatalist:
+        assert(nvx == len(vxdatalist)), &#34;Provide the right number of vertex data or leave the list empty.&#34;
+
+    if not vxdatalist:
+        for i in range(nvx):
+            vxdatalist.append(str(i))
+
+    for vxdata in vxdatalist:
+        g.add_vertex(vxdata)
+
+    if _adjmatType(adjMat) is list:
+        for i in range(nvx):
+            for j in range(nvx):
+                for w in adjMat[i][j]:
+                    g.add_edge(vxdatalist[i], vxdatalist[j], weight=w, directed=directed)
+    elif _adjmatType(adjMat) is int:
+        for i in range(nvx):
+            for j in range(nvx):
+                if adjMat[i][j] == 1:
+                    g.add_edge(vxdatalist[i], vxdatalist[j], directed=directed)
+    else:
+        print(&#34;Warning: The adjacency matrix contains unsupported data type!&#34;)
+
+    return g
+
+def edges_to_graph(edges, directed=False):
+    &#34;&#34;&#34;Converts a set of edges into a graph.
+
+    Args:
+        edges (set of tuples): set of edges represented as tuples (v1, v2, w).
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the given edge data.
+    &#34;&#34;&#34;
+    g = graph.graph()
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g
+
+def file_to_graph(fin, directed=False):
+    &#34;&#34;&#34;Constructs a graph based on data stored in a file.
+
+    NOTE:
+        - The file must have the following format:
+          The first line is the number of vertices.
+          The second line is the number of edges.
+          The rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.
+
+    Args:
+        fin (str): path to the file.
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the loaded data from the input file.
+    &#34;&#34;&#34;
+    g = graph.graph()
+
+    edges = set()
+    with open(fin, &#39;r&#39;) as fid:
+        nvx = int(fid.readline())
+        ne = int(fid.readline())
+        for _, line in enumerate(fid):
+            edge = line.strip().split()
+            edges.add((edge[0], edge[1], float(edge[2])))
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    # we might have isolated nodes
+    if nvx &gt; len(vxdata):
+        nvx_extra = nvx - len(vxdata)
+        print(&#34;Warning! based on the provided data, {} isolated vertices had to be added to the graph.&#34;.format(nvx_extra))
+        for i in range(nvx_extra):
+            g.add_vertex(str(i))
+    elif nvx &lt; len(vxdata):
+        print(&#34;Warning! the number of vertices (the first line of the file) doesn&#39;t match with the edge data.\n&#34;+
+              &#34;A graph is constructed based on the edge data.&#34;)
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g
+
+def remap_vertex_data(g, new_vxdata):
+    &#34;&#34;&#34;Remaps vertex data to a new list.
+
+    Args:
+        g (graph): a graph object.
+        new_vxdata (list): a new list of data to be assigned to the graph nodes.
+    Returns:
+        (graph) the input graph with new data assigned to its vertices.
+    &#34;&#34;&#34;
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+    assert(nvx == len(new_vxdata)), &#34;Provide the right number of vertex data.&#34;
+
+    vxdata = []
+    for vx in vertices.keys():
+        vxdata.append(vx._getData())
+
+    datamap = {}
+    for i in range(nvx):
+        datamap[vxdata[i]] = new_vxdata[i]
+    print(&#34;The vertex data are remapped according to the following mapping:\n&#34;, datamap)
+
+    i = 0
+    for vx in vertices.keys():
+        # make sure the mapping goes according to the plan
+        if vx._getData() == vxdata[i]:
+            vx._setData(new_vxdata[i])
+        i += 1
+
+    return g
+
+def _adjmatType(adjMat):
+    &#34;&#34;&#34;(helper function) retruns &lt;class &#39;int&#39;&gt; if the adjacency matrix is a (0,1)-matrix, and
+    returns &lt;class &#39;list&#39;&gt; if the adjacency matrix contains edge weights, and returns None if
+    neither of the cases occurs.
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+    Returns:
+        (type) the type of the adjacency matrix as explained above.
+    &#34;&#34;&#34;
+    checktype = {all(isinstance(entry, list) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: return list
+
+    checktype = {all(isinstance(entry, int) for entry in row) for row in adjMat}
+    if len(checktype) == 1 and checktype.pop() == True: return int
+
+    return None    
+
+def dfs_in_adjmat(adjMat, start, visited, path):
+    &#34;&#34;&#34;Performs DFS in a (0,1) adjacency matrix.
+
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+        path (list of int): the DFS path.
+    Returns:
+        (list of int) the full DFS path starting from the given vertex.
+    &#34;&#34;&#34;
+    visited[start] = True
+
+    nvx = len(adjMat)
+    for i in range(nvx):
+        if adjMat[start][i] == 1 and not visited[i]:
+            path.append(i)
+            dfs_in_adjmat(adjMat, i, visited, path)
+
+def dfs_in_adjmatw(adjMatw, start, visited, path):
+    &#34;&#34;&#34;Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.&#34;&#34;&#34;
+    visited[start] = True
+
+    nvx = len(adjMatw)
+    for i in range(nvx):
+        if adjMatw[start][i] and not visited[i]:
+            path.append(i)
+            dfs_in_adjmatw(adjMatw, i, visited, path)
+
+def bfs_in_adjmat(adjMat, start, visited):
+    &#34;&#34;&#34;Performs BFS in a (0,1) adjacency matrix.
+
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+    Returns:
+        (list of int) the full BFS path starting from the given vertex.
+    &#34;&#34;&#34;
+    nvx = len(adjMat)
+
+    visited[start] = True
+    path = []
+
+    Q = deque()
+    Q.append(start)
+    while Q:
+        k = Q.popleft()
+
+        for i in range(nvx):
+            if adjMat[k][i] == 1 and not visited[i]:
+                visited[i] = True
+                Q.append(i)
+
+        visited[k] = True
+        path.append(k)
+
+    return path
+
+def bfs_in_adjmatw(adjMatw, start, visited):
+    &#34;&#34;&#34;Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.&#34;&#34;&#34;
+    nvx = len(adjMatw)
+
+    visited[start] = True
+    path = []
+
+    Q = deque()
+    Q.append(start)
+    while Q:
+        k = Q.popleft()
+
+        for i in range(nvx):
+            if adjMatw[k][i] and not visited[i]:
+                visited[i] = True
+                Q.append(i)
+
+        visited[k] = True
+        path.append(k)
+
+    return path
+
+def connected_components(adjMat):
+    &#34;&#34;&#34;Returns the connected components of a graph (Uses DFS).
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+    Returns:
+        (nested list) list of connected components. Every component is a list of indices representing 
+        vertices of the graph. The indices agree with the matrix indexing.
+    &#34;&#34;&#34;
+    components = []
+
+    nvx = len(adjMat)
+    visited = [False for i in range(nvx)]
+
+    if _adjmatType(adjMat) is list:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmatw(adjMat, start, visited, path)
+#                path = bfs_in_adjmatw(adjMat, start, visited)
+                components.append(path)
+    elif _adjmatType(adjMat) is int:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmat(adjMat, start, visited, path)
+#                path = bfs_in_adjmat(adjMat, start, visited)
+                components.append(path)
+    else:
+        print(&#34;The adjacency matrix contains unsupported data type.&#34;)
+
+    return components
+
+def Dijkstra(g, source, destination):
+    &#34;&#34;&#34;Dijkstra&#39;s shortest path algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
+    Returns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    &#34;&#34;&#34;
+    assert (not g._isMultigraph()), &#34;The Dijkstra&#39;s algorithm is not implemented for multigraphs!&#34;
+
+    start = g._getVertex(source)
+    end = g._getVertex(destination)
+
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        _, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        if u == end: break
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt &lt; child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    SPT = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            SPT.insert(0, x._getData())
+            x = x._getPrevious()
+
+    distance = end._getDistance()
+
+    return SPT, distance
+
+def Dijkstra_shortest_path(g, source):
+    &#34;&#34;&#34;Returns the shortest path between a source and all the other verices of a graph using the Dijkstra&#39;s algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    &#34;&#34;&#34;
+    assert (not g._isMultigraph()), &#34;The Dijkstra&#39;s algorithm is not implemented for multigraphs!&#34;
+    g.reset()
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        _, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt &lt; child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp
+
+def Bellman_Ford(g, source, destination):
+    &#34;&#34;&#34;Bellman-Ford shortest path algorithm.
+
+    NOTE:
+        - It is a dynamic programming algorithm.
+        - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
+    Returns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    &#34;&#34;&#34;
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    end = g._getVertex(destination)
+
+    start._setDistance(0)
+
+    for _ in range(ne):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt &lt; b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + float(w)
+        if alt &lt; b._getDistance():
+            print(&#34;Error! graph contains a negative-weight cycle.&#34;)
+
+    spt = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            spt.insert(0, x._getData())
+            x = x._getPrevious()
+
+    return spt, end._getDistance()
+
+def BF_shortest_path(g, source):
+    &#34;&#34;&#34;Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    &#34;&#34;&#34;
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+
+    for _ in range(ne):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt &lt; b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + float(w)
+        if alt &lt; b._getDistance():
+            print(&#34;Error! graph contains a negative-weight cycle.&#34;)
+
+    vertices = g._getVerticesDict()
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="graphOps.BF_shortest_path"><code class="name flex">
+<span>def <span class="ident">BF_shortest_path</span></span>(<span>g, source)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the source node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list) the shortest path from the source to all the vertices : elements are [src, dest, distance].</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def BF_shortest_path(g, source):
+    &#34;&#34;&#34;Returns the shortest path between a source and all the other verices of a graph using the Bellman-Ford algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    &#34;&#34;&#34;
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+
+    for _ in range(ne):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt &lt; b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + float(w)
+        if alt &lt; b._getDistance():
+            print(&#34;Error! graph contains a negative-weight cycle.&#34;)
+
+    vertices = g._getVerticesDict()
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp</code></pre>
+</details>
+</dd>
+<dt id="graphOps.Bellman_Ford"><code class="name flex">
+<span>def <span class="ident">Bellman_Ford</span></span>(<span>g, source, destination)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Bellman-Ford shortest path algorithm.</p>
+<h2 id="note">Note</h2>
+<ul>
+<li>It is a dynamic programming algorithm.</li>
+<li>Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.</li>
+</ul>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the source node.</dd>
+<dt><strong><code>destination</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the destination node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+(float) the length of the shortest path (sum of the weights of the constituent edges).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Bellman_Ford(g, source, destination):
+    &#34;&#34;&#34;Bellman-Ford shortest path algorithm.
+
+    NOTE:
+        - It is a dynamic programming algorithm.
+        - Compared to Dijkstra, handles multigraphs as well as graphs with negative edge weights.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
+    Returns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    &#34;&#34;&#34;
+    g.reset()
+
+    edges = g._getEdges()
+    ne = len(edges)
+
+    start = g._getVertex(source)
+    end = g._getVertex(destination)
+
+    start._setDistance(0)
+
+    for _ in range(ne):
+        for a, b, w in edges:
+            alt = a._getDistance() + float(w)
+            if alt &lt; b._getDistance():
+                b._setDistance(alt)
+                b._setPrevious(a)
+
+    for a, b, w in edges:
+        alt = a._getDistance() + float(w)
+        if alt &lt; b._getDistance():
+            print(&#34;Error! graph contains a negative-weight cycle.&#34;)
+
+    spt = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            spt.insert(0, x._getData())
+            x = x._getPrevious()
+
+    return spt, end._getDistance()</code></pre>
+</details>
+</dd>
+<dt id="graphOps.Dijkstra"><code class="name flex">
+<span>def <span class="ident">Dijkstra</span></span>(<span>g, source, destination)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dijkstra's shortest path algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the source node.</dd>
+<dt><strong><code>destination</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the destination node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+(float) the length of the shortest path (sum of the weights of the constituent edges).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Dijkstra(g, source, destination):
+    &#34;&#34;&#34;Dijkstra&#39;s shortest path algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+        destination (node val data type): the data of the destination node.
+    Returns:
+        (list) the shortest path from the source to the destination : list of the (data of the) vertices on the path.
+        (float) the length of the shortest path (sum of the weights of the constituent edges).
+    &#34;&#34;&#34;
+    assert (not g._isMultigraph()), &#34;The Dijkstra&#39;s algorithm is not implemented for multigraphs!&#34;
+
+    start = g._getVertex(source)
+    end = g._getVertex(destination)
+
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        _, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        if u == end: break
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt &lt; child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    SPT = []
+    x = end
+    if (x._getPrevious() is not None) or (x == start):
+        while x is not None:
+            SPT.insert(0, x._getData())
+            x = x._getPrevious()
+
+    distance = end._getDistance()
+
+    return SPT, distance</code></pre>
+</details>
+</dd>
+<dt id="graphOps.Dijkstra_shortest_path"><code class="name flex">
+<span>def <span class="ident">Dijkstra_shortest_path</span></span>(<span>g, source)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the shortest path between a source and all the other verices of a graph using the Dijkstra's algorithm.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+<dt><strong><code>source</code></strong> :&ensp;<code>node val data type</code></dt>
+<dd>the data of the source node.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list) the shortest path from the source to all the vertices : elements are [src, dest, distance].</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Dijkstra_shortest_path(g, source):
+    &#34;&#34;&#34;Returns the shortest path between a source and all the other verices of a graph using the Dijkstra&#39;s algorithm.
+
+    Args:
+        g (graph): a graph object.
+        source (node val data type): the data of the source node.
+    Returns:
+        (list) the shortest path from the source to all the vertices : elements are [src, dest, distance].
+    &#34;&#34;&#34;
+    assert (not g._isMultigraph()), &#34;The Dijkstra&#39;s algorithm is not implemented for multigraphs!&#34;
+    g.reset()
+
+    start = g._getVertex(source)
+    start._setDistance(0)
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    Q = [(vx._getDistance(), vx) for vx in vertices.keys()]
+    hq.heapify(Q)
+
+    while len(Q):
+        _, u = hq.heappop(Q)
+        u._setStatus(graph.node_status.VISITED)
+
+        for child in u._getChildren():
+            if child._getStatus() == graph.node_status.VISITED:
+                continue
+            alt = u._getDistance() + float(u._getWeight(child)[0])
+
+            if alt &lt; child._getDistance():
+                child._setDistance(alt)
+                child._setPrevious(u)
+                hq.heappush(Q, (alt, child))
+
+    sp = []
+    for vx in vertices.keys():
+        sp.append([source, vx._getData(), vx._getDistance()])
+
+    return sp</code></pre>
+</details>
+</dd>
+<dt id="graphOps.adjmat_to_graph"><code class="name flex">
+<span>def <span class="ident">adjmat_to_graph</span></span>(<span>adjMat, vxdatalist=[], directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given an adjacency matrix retruns the corresponding (multi)graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>adjMat</code></strong> :&ensp;<code>2d - nested - list</code></dt>
+<dd>the adjacency matrix.</dd>
+<dt><strong><code>vxdatalist</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of data to be assigned to the verices of the graph.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) a graph that has the same adjacency matrix as the given matrix.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def adjmat_to_graph(adjMat, vxdatalist=[], directed=False):
+    &#34;&#34;&#34;Given an adjacency matrix retruns the corresponding (multi)graph.
+
+    Args:
+        adjMat (2d - nested - list): the adjacency matrix.
+        vxdatalist (list): list of data to be assigned to the verices of the graph.
+    Returns:
+        (graph) a graph that has the same adjacency matrix as the given matrix.
+    &#34;&#34;&#34;
+    assert(adjMat), &#34;The adjacency matrix is empty.&#34;
+
+    g = graph.graph()
+
+    nvx = len(adjMat)
+    if vxdatalist:
+        assert(nvx == len(vxdatalist)), &#34;Provide the right number of vertex data or leave the list empty.&#34;
+
+    if not vxdatalist:
+        for i in range(nvx):
+            vxdatalist.append(str(i))
+
+    for vxdata in vxdatalist:
+        g.add_vertex(vxdata)
+
+    if _adjmatType(adjMat) is list:
+        for i in range(nvx):
+            for j in range(nvx):
+                for w in adjMat[i][j]:
+                    g.add_edge(vxdatalist[i], vxdatalist[j], weight=w, directed=directed)
+    elif _adjmatType(adjMat) is int:
+        for i in range(nvx):
+            for j in range(nvx):
+                if adjMat[i][j] == 1:
+                    g.add_edge(vxdatalist[i], vxdatalist[j], directed=directed)
+    else:
+        print(&#34;Warning: The adjacency matrix contains unsupported data type!&#34;)
+
+    return g</code></pre>
+</details>
+</dd>
+<dt id="graphOps.bfs_in_adjmat"><code class="name flex">
+<span>def <span class="ident">bfs_in_adjmat</span></span>(<span>adjMat, start, visited)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs BFS in a (0,1) adjacency matrix.</p>
+<h2 id="note">Note</h2>
+<ul>
+<li>The result is a list of the indices of the vertices. The indices are in accordance with the
+indexing that has led to the adjacency matrix. </li>
+</ul>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>adjMat</code></strong> :&ensp;<code>2D - nested - list</code></dt>
+<dd>the adjacency matrix.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vertex where the procedure starts.</dd>
+<dt><strong><code>visited</code></strong> :&ensp;<code>list</code> of <code>boolean</code></dt>
+<dd>a list keeping track of the visit status of the vertices.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of int) the full BFS path starting from the given vertex.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bfs_in_adjmat(adjMat, start, visited):
+    &#34;&#34;&#34;Performs BFS in a (0,1) adjacency matrix.
+
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+    Returns:
+        (list of int) the full BFS path starting from the given vertex.
+    &#34;&#34;&#34;
+    nvx = len(adjMat)
+
+    visited[start] = True
+    path = []
+
+    Q = deque()
+    Q.append(start)
+    while Q:
+        k = Q.popleft()
+
+        for i in range(nvx):
+            if adjMat[k][i] == 1 and not visited[i]:
+                visited[i] = True
+                Q.append(i)
+
+        visited[k] = True
+        path.append(k)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="graphOps.bfs_in_adjmatw"><code class="name flex">
+<span>def <span class="ident">bfs_in_adjmatw</span></span>(<span>adjMatw, start, visited)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bfs_in_adjmatw(adjMatw, start, visited):
+    &#34;&#34;&#34;Same as bfs_in_adjmat but works with an adjacency matrix that contains edge weights.&#34;&#34;&#34;
+    nvx = len(adjMatw)
+
+    visited[start] = True
+    path = []
+
+    Q = deque()
+    Q.append(start)
+    while Q:
+        k = Q.popleft()
+
+        for i in range(nvx):
+            if adjMatw[k][i] and not visited[i]:
+                visited[i] = True
+                Q.append(i)
+
+        visited[k] = True
+        path.append(k)
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="graphOps.connected_components"><code class="name flex">
+<span>def <span class="ident">connected_components</span></span>(<span>adjMat)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the connected components of a graph (Uses DFS).</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>adjMat</code></strong> :&ensp;<code>2D - nested - list</code></dt>
+<dd>the adjacency matrix.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(nested list) list of connected components. Every component is a list of indices representing
+vertices of the graph. The indices agree with the matrix indexing.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def connected_components(adjMat):
+    &#34;&#34;&#34;Returns the connected components of a graph (Uses DFS).
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+    Returns:
+        (nested list) list of connected components. Every component is a list of indices representing 
+        vertices of the graph. The indices agree with the matrix indexing.
+    &#34;&#34;&#34;
+    components = []
+
+    nvx = len(adjMat)
+    visited = [False for i in range(nvx)]
+
+    if _adjmatType(adjMat) is list:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmatw(adjMat, start, visited, path)
+#                path = bfs_in_adjmatw(adjMat, start, visited)
+                components.append(path)
+    elif _adjmatType(adjMat) is int:
+        for i in range(nvx):
+            if not visited[i]:
+                start = i
+                path = [start]
+                dfs_in_adjmat(adjMat, start, visited, path)
+#                path = bfs_in_adjmat(adjMat, start, visited)
+                components.append(path)
+    else:
+        print(&#34;The adjacency matrix contains unsupported data type.&#34;)
+
+    return components</code></pre>
+</details>
+</dd>
+<dt id="graphOps.dfs_in_adjmat"><code class="name flex">
+<span>def <span class="ident">dfs_in_adjmat</span></span>(<span>adjMat, start, visited, path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs DFS in a (0,1) adjacency matrix.</p>
+<h2 id="note">Note</h2>
+<ul>
+<li>The result is a list of the indices of the vertices. The indices are in accordance with the
+indexing that has led to the adjacency matrix. </li>
+</ul>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>adjMat</code></strong> :&ensp;<code>2D - nested - list</code></dt>
+<dd>the adjacency matrix.</dd>
+<dt><strong><code>start</code></strong> :&ensp;<code>int</code></dt>
+<dd>the index of the vertex where the procedure starts.</dd>
+<dt><strong><code>visited</code></strong> :&ensp;<code>list</code> of <code>boolean</code></dt>
+<dd>a list keeping track of the visit status of the vertices.</dd>
+<dt><strong><code>path</code></strong> :&ensp;<code>list</code> of <code>int</code></dt>
+<dd>the DFS path.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(list of int) the full DFS path starting from the given vertex.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dfs_in_adjmat(adjMat, start, visited, path):
+    &#34;&#34;&#34;Performs DFS in a (0,1) adjacency matrix.
+
+    NOTE:
+        - The result is a list of the indices of the vertices. The indices are in accordance with the 
+        indexing that has led to the adjacency matrix. 
+
+    Args:
+        adjMat (2D - nested - list): the adjacency matrix.
+        start (int): the index of the vertex where the procedure starts.
+        visited (list of boolean): a list keeping track of the visit status of the vertices.
+        path (list of int): the DFS path.
+    Returns:
+        (list of int) the full DFS path starting from the given vertex.
+    &#34;&#34;&#34;
+    visited[start] = True
+
+    nvx = len(adjMat)
+    for i in range(nvx):
+        if adjMat[start][i] == 1 and not visited[i]:
+            path.append(i)
+            dfs_in_adjmat(adjMat, i, visited, path)</code></pre>
+</details>
+</dd>
+<dt id="graphOps.dfs_in_adjmatw"><code class="name flex">
+<span>def <span class="ident">dfs_in_adjmatw</span></span>(<span>adjMatw, start, visited, path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def dfs_in_adjmatw(adjMatw, start, visited, path):
+    &#34;&#34;&#34;Same as dfs_in_adjmat but works with an adjacency matrix that contains edge weights.&#34;&#34;&#34;
+    visited[start] = True
+
+    nvx = len(adjMatw)
+    for i in range(nvx):
+        if adjMatw[start][i] and not visited[i]:
+            path.append(i)
+            dfs_in_adjmatw(adjMatw, i, visited, path)</code></pre>
+</details>
+</dd>
+<dt id="graphOps.edges_to_graph"><code class="name flex">
+<span>def <span class="ident">edges_to_graph</span></span>(<span>edges, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Converts a set of edges into a graph.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>edges</code></strong> :&ensp;<code>set</code> of <code>tuples</code></dt>
+<dd>set of edges represented as tuples (v1, v2, w).</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>whether or not the graph is a directed graph.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) a graph object that has vertices and edges matching with the given edge data.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edges_to_graph(edges, directed=False):
+    &#34;&#34;&#34;Converts a set of edges into a graph.
+
+    Args:
+        edges (set of tuples): set of edges represented as tuples (v1, v2, w).
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the given edge data.
+    &#34;&#34;&#34;
+    g = graph.graph()
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g</code></pre>
+</details>
+</dd>
+<dt id="graphOps.file_to_graph"><code class="name flex">
+<span>def <span class="ident">file_to_graph</span></span>(<span>fin, directed=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Constructs a graph based on data stored in a file.</p>
+<h2 id="note">Note</h2>
+<ul>
+<li>The file must have the following format:
+The first line is the number of vertices.
+The second line is the number of edges.
+The rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.</li>
+</ul>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>fin</code></strong> :&ensp;<code>str</code></dt>
+<dd>path to the file.</dd>
+<dt><strong><code>directed</code></strong> :&ensp;<code>boolean</code></dt>
+<dd>whether or not the graph is a directed graph.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) a graph object that has vertices and edges matching with the loaded data from the input file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def file_to_graph(fin, directed=False):
+    &#34;&#34;&#34;Constructs a graph based on data stored in a file.
+
+    NOTE:
+        - The file must have the following format:
+          The first line is the number of vertices.
+          The second line is the number of edges.
+          The rest of the file is in the form of 3 space-separated columns storing edge information as v1 v2 w.
+
+    Args:
+        fin (str): path to the file.
+        directed (boolean): whether or not the graph is a directed graph.
+    Returns:
+        (graph) a graph object that has vertices and edges matching with the loaded data from the input file.
+    &#34;&#34;&#34;
+    g = graph.graph()
+
+    edges = set()
+    with open(fin, &#39;r&#39;) as fid:
+        nvx = int(fid.readline())
+        ne = int(fid.readline())
+        for _, line in enumerate(fid):
+            edge = line.strip().split()
+            edges.add((edge[0], edge[1], float(edge[2])))
+
+    vxdata = set()
+    for edge in edges:
+        vxdata.add(edge[0])
+        vxdata.add(edge[1])
+
+    for vx in vxdata:
+        g.add_vertex(vx)
+
+    # we might have isolated nodes
+    if nvx &gt; len(vxdata):
+        nvx_extra = nvx - len(vxdata)
+        print(&#34;Warning! based on the provided data, {} isolated vertices had to be added to the graph.&#34;.format(nvx_extra))
+        for i in range(nvx_extra):
+            g.add_vertex(str(i))
+    elif nvx &lt; len(vxdata):
+        print(&#34;Warning! the number of vertices (the first line of the file) doesn&#39;t match with the edge data.\n&#34;+
+              &#34;A graph is constructed based on the edge data.&#34;)
+
+    for edge in edges:
+        g.add_edge(edge[0], edge[1], weight=edge[2], directed=directed)
+
+    return g</code></pre>
+</details>
+</dd>
+<dt id="graphOps.graph_to_adjmat"><code class="name flex">
+<span>def <span class="ident">graph_to_adjmat</span></span>(<span>g)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Given a graph returns the corresponding adjacency matrix.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(2D - nested - list) adjacency matrix: a_ij = 1 if vi and vj are adjacent , 0 otherwise.
+(2D - nested - list) adjacency matrix: a_ij = weight of the edges between adjacent vertices vi and vj , empty list otherwise.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def graph_to_adjmat(g):
+    &#34;&#34;&#34;Given a graph returns the corresponding adjacency matrix.
+    
+    Args:
+        g (graph): a graph object.
+    Returns:
+        (2D - nested - list) adjacency matrix: a_ij = 1 if vi and vj are adjacent , 0 otherwise.
+        (2D - nested - list) adjacency matrix: a_ij = weight of the edges between adjacent vertices vi and vj , empty list otherwise.
+    &#34;&#34;&#34;
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+
+    vxdata = []
+    for vx in vertices.keys():
+        vxdata.append(vx._getData())
+
+    adjMat = [[0 for i in range(nvx)] for j in range(nvx)]
+    adjMatw = [[[] for i in range(nvx)] for j in range(nvx)]
+
+    for vx, vxchildren in vertices.items():
+        for child, weight in vxchildren.items():
+            r = vxdata.index(vx._getData())
+            c = vxdata.index(child._getData())
+            adjMat[r][c] = 1
+            adjMatw[r][c] = weight
+    
+    return adjMat, adjMatw</code></pre>
+</details>
+</dd>
+<dt id="graphOps.remap_vertex_data"><code class="name flex">
+<span>def <span class="ident">remap_vertex_data</span></span>(<span>g, new_vxdata)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Remaps vertex data to a new list.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>g</code></strong> :&ensp;<code><a title="graph" href="graph.html">graph</a></code></dt>
+<dd>a graph object.</dd>
+<dt><strong><code>new_vxdata</code></strong> :&ensp;<code>list</code></dt>
+<dd>a new list of data to be assigned to the graph nodes.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(graph) the input graph with new data assigned to its vertices.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remap_vertex_data(g, new_vxdata):
+    &#34;&#34;&#34;Remaps vertex data to a new list.
+
+    Args:
+        g (graph): a graph object.
+        new_vxdata (list): a new list of data to be assigned to the graph nodes.
+    Returns:
+        (graph) the input graph with new data assigned to its vertices.
+    &#34;&#34;&#34;
+    vertices = g._getVerticesDict()
+    nvx = len(vertices)
+    assert(nvx == len(new_vxdata)), &#34;Provide the right number of vertex data.&#34;
+
+    vxdata = []
+    for vx in vertices.keys():
+        vxdata.append(vx._getData())
+
+    datamap = {}
+    for i in range(nvx):
+        datamap[vxdata[i]] = new_vxdata[i]
+    print(&#34;The vertex data are remapped according to the following mapping:\n&#34;, datamap)
+
+    i = 0
+    for vx in vertices.keys():
+        # make sure the mapping goes according to the plan
+        if vx._getData() == vxdata[i]:
+            vx._setData(new_vxdata[i])
+        i += 1
+
+    return g</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="graphOps.BF_shortest_path" href="#graphOps.BF_shortest_path">BF_shortest_path</a></code></li>
+<li><code><a title="graphOps.Bellman_Ford" href="#graphOps.Bellman_Ford">Bellman_Ford</a></code></li>
+<li><code><a title="graphOps.Dijkstra" href="#graphOps.Dijkstra">Dijkstra</a></code></li>
+<li><code><a title="graphOps.Dijkstra_shortest_path" href="#graphOps.Dijkstra_shortest_path">Dijkstra_shortest_path</a></code></li>
+<li><code><a title="graphOps.adjmat_to_graph" href="#graphOps.adjmat_to_graph">adjmat_to_graph</a></code></li>
+<li><code><a title="graphOps.bfs_in_adjmat" href="#graphOps.bfs_in_adjmat">bfs_in_adjmat</a></code></li>
+<li><code><a title="graphOps.bfs_in_adjmatw" href="#graphOps.bfs_in_adjmatw">bfs_in_adjmatw</a></code></li>
+<li><code><a title="graphOps.connected_components" href="#graphOps.connected_components">connected_components</a></code></li>
+<li><code><a title="graphOps.dfs_in_adjmat" href="#graphOps.dfs_in_adjmat">dfs_in_adjmat</a></code></li>
+<li><code><a title="graphOps.dfs_in_adjmatw" href="#graphOps.dfs_in_adjmatw">dfs_in_adjmatw</a></code></li>
+<li><code><a title="graphOps.edges_to_graph" href="#graphOps.edges_to_graph">edges_to_graph</a></code></li>
+<li><code><a title="graphOps.file_to_graph" href="#graphOps.file_to_graph">file_to_graph</a></code></li>
+<li><code><a title="graphOps.graph_to_adjmat" href="#graphOps.graph_to_adjmat">graph_to_adjmat</a></code></li>
+<li><code><a title="graphOps.remap_vertex_data" href="#graphOps.remap_vertex_data">remap_vertex_data</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
