@@ -2,6 +2,7 @@
 import pytest
 import graph as Graph
 import graphOps as go
+from collections import Counter
 
 @pytest.fixture
 def petersen():
@@ -54,6 +55,45 @@ def petersen():
 
     return GP, vx_tuple
 
+def _compare(GP, g):
+    petersen_vertices = GP._getVerticesDict()
+    petersen_vxs = []
+    for vx in petersen_vertices.keys():
+        petersen_vxs.append(vx)
+    petersen_nvx = len(petersen_vxs)
+    petersen_vxlist = []
+    petersen_edgelist = []
+    petersen_adjlist = []
+    for i in range(petersen_nvx):
+        v = petersen_vxs[i]
+        petersen_vxlist.append(v.data)
+        for child, weight in v.children.items():
+            petersen_edgelist.append((v.data, child.data, *weight))
+        for j in range(petersen_nvx):
+            w = petersen_vxs[j]
+            petersen_adjlist.append((v.data, w.data, *petersen_vertices[v][w]))
+
+    vertices = g._getVerticesDict()
+    g_vxs = []
+    for vx in vertices.keys():
+        g_vxs.append(vx)
+    g_nvx = len(g_vxs)
+    g_vxlist = []
+    g_edgelist = []
+    g_adjlist = []
+    for i in range(g_nvx):
+        v = g_vxs[i]
+        g_vxlist.append(v.data)
+        for child, weight in v.children.items():
+            g_edgelist.append((v.data, child.data, *weight))
+        for j in range(g_nvx):
+            w = g_vxs[j]
+            g_adjlist.append((v.data, w.data, *vertices[v][w]))
+
+    return Counter(g_vxlist) == Counter(petersen_vxlist) and  \
+           Counter(g_edgelist) == Counter(petersen_edgelist) and \
+           Counter(g_adjlist) == Counter(petersen_adjlist)
+
 def test_graph_to_adjmat(petersen):
     g,_ = petersen
     adjMat, adjMatw = go.graph_to_adjmat(g)
@@ -83,3 +123,69 @@ def test_graph_to_adjmat(petersen):
     [[], [], [], [], [0.0], [], [0.0], [0.0], [], []]]
 
     assert adjMat == ref_adjMat and adjMatw == ref_adjMatw
+
+def test_adjmat_to_graph(petersen):
+    GP,_ = petersen
+
+    adjMat = [
+    [0, 1, 0, 0, 1, 1, 0, 0, 0, 0],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+    [0, 1, 0, 1, 0, 0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 1, 0, 0, 0, 1, 0],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 1],
+    [0, 0, 1, 0, 0, 1, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 1, 0, 1, 1, 0, 0]]
+
+    vxdatalist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    g = go.adjmat_to_graph(adjMat, vxdatalist=vxdatalist, directed=False)
+
+    assert _compare(GP, g)
+
+def test_adjmat_to_graph_adjMatw(petersen):
+    GP,_ = petersen
+
+    adjMat = [
+    [[], [0.0], [], [], [0.0], [0.0], [], [], [], []],
+    [[0.0], [], [0.0], [], [], [], [0.0], [], [], []],
+    [[], [0.0], [], [0.0], [], [], [], [0.0], [], []],
+    [[], [], [0.0], [], [0.0], [], [], [], [0.0], []],
+    [[0.0], [], [], [0.0], [], [], [], [], [], [0.0]],
+    [[0.0], [], [], [], [], [], [], [0.0], [0.0], []],
+    [[], [0.0], [], [], [], [], [], [], [0.0], [0.0]],
+    [[], [], [0.0], [], [], [0.0], [], [], [], [0.0]],
+    [[], [], [], [0.0], [], [0.0], [0.0], [], [], []],
+    [[], [], [], [], [0.0], [], [0.0], [0.0], [], []]]
+
+    vxdatalist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    g = go.adjmat_to_graph(adjMat, vxdatalist=vxdatalist, directed=False)
+
+    assert _compare(GP, g)
+
+def test_edges_to_graph(petersen):
+    GP,_ = petersen
+
+    edges = {('a', 'b', 0.0), ('a', 'e', 0.0), ('a', 'f', 0.0),
+             ('b', 'a', 0.0), ('b', 'c', 0.0), ('b', 'g', 0.0),
+             ('c', 'b', 0.0), ('c', 'd', 0.0), ('c', 'h', 0.0),
+             ('d', 'c', 0.0), ('d', 'e', 0.0), ('d', 'i', 0.0),
+             ('e', 'a', 0.0), ('e', 'd', 0.0), ('e', 'j', 0.0),
+             ('f', 'a', 0.0), ('f', 'h', 0.0), ('f', 'i', 0.0),
+             ('g', 'b', 0.0), ('g', 'i', 0.0), ('g', 'j', 0.0),
+             ('h', 'c', 0.0), ('h', 'f', 0.0), ('h', 'j', 0.0),
+             ('i', 'd', 0.0), ('i', 'f', 0.0), ('i', 'g', 0.0),
+             ('j', 'e', 0.0), ('j', 'g', 0.0), ('j', 'h', 0.0)}
+
+    g = go.edges_to_graph(edges, directed=False)
+
+    assert _compare(GP, g)
+
+def test_file_to_graph(petersen):
+    GP,_ = petersen
+
+    fin = "../data/petersen.dat"
+    g = go.file_to_graph(fin, directed=False)
+
+    assert _compare(GP, g)
