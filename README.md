@@ -3,3 +3,4 @@
 
 **Test Data**<br />
 [`Goethe.txt`](./data/Goethe.txt) : *"West-östlicher Divan"* by Johann Wolfgang Goethe, source [Project Gutenberg](https://www.gutenberg.org).<br />
+[`petersen.dat`](./data/petersen.dat) : the Petersen Graph.
