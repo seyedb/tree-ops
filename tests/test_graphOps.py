@@ -5,6 +5,39 @@ import graphOps as go
 from collections import Counter
 
 @pytest.fixture
+def generic_graph():
+    """Returns a sample graph with five vertices and seven edges 
+    (weights in between parentheses):
+    AB (3.0), AC (1.0), BC (7.0), BD (5.0), BE (1.0), CD (1.0), DE (7.0)
+    """
+    g = Graph.graph()
+    na = Graph.graph().graphNode('A')
+    nb = Graph.graph().graphNode('B')
+    nc = Graph.graph().graphNode('C')
+    nd = Graph.graph().graphNode('D')
+    ne = Graph.graph().graphNode('E')
+
+    na.children[nb], nb.children[na] = [3.0], [3.0]
+    na.children[nc], nc.children[na] = [1.0], [1.0]
+    nb.children[nc], nc.children[nb] = [7.0], [7.0]
+    nb.children[nd], nd.children[nb] = [5.0], [5.0]
+    nb.children[ne], ne.children[nb] = [1.0], [1.0]
+    nc.children[nd], nd.children[nc] = [1.0], [1.0]
+    nd.children[ne], ne.children[nd] = [7.0], [7.0]
+
+    g.vertices[na][nb], g.vertices[nb][na] = [3.0], [3.0]
+    g.vertices[na][nc], g.vertices[nc][na] = [1.0], [1.0]
+    g.vertices[nb][nc], g.vertices[nc][nb] = [7.0], [7.0]
+    g.vertices[nb][nd], g.vertices[nd][nb] = [5.0], [5.0]
+    g.vertices[nb][ne], g.vertices[ne][nb] = [1.0], [1.0]
+    g.vertices[nc][nd], g.vertices[nd][nc] = [1.0], [1.0]
+    g.vertices[nd][ne], g.vertices[ne][nd] = [7.0], [7.0]
+
+    vx_tuple = (na, nb, nc, nd, ne)
+
+    return g, vx_tuple
+
+@pytest.fixture
 def petersen():
     """Returns a Petersen graph - GP(5,2)."""
     GP = Graph.graph()
@@ -342,3 +375,36 @@ def test_connected_components():
 
     assert components_adjmat == components_adjmatw == ref
 
+def test_Dijkstra(generic_graph):
+    g,_ = generic_graph
+
+    ref_spt = ['B', 'A', 'C']
+    ref_dist = 4.0
+
+    spt, dist = go.Dijkstra(g, 'B', 'C')
+    assert spt == ref_spt and dist == ref_dist
+
+def test_Dijkstra_shortest_path(generic_graph):
+    g,_ = generic_graph
+
+    ref_sp = [['A', 'A', 0], ['A', 'B', 3.0], ['A', 'C', 1.0], ['A', 'D', 2.0], ['A', 'E', 4.0]]
+    sp = go.Dijkstra_shortest_path(g, 'A')
+
+    assert sp == ref_sp
+
+def test_Bellman_Ford(generic_graph):
+    g,_ = generic_graph
+
+    ref_spt = ['B', 'A', 'C']
+    ref_dist = 4.0
+
+    spt, dist = go.Bellman_Ford(g, 'B', 'C')
+    assert spt == ref_spt and dist == ref_dist
+
+def test_BF_shortest_path(generic_graph):
+    g,_ = generic_graph
+
+    ref_sp = [['A', 'A', 0], ['A', 'B', 3.0], ['A', 'C', 1.0], ['A', 'D', 2.0], ['A', 'E', 4.0]]
+    sp = go.BF_shortest_path(g, 'A')
+
+    assert sp == ref_sp
