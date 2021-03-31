@@ -432,9 +432,7 @@ class tree(object):
 
         for child in children:
             path.append(child)
-            path = self.DFS(child, path)
-
-        return path
+            self.DFS(child, path)
         
     def BFS(self, start):
         """Breadth-First Search (BFS).
