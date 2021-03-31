@@ -421,15 +421,14 @@ class tree(object):
         if path is None:
             path = []
 
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
 
-        if len(path) == 0: path.append(s)
+        if len(path) == 0: path.append(start)
 
         children = []
-        if s.left is not None: children.append(s.left)
-        if s.right is not None: children.append(s.right)
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
 
         for child in children:
             path.append(child)
@@ -445,13 +444,12 @@ class tree(object):
         Returns:
             (list of treeNode) the full BFS path.
         """
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
         path = []
 
         Q = deque()
-        Q.append(s)
+        Q.append(start)
         while Q:
             k = Q.popleft()
 
