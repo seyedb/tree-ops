@@ -251,11 +251,10 @@ def test_default_treeNode(dflt_treeNode):
     dflt_data = (dflt_treeNode.data == None)
     dflt_left = (dflt_treeNode.left == None)
     dflt_right = (dflt_treeNode.right == None)
-    dflt_status = (dflt_treeNode.status == Tree.node_status.UNVISITED)
     dflt_parent = (dflt_treeNode.parent == None)
     dflt_height = (dflt_treeNode.height == 0)
     dflt_balance_factor = (dflt_treeNode.balance_factor == 0)
-    assert (dflt_data and dflt_left and dflt_right and dflt_status and dflt_parent and dflt_height and dflt_balance_factor)
+    assert (dflt_data and dflt_left and dflt_right and dflt_parent and dflt_height and dflt_balance_factor)
 
 def test__lt__():
     n1 = Tree.tree().treeNode(1)
@@ -270,15 +269,8 @@ def test__le__():
 
 def test_treeNode__str__(dflt_treeNode):
     treeNode_str = dflt_treeNode.__str__()
-    ref_str = "data: None,\tleft: None,\tright: None,\tstatus: unvisited,\tparent: None,\theight: 0,\tbalance factor: 0"
+    ref_str = "data: None,\tleft: None,\tright: None,\tparent: None,\theight: 0,\tbalance factor: 0"
     assert treeNode_str == ref_str
-
-def test_getStatus(dflt_treeNode):
-    assert dflt_treeNode._getStatus() == Tree.node_status.UNVISITED
-
-def test_setStatus(dflt_treeNode):
-    dflt_treeNode._setStatus(Tree.node_status.VISITED)
-    assert dflt_treeNode.status == Tree.node_status.VISITED
 
 def test__contains__(ref_bst):
     t,_ = ref_bst
@@ -311,11 +303,11 @@ def test_verbose_rep(simple_tree):
               {'data': 'right', 'left': 'None', 'right': 'None'}]
 
     v1_ref = [{'data': 'root', 'left': 'left', 'right': 'right', 'parent': 'None',
-               'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+               'height': 1, 'balance_factor': 0},
               {'data': 'left', 'left': 'None', 'right': 'None', 'parent': 'root',
-               'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+               'height': 0, 'balance_factor': 0},
               {'data': 'right', 'left': 'None', 'right': 'None', 'parent': 'root',
-               'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+               'height': 0, 'balance_factor': 0}]
 
     v0_ref = sorted(v0_ref, key=op.itemgetter('data'))
     v1_ref = sorted(v1_ref, key=op.itemgetter('data'))
@@ -430,47 +422,6 @@ def test_calcBalanceFactor(plain_bst, ref_bst):
 
     assert ref_n3.balance_factor == n3.balance_factor == -1
 
-def test_reset_status(ref_bst):
-    t, nodes = ref_bst
-
-    ref = {8: Tree.node_status.UNVISITED, 3: Tree.node_status.UNVISITED, 10: Tree.node_status.UNVISITED,
-           6: Tree.node_status.UNVISITED, 14: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
-           4: Tree.node_status.UNVISITED, 7: Tree.node_status.UNVISITED, 13: Tree.node_status.UNVISITED}
-
-    # for testing purpose, set the status of nodes indexed with indices in ref_ind to VISITED
-    ref_ind = [0, 2, 4, 6, 8]
-    for i in ref_ind:
-        nodes[i].status = Tree.node_status.VISITED
-
-    t.reset_status()
-
-    stat_dict = {node.data:node.status for node in nodes}
-
-    diff = deepdiff.DeepDiff(stat_dict, ref)
-    # the diff must be an empty dictionary
-    assert not diff
-
-def test_resetSatus(ref_bst):
-    t, nodes = ref_bst
-    n3 = nodes[1]
-
-    ref = {3: Tree.node_status.UNVISITED, 6: Tree.node_status.UNVISITED, 1: Tree.node_status.UNVISITED,
-           4: Tree.node_status.UNVISITED, 7: Tree.node_status.UNVISITED}
-
-    # for testing purpose, set the status of nodes indexed with indices in ref_ind to VISITED
-    ref_ind = [0, 2, 4, 6, 8]
-    for i in ref_ind:
-        nodes[i].status = Tree.node_status.VISITED
-
-    t._resetStatus(n3)
-
-    ind = [1, 3, 4, 6, 7]
-    stat_dict = {nodes[i].data:nodes[i].status for i in ind}
-
-    diff = deepdiff.DeepDiff(stat_dict, ref)
-    # the diff must be an empty dictionary
-    assert not diff
-
 def test_add_node(ref_bst):
     t, nodes = ref_bst
     n10 = nodes[2] # the existing node to be affected
@@ -483,14 +434,13 @@ def test_add_node(ref_bst):
     cond0 = (n9.data == 9)
     cond1 = (n9.left == None)
     cond2 = (n9.right == None)
-    cond3 = (n9.status == Tree.node_status.UNVISITED)
-    cond4 = (n9.parent == n10)
-    cond5 = (n9.height == 0)
-    cond6 = (n9.balance_factor == 0)
+    cond3 = (n9.parent == n10)
+    cond4 = (n9.height == 0)
+    cond5 = (n9.balance_factor == 0)
 
-    cond7 = (n10.balance_factor == -1) # was -2
+    cond6 = (n10.balance_factor == -1) # was -2
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6]
 
     assert all(cond)
 
@@ -510,22 +460,21 @@ def test_addNode(ref_bst):
     cond0 = (n5.data == 5)
     cond1 = (n5.left == None)
     cond2 = (n5.right == None)
-    cond3 = (n5.status == Tree.node_status.UNVISITED)
-    cond4 = (n5.parent == n4)
-    cond5 = (n5.height == 0)
-    cond6 = (n5.balance_factor == 0)
+    cond3 = (n5.parent == n4)
+    cond4 = (n5.height == 0)
+    cond5 = (n5.balance_factor == 0)
 
-    cond7 = (n4.height == 1) # was 0
-    cond8 = (n4.balance_factor == -1) # was 0
+    cond6 = (n4.height == 1) # was 0
+    cond7 = (n4.balance_factor == -1) # was 0
 
-    cond9 = (n3.height == 3) # was 2
-    cond10 = (n3.balance_factor == -2) # was -1
+    cond8 = (n3.height == 3) # was 2
+    cond9 = (n3.balance_factor == -2) # was -1
 
-    cond11 = (n6.height == 2) # was 1
-    cond12 = (n6.balance_factor == 1) # was 0
+    cond10 = (n6.height == 2) # was 1
+    cond11 = (n6.balance_factor == 1) # was 0
 
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
-            cond9, cond10, cond11, cond12]
+            cond9, cond10, cond11]
 
     assert all(cond)
 
@@ -545,31 +494,30 @@ def test_add_node_balanced(ref_bst):
     cond0 = (n11.data == 11)
     cond1 = (n11.left == None)
     cond2 = (n11.right == None)
-    cond3 = (n11.status == Tree.node_status.UNVISITED)
-    cond4 = (n11.parent == n10)
-    cond5 = (n11.height == 0)
-    cond6 = (n11.balance_factor == 0)
+    cond3 = (n11.parent == n10)
+    cond4 = (n11.height == 0)
+    cond5 = (n11.balance_factor == 0)
 
-    cond7 = (n8.right == n13) # n10
+    cond6 = (n8.right == n13) # n10
 
-    cond8 = (n10.parent == n13) # n8
-    cond9 = (n10.height == 1) # 2
-    cond10 = (n10.balance_factor == -1) # -2
+    cond7 = (n10.parent == n13) # n8
+    cond8 = (n10.height == 1) # 2
+    cond9 = (n10.balance_factor == -1) # -2
 
-    cond11 = (n13.left == n10) # None
-    cond12 = (n13.right == n14) # None
-    cond13 = (n13.parent == n8) # n14
-    cond14 = (n13.height == 2) # 0
-    cond15 = (n13.balance_factor == 1) # 0
+    cond10 = (n13.left == n10) # None
+    cond11 = (n13.right == n14) # None
+    cond12 = (n13.parent == n8) # n14
+    cond13 = (n13.height == 2) # 0
+    cond14 = (n13.balance_factor == 1) # 0
 
-    cond16 = (n14.left == None) # n13
-    cond17 = (n14.parent == n13) # n10
-    cond18 = (n14.height == 0) # 1
-    cond19 = (n14.balance_factor == 0) # 1
+    cond15 = (n14.left == None) # n13
+    cond16 = (n14.parent == n13) # n10
+    cond17 = (n14.height == 0) # 1
+    cond18 = (n14.balance_factor == 0) # 1
 
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
             cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
-            cond17, cond18, cond19]
+            cond17, cond18]
 
     assert all(cond)
 
@@ -590,29 +538,27 @@ def test_addNode_balanced(ref_bst):
     cond0 = (n5.data == 5)
     cond1 = (n5.left == None)
     cond2 = (n5.right == None)
-    cond3 = (n5.status == Tree.node_status.UNVISITED)
-    cond4 = (n5.parent == n6)
-    cond5 = (n5.height == 0)
-    cond6 = (n5.balance_factor == 0)
+    cond3 = (n5.parent == n6)
+    cond4 = (n5.height == 0)
+    cond5 = (n5.balance_factor == 0)
 
-    cond7 = (n8.left == n4) # n3
+    cond6 = (n8.left == n4) # n3
 
-    cond8 = (n4.left == n3) # None
-    cond9 = (n4.right == n6) # None
-    cond10 = (n4.parent == n8) # n6
-    cond11 = (n4.height == 2) # 0
+    cond7 = (n4.left == n3) # None
+    cond8 = (n4.right == n6) # None
+    cond9 = (n4.parent == n8) # n6
+    cond10 = (n4.height == 2) # 0
 
-    cond12 = (n3.right == None) # n6
-    cond13 = (n3.parent == n4) # n8
-    cond14 = (n3.height == 1) # 2
-    cond15 = (n3.balance_factor == 1) # -1
+    cond11 = (n3.right == None) # n6
+    cond12 = (n3.parent == n4) # n8
+    cond13 = (n3.height == 1) # 2
+    cond14 = (n3.balance_factor == 1) # -1
 
-    cond16 = (n6.left == n5) # n4
-    cond17 = (n6.parent == n4) # n3
+    cond15 = (n6.left == n5) # n4
+    cond16 = (n6.parent == n4) # n3
 
     cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8,
-            cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16,
-            cond17]
+            cond9, cond10, cond11, cond12, cond13, cond14, cond15, cond16]
 
     assert all(cond)
 
@@ -628,14 +574,13 @@ def test_insert_node(ref_bst):
     cond0 = (n2.data == 2)
     cond1 = (n2.left == None)
     cond2 = (n2.right == None)
-    cond3 = (n2.status == Tree.node_status.UNVISITED)
-    cond4 = (n2.parent == n10)
-    cond5 = (n2.height == 0)
-    cond6 = (n2.balance_factor == 0)
+    cond3 = (n2.parent == n10)
+    cond4 = (n2.height == 0)
+    cond5 = (n2.balance_factor == 0)
 
-    cond7 = (n10.balance_factor == -1) # was -2
+    cond6 = (n10.balance_factor == -1) # was -2
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6]
 
     assert all(cond)
 
@@ -653,17 +598,16 @@ def test_insertNode(ref_bst):
     cond0 = (n5.data == 5)
     cond1 = (n5.left == None)
     cond2 = (n5.right == None)
-    cond3 = (n5.status == Tree.node_status.UNVISITED)
-    cond4 = (n5.parent == n1)
-    cond5 = (n5.height == 0)
-    cond6 = (n5.balance_factor == 0)
+    cond3 = (n5.parent == n1)
+    cond4 = (n5.height == 0)
+    cond5 = (n5.balance_factor == 0)
 
-    cond7 = (n1.height == 1) # was 0
-    cond8 = (n1.balance_factor == 1) # was 0
+    cond6 = (n1.height == 1) # was 0
+    cond7 = (n1.balance_factor == 1) # was 0
 
-    cond9 = (n3.balance_factor == 0) # was -1
+    cond8 = (n3.balance_factor == 0) # was -1
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8]
 
     assert all(cond)
 
@@ -680,14 +624,13 @@ def test_insert_node_balanced(ref_bst):
     cond0 = (n11.data == 11)
     cond1 = (n11.left == None)
     cond2 = (n11.right == None)
-    cond3 = (n11.status == Tree.node_status.UNVISITED)
-    cond4 = (n11.parent == n10)
-    cond5 = (n11.height == 0)
-    cond6 = (n11.balance_factor == 0)
+    cond3 = (n11.parent == n10)
+    cond4 = (n11.height == 0)
+    cond5 = (n11.balance_factor == 0)
 
-    cond7 = (n10.balance_factor == -1) # -2
+    cond6 = (n10.balance_factor == -1) # -2
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7]
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6]
 
     assert all(cond)
 
@@ -706,17 +649,16 @@ def test_insertNode_balanced(ref_bst):
     cond0 = (n5.data == 5)
     cond1 = (n5.left == None)
     cond2 = (n5.right == None)
-    cond3 = (n5.status == Tree.node_status.UNVISITED)
-    cond4 = (n5.parent == n1)
-    cond5 = (n5.height == 0)
-    cond6 = (n5.balance_factor == 0)
+    cond3 = (n5.parent == n1)
+    cond4 = (n5.height == 0)
+    cond5 = (n5.balance_factor == 0)
 
-    cond7 = (n1.height == 1) # 0
-    cond8 = (n1.balance_factor == 1) # 0
+    cond6 = (n1.height == 1) # 0
+    cond7 = (n1.balance_factor == 1) # 0
 
-    cond9 = (n3.balance_factor == 0) # -1
+    cond8 = (n3.balance_factor == 0) # -1
 
-    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8, cond9]
+    cond = [cond0, cond1, cond2, cond3, cond4, cond5, cond6, cond7, cond8]
 
     assert all(cond)
 
@@ -850,17 +792,17 @@ def test_balanceByRecursion(ref_unbalanced_tree):
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 3,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 2, 'left': 'None', 'right': 'None', 'parent': 1,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 5, 'parent': 'None',
-     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
+     'height': 2, 'balance_factor': 0},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 5, 'left': 4, 'right': 6, 'parent': 3,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
@@ -881,17 +823,17 @@ def test_convertToAVL(ref_unbalanced_tree):
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 2,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 2, 'left': 1, 'right': 3, 'parent': 4,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 3, 'left': 'None', 'right': 'None', 'parent': 2,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 4, 'left': 2, 'right': 5, 'parent': 'None',
-     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
+     'height': 2, 'balance_factor': 0},
     {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 
@@ -911,17 +853,17 @@ def test_rebalanceSubtree(ref_unbalanced_tree):
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 2, 'parent': 'None',
-     'status': 'unvisited', 'height': 5, 'balance_factor': -5},
+     'height': 5, 'balance_factor': -5},
     {'data': 2, 'left': 'None', 'right': 4, 'parent': 1,
-     'status': 'unvisited', 'height': 4, 'balance_factor': -4},
+     'height': 4, 'balance_factor': -4},
     {'data': 3, 'left': 'None', 'right': 'None', 'parent': 4,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 4, 'left': 3, 'right': 5, 'parent': 2,
-     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+     'height': 2, 'balance_factor': -1},
     {'data': 5, 'left': 'None', 'right': 6, 'parent': 4,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 5,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     ref_rep = sorted(ref_rep, key=op.itemgetter('data'))
 

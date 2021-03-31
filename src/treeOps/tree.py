@@ -1,12 +1,6 @@
 from enum import Enum
 from collections import deque
 
-class node_status(Enum):
-    """List of all possible visit status of each node (tree traversal)."""
-    UNVISITED = 0
-    VISITED = 1
-    VISITING = 2
-
 class tree(object):
     """The main (binary search) tree class."""
     def __init__(self, root=None):
@@ -16,13 +10,12 @@ class tree(object):
 
     class treeNode(object):
         """The main tree node class (defined as an inner class of the tree class)."""
-        def __init__(self, data=None, status=node_status.UNVISITED, balance_factor=0):
+        def __init__(self, data=None, balance_factor=0):
             """Initializes a tree node.
             Attributes:
                 data (any type): the node value.
                 left (treeNode): the left child.
                 right (treeNode): the right child.
-                status (node_status): the visit status (tree traversal).
                 parent (treeNode): the parent node.
                 height (int): the height of the tree rooted at the node.
                 balance_factor (int): difference between the height of the left and the right subtrees.
@@ -30,7 +23,6 @@ class tree(object):
             self.data = data
             self.left = None
             self.right = None
-            self.status = status
             # the following are used in tree balancing algorithms
             self.parent = None
             self.height = 0
@@ -55,33 +47,13 @@ class tree(object):
 
         def __str__(self):
             """Returns a string representation of a treeNode."""
-            if self.status is node_status.UNVISITED:
-                stat = 'unvisited'
-            elif self.status is node_status.VISITED:
-                stat = 'visited'
-            else:
-                stat = 'visiting'
-
             res = 'data: {},\t'.format(self.data)
             res += 'left: {},\t'.format('None' if self.left is None else self.left.data)
             res += 'right: {},\t'.format('None' if self.right is None else self.right.data)
-            res += 'status: {},\t'.format(stat)
             res += 'parent: {},\t'.format('None' if self.parent is None else self.parent.data)
             res += 'height: {},\t'.format(self.height)
             res += 'balance factor: {}'.format(self.balance_factor)
             return res
-
-        def _getStatus(self):
-            """Gets the visit status of a tree node."""
-            return self.status
-    
-        def _setStatus(self, status):
-            """Sets the visit status of a tree node to a given value.
-    
-            Args:
-                status (node_status): the new visit status to be assigned to the node.
-            """
-            self.status = status
 
     def __contains__(self, data):
         """Checks if a tree contains a given data.
@@ -169,14 +141,6 @@ class tree(object):
 
         if node is not None:
             self._verboseRep(node.left, rep, verb_level)
-
-            if node.status is node_status.UNVISITED:
-                stat = 'unvisited'
-            elif node.status is node_status.VISITED:
-                stat = 'visited'
-            else:
-                stat = 'visiting'
-
             attrs = {}
             attrs['data'] = node.data
             if verb_level == 0:
@@ -186,7 +150,6 @@ class tree(object):
                 attrs['left'] = 'None' if node.left is None else node.left.data
                 attrs['right'] = 'None' if node.right is None else node.right.data
                 attrs['parent'] = 'None' if node.parent is None else node.parent.data
-                attrs['status'] = stat
                 attrs['height'] = node.height
                 attrs['balance_factor'] = node.balance_factor
             rep.append(attrs)
@@ -251,23 +214,6 @@ class tree(object):
         lheight = self._calcHeight(node.left)
         rheight = self._calcHeight(node.right)
         node.balance_factor = lheight - rheight
-
-    def reset_status(self):
-        """Resets the visit status of all the nodes in a tree to UNVISITED."""
-        self._resetStatus(self.root)
-
-    def _resetStatus(self, node):
-        """(helper function) Resets the visit status of each node below the given node to UNVISITED 
-        after a traversal routine (in-, pre-, postorder, DFS, BFS) call, it is done recursively 
-        following an in-order fashion.
-
-        Args:
-            node (treeNode): the tree node at which the procedure starts.
-        """
-        if node is not None:
-            self._resetStatus(node.left)
-            node._setStatus(node_status.UNVISITED)
-            self._resetStatus(node.right)
 
     def add_node(self, data, balanced=False):
         """Adds a node to a tree.
@@ -384,8 +330,6 @@ class tree(object):
             node (treeNode): the tree node at with the inorder traversal starts.
             path (list of treeNode): the traversal path.
         Returns:
-            (tree) the input tree with all its nodes visited once while traversing 
-                   all nodes have visit status VISITED at this point.
             (list of treeNode) the full traversal path.
         """
         if path is None:
@@ -393,7 +337,6 @@ class tree(object):
 
         if node is not None:
             path = self.inorder_traversal(node.left, path)
-            node._setStatus(node_status.VISITED)
             path.append(node)
             path = self.inorder_traversal(node.right, path)
 
@@ -406,15 +349,12 @@ class tree(object):
             node (treeNode): the tree node at with the preorder traversal starts.
             path (list of treeNode): the traversal path.
         Returns:
-            (tree) the input tree with all its nodes visited once while traversing 
-                   all nodes have visit status VISITED at this point.
             (list of treeNode) the full traversal path.
         """
         if path is None:
             path = []
 
         if node is not None:
-            node._setStatus(node_status.VISITED)
             path.append(node)
             path = self.preorder_traversal(node.left, path)
             path = self.preorder_traversal(node.right, path)
@@ -428,8 +368,6 @@ class tree(object):
             node (treeNode): the tree node at with the postorder traversal starts.
             path (list of treeNode): the traversal path.
         Returns:
-            (tree) the input tree with all its nodes visited once while traversing 
-                   all nodes have visit status VISITED at this point.
             (list of treeNode) the full traversal path.
         """
         if path is None:
@@ -438,7 +376,6 @@ class tree(object):
         if node is not None:
             path = self.postorder_traversal(node.left, path)
             path = self.postorder_traversal(node.right, path)
-            node._setStatus(node_status.VISITED)
             path.append(node)
 
         return path
@@ -490,16 +427,13 @@ class tree(object):
 
         if len(path) == 0: path.append(s)
 
-        s._setStatus(node_status.VISITED)
-
         children = []
         if s.left is not None: children.append(s.left)
         if s.right is not None: children.append(s.right)
 
         for child in children:
-            if child._getStatus() == node_status.UNVISITED:
-                path.append(child)
-                path = self.DFS(child, path)
+            path.append(child)
+            path = self.DFS(child, path)
 
         return path
         
@@ -514,7 +448,6 @@ class tree(object):
         s = self.find_node(start.data)
         if s is None:
             return
-        s._setStatus(node_status.VISITED)
         path = []
 
         Q = deque()
@@ -526,11 +459,8 @@ class tree(object):
             if k.left is not None: children.append(k.left)
             if k.right is not None: children.append(k.right)
             for child in children:
-                if child._getStatus() == node_status.UNVISITED:
-                    child._setStatus(node_status.VISITED)
                     Q.append(child)
 
-            k._setStatus(node_status.VISITED)
             path.append(k)
 
         return path

@@ -72,23 +72,23 @@ def test_list_to_tree():
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 4, 'parent': 6,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 6, 'left': 3, 'right': 7, 'parent': 8,
-     'status': 'unvisited', 'height': 2, 'balance_factor': 1},
+     'height': 2, 'balance_factor': 1},
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 6,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 8, 'left': 6, 'right': 10, 'parent': 'None',
-     'status': 'unvisited', 'height': 3, 'balance_factor': 0},
+     'height': 3, 'balance_factor': 0},
     {'data': 10, 'left': 'None', 'right': 14, 'parent': 8,
-     'status': 'unvisited', 'height': 2, 'balance_factor': -2},
+     'height': 2, 'balance_factor': -2},
     {'data': 13, 'left': 'None', 'right': 'None', 'parent': 14,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 14, 'left': 13, 'right': 'None', 'parent': 10,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 1}]
+     'height': 1, 'balance_factor': 1}]
 
     rep = t.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
@@ -104,23 +104,23 @@ def test_list_to_tree_balanced():
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 'None', 'parent': 4,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 1},
+     'height': 1, 'balance_factor': 1},
     {'data': 4, 'left': 3, 'right': 6, 'parent': 8,
-     'status': 'unvisited', 'height': 2, 'balance_factor': 0},
+     'height': 2, 'balance_factor': 0},
     {'data': 6, 'left': 'None', 'right': 7, 'parent': 4,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 6,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 8, 'left': 4, 'right': 13, 'parent': 'None',
-     'status': 'unvisited', 'height': 3, 'balance_factor': 1},
+     'height': 3, 'balance_factor': 1},
     {'data': 10, 'left': 'None', 'right': 'None', 'parent': 13,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 13, 'left': 10, 'right': 14, 'parent': 8,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     rep = t.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
@@ -164,23 +164,23 @@ def test_balance_by_recursion(ref_bst):
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 4, 'parent': 7,
-     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+     'height': 2, 'balance_factor': -1},
     {'data': 4, 'left': 'None', 'right': 6, 'parent': 3,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 6, 'left': 'None', 'right': 'None', 'parent': 4,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 7, 'left': 3, 'right': 10, 'parent': 'None',
-     'status': 'unvisited', 'height': 3, 'balance_factor': 0},
+     'height': 3, 'balance_factor': 0},
     {'data': 8, 'left': 'None', 'right': 'None', 'parent': 10,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 10, 'left': 8, 'right': 13, 'parent': 7,
-     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+     'height': 2, 'balance_factor': -1},
     {'data': 13, 'left': 'None', 'right': 14, 'parent': 10,
-     'status': 'unvisited', 'height': 1, 'balance_factor': -1},
+     'height': 1, 'balance_factor': -1},
     {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     rep = balancedt.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
@@ -197,23 +197,23 @@ def test_convert_to_AVL(ref_bst):
 
     ref_rep = [
     {'data': 1, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 3, 'left': 1, 'right': 4, 'parent': 6,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 4, 'left': 'None', 'right': 'None', 'parent': 3,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 6, 'left': 3, 'right': 8, 'parent': 'None',
-     'status': 'unvisited', 'height': 3, 'balance_factor': -1},
+     'height': 3, 'balance_factor': -1},
     {'data': 7, 'left': 'None', 'right': 'None', 'parent': 8,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 8, 'left': 7, 'right': 13, 'parent': 6,
-     'status': 'unvisited', 'height': 2, 'balance_factor': -1},
+     'height': 2, 'balance_factor': -1},
     {'data': 10, 'left': 'None', 'right': 'None', 'parent': 13,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0},
+     'height': 0, 'balance_factor': 0},
     {'data': 13, 'left': 10, 'right': 14, 'parent': 8,
-     'status': 'unvisited', 'height': 1, 'balance_factor': 0},
+     'height': 1, 'balance_factor': 0},
     {'data': 14, 'left': 'None', 'right': 'None', 'parent': 13,
-     'status': 'unvisited', 'height': 0, 'balance_factor': 0}]
+     'height': 0, 'balance_factor': 0}]
 
     rep = balancedt.verbose_rep(1)
     rep = sorted(rep, key=op.itemgetter('data'))
