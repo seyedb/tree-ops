@@ -1,4 +1,3 @@
-#
 import tree
 import re
 import string
