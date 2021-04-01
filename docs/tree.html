@@ -489,6 +489,46 @@ class tree(object):
 
         return path
 
+    def root_to_leaf_paths(self):
+        &#34;&#34;&#34;Returns all the root-to-leaf paths of a binary tree.
+
+        Returns:
+            (list of list) list of all the root-to-leaf paths of this tree.
+        &#34;&#34;&#34;
+        pathsList = []
+        if self.root is not None:
+            self._rootToLeafPaths(self.root, [], pathsList)
+
+        return pathsList
+
+    def _rootToLeafPaths(self, start, path, pathsList):
+        &#34;&#34;&#34;(helper function) Returns all the root-to-leaf paths of a subtree rooted at the given start node.
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+            path (list of treeNode): the (DFS) path (empty path) to be filled with nodes.
+            pathsList (list of list): (empty) list of paths.
+        Returns:
+            (list of list) the pathsList filled with all the root-to-leaf paths.
+        &#34;&#34;&#34;
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            pathsList.append([n.data for n in path])
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._rootToLeafPaths(child, path, pathsList)
+
+        if len(path) &gt; 0: path.pop()
+
     def is_balanced(self):
         &#34;&#34;&#34;Checks whether or not a tree (BST or not) is balanced.
 
@@ -1154,6 +1194,46 @@ class tree(object):
 
         return path
 
+    def root_to_leaf_paths(self):
+        &#34;&#34;&#34;Returns all the root-to-leaf paths of a binary tree.
+
+        Returns:
+            (list of list) list of all the root-to-leaf paths of this tree.
+        &#34;&#34;&#34;
+        pathsList = []
+        if self.root is not None:
+            self._rootToLeafPaths(self.root, [], pathsList)
+
+        return pathsList
+
+    def _rootToLeafPaths(self, start, path, pathsList):
+        &#34;&#34;&#34;(helper function) Returns all the root-to-leaf paths of a subtree rooted at the given start node.
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+            path (list of treeNode): the (DFS) path (empty path) to be filled with nodes.
+            pathsList (list of list): (empty) list of paths.
+        Returns:
+            (list of list) the pathsList filled with all the root-to-leaf paths.
+        &#34;&#34;&#34;
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            pathsList.append([n.data for n in path])
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._rootToLeafPaths(child, path, pathsList)
+
+        if len(path) &gt; 0: path.pop()
+
     def is_balanced(self):
         &#34;&#34;&#34;Checks whether or not a tree (BST or not) is balanced.
 
@@ -1667,6 +1747,30 @@ class tree(object):
     return path</code></pre>
 </details>
 </dd>
+<dt id="tree.tree.root_to_leaf_paths"><code class="name flex">
+<span>def <span class="ident">root_to_leaf_paths</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns all the root-to-leaf paths of a binary tree.</p>
+<h2 id="returns">Returns</h2>
+<p>(list of list) list of all the root-to-leaf paths of this tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def root_to_leaf_paths(self):
+    &#34;&#34;&#34;Returns all the root-to-leaf paths of a binary tree.
+
+    Returns:
+        (list of list) list of all the root-to-leaf paths of this tree.
+    &#34;&#34;&#34;
+    pathsList = []
+    if self.root is not None:
+        self._rootToLeafPaths(self.root, [], pathsList)
+
+    return pathsList</code></pre>
+</details>
+</dd>
 <dt id="tree.tree.update_balance_factor"><code class="name flex">
 <span>def <span class="ident">update_balance_factor</span></span>(<span>self)</span>
 </code></dt>
@@ -1755,6 +1859,7 @@ ordering of nodes in the list follows an in-order pattern.</p>
 <li><code><a title="tree.tree.is_balanced" href="#tree.tree.is_balanced">is_balanced</a></code></li>
 <li><code><a title="tree.tree.postorder_traversal" href="#tree.tree.postorder_traversal">postorder_traversal</a></code></li>
 <li><code><a title="tree.tree.preorder_traversal" href="#tree.tree.preorder_traversal">preorder_traversal</a></code></li>
+<li><code><a title="tree.tree.root_to_leaf_paths" href="#tree.tree.root_to_leaf_paths">root_to_leaf_paths</a></code></li>
 <li><code><a title="tree.tree.treeNode" href="#tree.tree.treeNode">treeNode</a></code></li>
 <li><code><a title="tree.tree.update_balance_factor" href="#tree.tree.update_balance_factor">update_balance_factor</a></code></li>
 <li><code><a title="tree.tree.update_height" href="#tree.tree.update_height">update_height</a></code></li>

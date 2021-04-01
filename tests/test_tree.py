@@ -773,6 +773,23 @@ def test_BFS(ref_bst):
 
     assert bfs == ref_bfs
 
+def test_root_to_leaf_paths(ref_bst):
+    t,_ = ref_bst
+    ref_pathsList = [[8, 3, 1], [8, 3, 6, 4], [8, 3, 6, 7], [8, 10, 14, 13]]
+    pathsList = t.root_to_leaf_paths()
+
+    assert sorted(pathsList) == sorted(ref_pathsList)
+
+def test_rootToLeafPaths(ref_bst):
+    t, nodes = ref_bst
+    n3 = nodes[1]
+    ref_pathsList = [[3, 1], [3, 6, 4], [3, 6, 7]]
+
+    pathsList = []
+    t._rootToLeafPaths(n3, [], pathsList)
+
+    assert sorted(pathsList) == sorted(ref_pathsList)
+
 def test_is_balanced(ref_bst):
     t,_ = ref_bst
     assert not t.is_balanced()

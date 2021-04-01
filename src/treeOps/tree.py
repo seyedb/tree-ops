@@ -461,6 +461,46 @@ class tree(object):
 
         return path
 
+    def root_to_leaf_paths(self):
+        """Returns all the root-to-leaf paths of a binary tree.
+
+        Returns:
+            (list of list) list of all the root-to-leaf paths of this tree.
+        """
+        pathsList = []
+        if self.root is not None:
+            self._rootToLeafPaths(self.root, [], pathsList)
+
+        return pathsList
+
+    def _rootToLeafPaths(self, start, path, pathsList):
+        """(helper function) Returns all the root-to-leaf paths of a subtree rooted at the given start node.
+
+        Args:
+            start (treeNode): the node where the traversal starts.
+            path (list of treeNode): the (DFS) path (empty path) to be filled with nodes.
+            pathsList (list of list): (empty) list of paths.
+        Returns:
+            (list of list) the pathsList filled with all the root-to-leaf paths.
+        """
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            pathsList.append([n.data for n in path])
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._rootToLeafPaths(child, path, pathsList)
+
+        if len(path) > 0: path.pop()
+
     def is_balanced(self):
         """Checks whether or not a tree (BST or not) is balanced.
 
