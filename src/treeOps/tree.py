@@ -455,7 +455,7 @@ class tree(object):
             if k.left is not None: children.append(k.left)
             if k.right is not None: children.append(k.right)
             for child in children:
-                    Q.append(child)
+                Q.append(child)
 
             path.append(k)
 

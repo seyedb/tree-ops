@@ -201,3 +201,21 @@ def find_word(wrd, indIntv, path, regex="", balanced=False):
             res.append(pn)
 
     return res
+
+def bnums_to_btree(length):
+    """Maps all binary numbers of a given lenght into a perfect full binary tree in a way that a path from
+    root down to any leaf represents a binary number.
+
+    Args:
+        length (int): the length of binary numbers.
+    Returns:
+        (tree) a perfect full binary tree of height length.
+    """
+    root = tree.tree().treeNode('root')
+    btree = tree.tree(root)
+    s = 2**length - 1
+    for _ in range(s):
+        btree.insert_node(0)
+        btree.insert_node(1)
+
+    return btree

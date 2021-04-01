@@ -449,21 +449,18 @@ class tree(object):
         if path is None:
             path = []
 
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
 
-        if len(path) == 0: path.append(s)
+        if len(path) == 0: path.append(start)
 
         children = []
-        if s.left is not None: children.append(s.left)
-        if s.right is not None: children.append(s.right)
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
 
         for child in children:
             path.append(child)
-            path = self.DFS(child, path)
-
-        return path
+            self.DFS(child, path)
         
     def BFS(self, start):
         &#34;&#34;&#34;Breadth-First Search (BFS).
@@ -473,13 +470,12 @@ class tree(object):
         Returns:
             (list of treeNode) the full BFS path.
         &#34;&#34;&#34;
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
         path = []
 
         Q = deque()
-        Q.append(s)
+        Q.append(start)
         while Q:
             k = Q.popleft()
 
@@ -487,7 +483,7 @@ class tree(object):
             if k.left is not None: children.append(k.left)
             if k.right is not None: children.append(k.right)
             for child in children:
-                    Q.append(child)
+                Q.append(child)
 
             path.append(k)
 
@@ -1118,21 +1114,18 @@ class tree(object):
         if path is None:
             path = []
 
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
 
-        if len(path) == 0: path.append(s)
+        if len(path) == 0: path.append(start)
 
         children = []
-        if s.left is not None: children.append(s.left)
-        if s.right is not None: children.append(s.right)
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
 
         for child in children:
             path.append(child)
-            path = self.DFS(child, path)
-
-        return path
+            self.DFS(child, path)
         
     def BFS(self, start):
         &#34;&#34;&#34;Breadth-First Search (BFS).
@@ -1142,13 +1135,12 @@ class tree(object):
         Returns:
             (list of treeNode) the full BFS path.
         &#34;&#34;&#34;
-        s = self.find_node(start.data)
-        if s is None:
+        if start is None:
             return
         path = []
 
         Q = deque()
-        Q.append(s)
+        Q.append(start)
         while Q:
             k = Q.popleft()
 
@@ -1156,7 +1148,7 @@ class tree(object):
             if k.left is not None: children.append(k.left)
             if k.right is not None: children.append(k.right)
             for child in children:
-                    Q.append(child)
+                Q.append(child)
 
             path.append(k)
 
@@ -1379,13 +1371,12 @@ class tree(object):
     Returns:
         (list of treeNode) the full BFS path.
     &#34;&#34;&#34;
-    s = self.find_node(start.data)
-    if s is None:
+    if start is None:
         return
     path = []
 
     Q = deque()
-    Q.append(s)
+    Q.append(start)
     while Q:
         k = Q.popleft()
 
@@ -1393,7 +1384,7 @@ class tree(object):
         if k.left is not None: children.append(k.left)
         if k.right is not None: children.append(k.right)
         for child in children:
-                Q.append(child)
+            Q.append(child)
 
         path.append(k)
 
@@ -1430,21 +1421,18 @@ class tree(object):
     if path is None:
         path = []
 
-    s = self.find_node(start.data)
-    if s is None:
+    if start is None:
         return
 
-    if len(path) == 0: path.append(s)
+    if len(path) == 0: path.append(start)
 
     children = []
-    if s.left is not None: children.append(s.left)
-    if s.right is not None: children.append(s.right)
+    if start.left is not None: children.append(start.left)
+    if start.right is not None: children.append(start.right)
 
     for child in children:
         path.append(child)
-        path = self.DFS(child, path)
-
-    return path</code></pre>
+        self.DFS(child, path)</code></pre>
 </details>
 </dd>
 <dt id="tree.tree.add_node"><code class="name flex">

@@ -249,3 +249,22 @@ def test_find_word():
     res = to.find_word(wrd, indIntv, path, regex=regex, balanced=True)
 
     assert collections.Counter(res) == collections.Counter(ref)
+
+def test_bnums_to_btree():
+    length = 2
+    t = to.bnums_to_btree(length)
+    rep = t.verbose_rep(1)
+
+    ref_rep = [
+    {'data': 0, 'left': 'None', 'right': 'None', 'parent': 0, 'height': 0, 'balance_factor': 0},
+    {'data': 0, 'left': 0, 'right': 1, 'parent': 'root', 'height': 1, 'balance_factor': 0},
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 0, 'height': 0, 'balance_factor': 0},
+    {'data': 'root', 'left': 0, 'right': 1, 'parent': 'None', 'height': 2, 'balance_factor': 0},
+    {'data': 0, 'left': 'None', 'right': 'None', 'parent': 1, 'height': 0, 'balance_factor': 0},
+    {'data': 1, 'left': 0, 'right': 1, 'parent': 'root', 'height': 1, 'balance_factor': 0},
+    {'data': 1, 'left': 'None', 'right': 'None', 'parent': 1, 'height': 0, 'balance_factor': 0}]
+
+    diff_list = [deepdiff.DeepDiff(n1, n2) for n1, n2 in zip(rep, ref_rep)]
+    cond = diff_list == [{}] * 7
+
+    assert cond

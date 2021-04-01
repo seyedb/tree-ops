@@ -228,7 +228,25 @@ def find_word(wrd, indIntv, path, regex=&#34;&#34;, balanced=False):
         if wrd in treelist[pn]:
             res.append(pn)
 
-    return res</code></pre>
+    return res
+
+def bnums_to_btree(length):
+    &#34;&#34;&#34;Maps all binary numbers of a given lenght into a perfect full binary tree in a way that a path from
+    root down to any leaf represents a binary number.
+
+    Args:
+        length (int): the length of binary numbers.
+    Returns:
+        (tree) a perfect full binary tree of height length.
+    &#34;&#34;&#34;
+    root = tree.tree().treeNode(&#39;root&#39;)
+    btree = tree.tree(root)
+    s = 2**length - 1
+    for _ in range(s):
+        btree.insert_node(0)
+        btree.insert_node(1)
+
+    return btree</code></pre>
 </details>
 </section>
 <section>
@@ -276,6 +294,42 @@ in the following steps:
     balancedt = tree.tree(rnode)
 
     return balancedt</code></pre>
+</details>
+</dd>
+<dt id="treeOps.bnums_to_btree"><code class="name flex">
+<span>def <span class="ident">bnums_to_btree</span></span>(<span>length)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Maps all binary numbers of a given lenght into a perfect full binary tree in a way that a path from
+root down to any leaf represents a binary number.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>length</code></strong> :&ensp;<code>int</code></dt>
+<dd>the length of binary numbers.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>(tree) a perfect full binary tree of height length.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bnums_to_btree(length):
+    &#34;&#34;&#34;Maps all binary numbers of a given lenght into a perfect full binary tree in a way that a path from
+    root down to any leaf represents a binary number.
+
+    Args:
+        length (int): the length of binary numbers.
+    Returns:
+        (tree) a perfect full binary tree of height length.
+    &#34;&#34;&#34;
+    root = tree.tree().treeNode(&#39;root&#39;)
+    btree = tree.tree(root)
+    s = 2**length - 1
+    for _ in range(s):
+        btree.insert_node(0)
+        btree.insert_node(1)
+
+    return btree</code></pre>
 </details>
 </dd>
 <dt id="treeOps.convert_to_AVL"><code class="name flex">
@@ -604,6 +658,7 @@ regex="(?&lt;!\d )<a href="?!\d">"+string.punctuation+"</a>", acts as above but 
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="treeOps.balance_by_recursion" href="#treeOps.balance_by_recursion">balance_by_recursion</a></code></li>
+<li><code><a title="treeOps.bnums_to_btree" href="#treeOps.bnums_to_btree">bnums_to_btree</a></code></li>
 <li><code><a title="treeOps.convert_to_AVL" href="#treeOps.convert_to_AVL">convert_to_AVL</a></code></li>
 <li><code><a title="treeOps.dict_to_tree" href="#treeOps.dict_to_tree">dict_to_tree</a></code></li>
 <li><code><a title="treeOps.find_word" href="#treeOps.find_word">find_word</a></code></li>
