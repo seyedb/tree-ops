@@ -1,6 +1,7 @@
 import tree
 import re
 import string
+import numpy as np
 
 def list_to_tree(dlist, rootVal=None, balanced=False):
     """Constructs a binary tree (BST or AVL) from a given list of node data.
