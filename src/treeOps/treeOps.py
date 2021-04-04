@@ -246,7 +246,7 @@ class CBQP(object):
             (tuple of list and float) the first element is the solution to the problem and the second
             element is the optimal value of the objective function.
         """
-        btree = to.bnums_to_btree(self.binary_length)
+        btree = bnums_to_btree(self.binary_length)
         self._solve(btree, btree.root, [])
         return (self.solution, self.optimal_value)
 
@@ -282,7 +282,7 @@ class CBQP(object):
         if start.right is None and start.left is None:
             x = [n.data for n in path[1:]]
             if self._isFeasible(x):
-                sol = _evalObjFunc(x, self.Q)
+                sol = self._evalObjFunc(x)
                 if (sol < self.optimal_value):
                     self.optimal_value = sol
                     self.solution = x
