@@ -66,6 +66,19 @@ def ref_bst():
 
     return t, nodes_tuple
 
+@pytest.fixture
+def ref_cbqp():
+    """Returns a reference binary quadratic minimization problem."""
+    Q = [[ 2, -3,  1],
+         [ 2,  0, -1],
+         [ 1,  4,  5]]
+    A = [[-5,  0, -1],
+         [ 1,  2, -1],
+         [-3,  4,  1]]
+    b = [-2, 3, 4]
+    cbqp = to.CBQP(3, Q, A, b)
+    return cbqp
+
 def test_list_to_tree():
     dlist = [6, 10, 14, 3, 4, 1, 8, 13, 7]
     t = to.list_to_tree(dlist, rootVal=8, balanced=False)
@@ -268,3 +281,31 @@ def test_bnums_to_btree():
     cond = diff_list == [{}] * 7
 
     assert cond
+
+def test__init__cbqp():
+    cbqp = to.CBQP(2, [[1, 2],[3, 4]], [[1, 0],[0, 1]],[1, 1])
+    assert cbqp.binary_length == 2 and cbqp.Q == [[1, 2],[3, 4]] and cbqp.A == [[1, 0],[0, 1]] and cbqp.b == [1, 1]
+
+def test_solve_CBQP(ref_cbqp):
+    assert ref_cbqp.solve_CBQP() == ([1, 1, 0], 1.0)
+
+def test_isFeasible(ref_cbqp):
+    x = [0, 0, 1]
+    assert ref_cbqp._isFeasible(x) == False
+
+def test_evalObjFunc(ref_cbqp):
+    x = [0, 0, 1]
+    assert ref_cbqp._evalObjFunc(x) == 5.0
+
+def test_solve():
+    t = to.bnums_to_btree(3)
+    Q = [[2, 3, -1],
+         [7, -5, 3],
+         [4,  6, 0]]
+    A = [[1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9]]
+    b = [7, 16, 20]
+    cbqp = to.CBQP(3, Q, A, b)
+    cbqp._solve(t, t.root, [])
+    assert cbqp.optimal_value == -5.0 and cbqp.solution == [0, 1, 0]
