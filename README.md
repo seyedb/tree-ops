@@ -1,4 +1,4 @@
-## Tree Structures & Operations
+## Data Processing Using Trees and Graphs
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Use trees and graphs to: 
