@@ -2,7 +2,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Use trees and graphs to: 
-* search for a given word in a text file: every paragraph of the text is stored in a (balanced) binary tree and the search is performed in those trees.
+* Search for a given word in a text file: every paragraph of the text is stored in a (balanced) binary tree and the search is performed in those trees.
+* Solve a constrained binary quadratic optimization problem
 
 more to come ...
 
