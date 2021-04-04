@@ -246,7 +246,83 @@ def bnums_to_btree(length):
         btree.insert_node(0)
         btree.insert_node(1)
 
-    return btree</code></pre>
+    return btree
+
+class CBQP(object):
+    &#34;&#34;&#34;Constrained Binary Quadratic Problems&#34;&#34;&#34;
+    def __init__(self, n, Q, A, b):
+        &#34;&#34;&#34;Initializes a constrained binary quadratic optimization problem of the form: min tr(x)*Q*x, s.t. A*x &lt;= b.
+           Attributes:
+                binary_length (int): the length of the binary input.
+                Q (list of list): the cost matrix (coefficient matrix of the objective function).
+                A (list of list): the constriant matrix.
+                b (list): the right-hand-side of the constraint.
+                optimal_value (float): the optimal solution of the optimization problem.
+                solution (list): the binary vector that led to an optimal solution.
+        &#34;&#34;&#34;
+        self.binary_length = n
+        self.Q = Q
+        self.A = A
+        self.b = b
+        self.optimal_value = float(&#39;inf&#39;)
+        self.solution = None
+
+    def solve_CBQP(self):
+        &#34;&#34;&#34;Solves a constrained binary quadratic optimization problem.
+        Returns:
+            (tuple of list and float) the first element is the solution to the problem and the second
+            element is the optimal value of the objective function.
+        &#34;&#34;&#34;
+        btree = to.bnums_to_btree(self.binary_length)
+        self._solve(btree, btree.root, [])
+        return (self.solution, self.optimal_value)
+
+    def _isFeasible(self, x):
+        &#34;&#34;&#34;(helper function) Checks whether or not an element satisfies the constraint: A*x &lt;= b&#34;&#34;&#34;
+        np_x = np.asarray(x)
+        np_r = np.dot(self.A, np_x)
+        return np.all(np_r &lt;= np.asarray(self.b))
+
+    def _evalObjFunc(self, x):
+        &#34;&#34;&#34;(helper function) Evaluates the objective function: tr(x)*Q*x&#34;&#34;&#34;
+        np_x = np.asarray(x)
+        obj = np.dot(np.dot(np_x, self.Q), np_x)
+        return float(obj)
+
+    def _solve(self, t, start, path):
+        &#34;&#34;&#34;(helper function) Solves a constrained binary quadratic optimization problem using root-to-leaf
+        paths of a perfect full binary tree with node values 0 and 1.
+
+        Args:
+            t (tree): a perfect full binary tree with node values 0 and 1, storing binary numbers of length self.binary_length.
+            start (treeNode): the root of the (sub)tree where tree traversal starts.
+            path (list of treeNode): a root-to-leaf path of the tree.
+        Returns:
+            (list) binary number of length self.binary_length that solves the optimization problem.
+            (float) the optimal value of the objective function (stored in self.optimal_value)
+        &#34;&#34;&#34;
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            x = [n.data for n in path[1:]]
+            if self._isFeasible(x):
+                sol = _evalObjFunc(x, self.Q)
+                if (sol &lt; self.optimal_value):
+                    self.optimal_value = sol
+                    self.solution = x
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._solve(t, child, path)
+
+        if (len(path) &gt; 0): path.pop()</code></pre>
 </details>
 </section>
 <section>
@@ -647,6 +723,138 @@ regex="(?&lt;!\d )<a href="?!\d">"+string.punctuation+"</a>", acts as above but 
 </dl>
 </section>
 <section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="treeOps.CBQP"><code class="flex name class">
+<span>class <span class="ident">CBQP</span></span>
+<span>(</span><span>n, Q, A, b)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Constrained Binary Quadratic Problems</p>
+<p>Initializes a constrained binary quadratic optimization problem of the form: min tr(x)<em>Q</em>x, s.t. A*x &lt;= b.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>binary_length</code></strong> :&ensp;<code>int</code></dt>
+<dd>the length of the binary input.</dd>
+<dt><strong><code>Q</code></strong> :&ensp;<code>list</code> of <code>list</code></dt>
+<dd>the cost matrix (coefficient matrix of the objective function).</dd>
+<dt><strong><code>A</code></strong> :&ensp;<code>list</code> of <code>list</code></dt>
+<dd>the constriant matrix.</dd>
+<dt><strong><code>b</code></strong> :&ensp;<code>list</code></dt>
+<dd>the right-hand-side of the constraint.</dd>
+<dt><strong><code>optimal_value</code></strong> :&ensp;<code>float</code></dt>
+<dd>the optimal solution of the optimization problem.</dd>
+<dt><strong><code>solution</code></strong> :&ensp;<code>list</code></dt>
+<dd>the binary vector that led to an optimal solution.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CBQP(object):
+    &#34;&#34;&#34;Constrained Binary Quadratic Problems&#34;&#34;&#34;
+    def __init__(self, n, Q, A, b):
+        &#34;&#34;&#34;Initializes a constrained binary quadratic optimization problem of the form: min tr(x)*Q*x, s.t. A*x &lt;= b.
+           Attributes:
+                binary_length (int): the length of the binary input.
+                Q (list of list): the cost matrix (coefficient matrix of the objective function).
+                A (list of list): the constriant matrix.
+                b (list): the right-hand-side of the constraint.
+                optimal_value (float): the optimal solution of the optimization problem.
+                solution (list): the binary vector that led to an optimal solution.
+        &#34;&#34;&#34;
+        self.binary_length = n
+        self.Q = Q
+        self.A = A
+        self.b = b
+        self.optimal_value = float(&#39;inf&#39;)
+        self.solution = None
+
+    def solve_CBQP(self):
+        &#34;&#34;&#34;Solves a constrained binary quadratic optimization problem.
+        Returns:
+            (tuple of list and float) the first element is the solution to the problem and the second
+            element is the optimal value of the objective function.
+        &#34;&#34;&#34;
+        btree = to.bnums_to_btree(self.binary_length)
+        self._solve(btree, btree.root, [])
+        return (self.solution, self.optimal_value)
+
+    def _isFeasible(self, x):
+        &#34;&#34;&#34;(helper function) Checks whether or not an element satisfies the constraint: A*x &lt;= b&#34;&#34;&#34;
+        np_x = np.asarray(x)
+        np_r = np.dot(self.A, np_x)
+        return np.all(np_r &lt;= np.asarray(self.b))
+
+    def _evalObjFunc(self, x):
+        &#34;&#34;&#34;(helper function) Evaluates the objective function: tr(x)*Q*x&#34;&#34;&#34;
+        np_x = np.asarray(x)
+        obj = np.dot(np.dot(np_x, self.Q), np_x)
+        return float(obj)
+
+    def _solve(self, t, start, path):
+        &#34;&#34;&#34;(helper function) Solves a constrained binary quadratic optimization problem using root-to-leaf
+        paths of a perfect full binary tree with node values 0 and 1.
+
+        Args:
+            t (tree): a perfect full binary tree with node values 0 and 1, storing binary numbers of length self.binary_length.
+            start (treeNode): the root of the (sub)tree where tree traversal starts.
+            path (list of treeNode): a root-to-leaf path of the tree.
+        Returns:
+            (list) binary number of length self.binary_length that solves the optimization problem.
+            (float) the optimal value of the objective function (stored in self.optimal_value)
+        &#34;&#34;&#34;
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            x = [n.data for n in path[1:]]
+            if self._isFeasible(x):
+                sol = _evalObjFunc(x, self.Q)
+                if (sol &lt; self.optimal_value):
+                    self.optimal_value = sol
+                    self.solution = x
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._solve(t, child, path)
+
+        if (len(path) &gt; 0): path.pop()</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="treeOps.CBQP.solve_CBQP"><code class="name flex">
+<span>def <span class="ident">solve_CBQP</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Solves a constrained binary quadratic optimization problem.</p>
+<h2 id="returns">Returns</h2>
+<p>(tuple of list and float) the first element is the solution to the problem and the second
+element is the optimal value of the objective function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def solve_CBQP(self):
+    &#34;&#34;&#34;Solves a constrained binary quadratic optimization problem.
+    Returns:
+        (tuple of list and float) the first element is the solution to the problem and the second
+        element is the optimal value of the objective function.
+    &#34;&#34;&#34;
+    btree = to.bnums_to_btree(self.binary_length)
+    self._solve(btree, btree.root, [])
+    return (self.solution, self.optimal_value)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
 </section>
 </article>
 <nav id="sidebar">
@@ -664,6 +872,16 @@ regex="(?&lt;!\d )<a href="?!\d">"+string.punctuation+"</a>", acts as above but 
 <li><code><a title="treeOps.find_word" href="#treeOps.find_word">find_word</a></code></li>
 <li><code><a title="treeOps.list_to_tree" href="#treeOps.list_to_tree">list_to_tree</a></code></li>
 <li><code><a title="treeOps.text_to_tree" href="#treeOps.text_to_tree">text_to_tree</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="treeOps.CBQP" href="#treeOps.CBQP">CBQP</a></code></h4>
+<ul class="">
+<li><code><a title="treeOps.CBQP.solve_CBQP" href="#treeOps.CBQP.solve_CBQP">solve_CBQP</a></code></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -223,15 +223,15 @@ def bnums_to_btree(length):
 class CBQP(object):
     """Constrained Binary Quadratic Problems"""
     def __init__(self, n, Q, A, b):
-    """Initializes a constrained binary quadratic optimization problem of the form: min tr(x)*Q*x, s.t. A*x <= b.
-        Attributes:
-            binary_length (int): the length of the binary input.
-            Q (list of list): the cost matrix (coefficient matrix of the objective function).
-            A (list of list): the constriant matrix.
-            b (list): the right-hand-side of the constraint.
-            optimal_value (float): the optimal solution of the optimization problem.
-            solution (list): the binary vector that led to an optimal solution.
-    """
+        """Initializes a constrained binary quadratic optimization problem of the form: min tr(x)*Q*x, s.t. A*x <= b.
+           Attributes:
+                binary_length (int): the length of the binary input.
+                Q (list of list): the cost matrix (coefficient matrix of the objective function).
+                A (list of list): the constriant matrix.
+                b (list): the right-hand-side of the constraint.
+                optimal_value (float): the optimal solution of the optimization problem.
+                solution (list): the binary vector that led to an optimal solution.
+        """
         self.binary_length = n
         self.Q = Q
         self.A = A
