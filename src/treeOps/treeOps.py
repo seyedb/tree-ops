@@ -219,3 +219,79 @@ def bnums_to_btree(length):
         btree.insert_node(1)
 
     return btree
+
+class CBQP(object):
+    """Constrained Binary Quadratic Problems"""
+    def __init__(self, n, Q, A, b):
+    """Initializes a constrained binary quadratic optimization problem of the form: min tr(x)*Q*x, s.t. A*x <= b.
+        Attributes:
+            binary_length (int): the length of the binary input.
+            Q (list of list): the cost matrix (coefficient matrix of the objective function).
+            A (list of list): the constriant matrix.
+            b (list): the right-hand-side of the constraint.
+            optimal_value (float): the optimal solution of the optimization problem.
+            solution (list): the binary vector that led to an optimal solution.
+    """
+        self.binary_length = n
+        self.Q = Q
+        self.A = A
+        self.b = b
+        self.optimal_value = float('inf')
+        self.solution = None
+
+    def solve_CBQP(self):
+        """Solves a constrained binary quadratic optimization problem.
+        Returns:
+            (tuple of list and float) the first element is the solution to the problem and the second
+            element is the optimal value of the objective function.
+        """
+        btree = to.bnums_to_btree(self.binary_length)
+        self._solve(btree, btree.root, [])
+        return (self.solution, self.optimal_value)
+
+    def _isFeasible(self, x):
+        """(helper function) Checks whether or not an element satisfies the constraint: A*x <= b"""
+        np_x = np.asarray(x)
+        np_r = np.dot(self.A, np_x)
+        return np.all(np_r <= np.asarray(self.b))
+
+    def _evalObjFunc(self, x):
+        """(helper function) Evaluates the objective function: tr(x)*Q*x"""
+        np_x = np.asarray(x)
+        obj = np.dot(np.dot(np_x, self.Q), np_x)
+        return float(obj)
+
+    def _solve(self, t, start, path):
+        """(helper function) Solves a constrained binary quadratic optimization problem using root-to-leaf
+        paths of a perfect full binary tree with node values 0 and 1.
+
+        Args:
+            t (tree): a perfect full binary tree with node values 0 and 1, storing binary numbers of length self.binary_length.
+            start (treeNode): the root of the (sub)tree where tree traversal starts.
+            path (list of treeNode): a root-to-leaf path of the tree.
+        Returns:
+            (list) binary number of length self.binary_length that solves the optimization problem.
+            (float) the optimal value of the objective function (stored in self.optimal_value)
+        """
+        if start is None:
+            return
+
+        if len(path) == 0: path.append(start)
+
+        if start.right is None and start.left is None:
+            x = [n.data for n in path[1:]]
+            if self._isFeasible(x):
+                sol = _evalObjFunc(x, self.Q)
+                if (sol < self.optimal_value):
+                    self.optimal_value = sol
+                    self.solution = x
+
+        children = []
+        if start.left is not None: children.append(start.left)
+        if start.right is not None: children.append(start.right)
+
+        for child in children:
+            path.append(child)
+            self._solve(t, child, path)
+
+        if (len(path) > 0): path.pop()
