@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Use trees and graphs to: 
-* search for a given word in a text file;
+* search for a given word in a text;
 * solve a constrained binary quadratic optimization problem;
 
 more to come ...
