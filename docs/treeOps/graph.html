@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.9.2" />
-<title>graph API documentation</title>
+<title>treeOps.graph API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>graph</code></h1>
+<h1 class="title">Module <code>treeOps.graph</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -398,7 +398,7 @@ class graph(object):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="graph.graph"><code class="flex name class">
+<dt id="treeOps.graph.graph"><code class="flex name class">
 <span>class <span class="ident">graph</span></span>
 </code></dt>
 <dd>
@@ -762,14 +762,14 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
 </details>
 <h3>Class variables</h3>
 <dl>
-<dt id="graph.graph.graphNode"><code class="name">var <span class="ident">graphNode</span></code></dt>
+<dt id="treeOps.graph.graph.graphNode"><code class="name">var <span class="ident">graphNode</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="graph.graph.BFS"><code class="name flex">
+<dt id="treeOps.graph.graph.BFS"><code class="name flex">
 <span>def <span class="ident">BFS</span></span>(<span>self, start)</span>
 </code></dt>
 <dd>
@@ -815,7 +815,7 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
     return path</code></pre>
 </details>
 </dd>
-<dt id="graph.graph.DFS"><code class="name flex">
+<dt id="treeOps.graph.graph.DFS"><code class="name flex">
 <span>def <span class="ident">DFS</span></span>(<span>self, start, path=None)</span>
 </code></dt>
 <dd>
@@ -861,7 +861,7 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
     return path</code></pre>
 </details>
 </dd>
-<dt id="graph.graph.add_edge"><code class="name flex">
+<dt id="treeOps.graph.graph.add_edge"><code class="name flex">
 <span>def <span class="ident">add_edge</span></span>(<span>self, fromVxData, toVxData, weight=0.0, directed=False)</span>
 </code></dt>
 <dd>
@@ -939,7 +939,7 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
         self.vertices[b][a].append(weight)</code></pre>
 </details>
 </dd>
-<dt id="graph.graph.add_vertex"><code class="name flex">
+<dt id="treeOps.graph.graph.add_vertex"><code class="name flex">
 <span>def <span class="ident">add_vertex</span></span>(<span>self, VxData)</span>
 </code></dt>
 <dd>
@@ -971,7 +971,7 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
         self.vertices[vx] = defaultdict(list)</code></pre>
 </details>
 </dd>
-<dt id="graph.graph.reset"><code class="name flex">
+<dt id="treeOps.graph.graph.reset"><code class="name flex">
 <span>def <span class="ident">reset</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -990,7 +990,7 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="graph.node_status"><code class="flex name class">
+<dt id="treeOps.graph.node_status"><code class="flex name class">
 <span>class <span class="ident">node_status</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
 </code></dt>
@@ -1012,15 +1012,15 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="graph.node_status.UNVISITED"><code class="name">var <span class="ident">UNVISITED</span></code></dt>
+<dt id="treeOps.graph.node_status.UNVISITED"><code class="name">var <span class="ident">UNVISITED</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="graph.node_status.VISITED"><code class="name">var <span class="ident">VISITED</span></code></dt>
+<dt id="treeOps.graph.node_status.VISITED"><code class="name">var <span class="ident">VISITED</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="graph.node_status.VISITING"><code class="name">var <span class="ident">VISITING</span></code></dt>
+<dt id="treeOps.graph.node_status.VISITING"><code class="name">var <span class="ident">VISITING</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -1035,25 +1035,30 @@ example: {'A': {'B': [2, 3], 'C': [5, 1]}}</p></div>
 <ul></ul>
 </div>
 <ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="treeOps" href="index.html">treeOps</a></code></li>
+</ul>
+</li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="graph.graph" href="#graph.graph">graph</a></code></h4>
+<h4><code><a title="treeOps.graph.graph" href="#treeOps.graph.graph">graph</a></code></h4>
 <ul class="two-column">
-<li><code><a title="graph.graph.BFS" href="#graph.graph.BFS">BFS</a></code></li>
-<li><code><a title="graph.graph.DFS" href="#graph.graph.DFS">DFS</a></code></li>
-<li><code><a title="graph.graph.add_edge" href="#graph.graph.add_edge">add_edge</a></code></li>
-<li><code><a title="graph.graph.add_vertex" href="#graph.graph.add_vertex">add_vertex</a></code></li>
-<li><code><a title="graph.graph.graphNode" href="#graph.graph.graphNode">graphNode</a></code></li>
-<li><code><a title="graph.graph.reset" href="#graph.graph.reset">reset</a></code></li>
+<li><code><a title="treeOps.graph.graph.BFS" href="#treeOps.graph.graph.BFS">BFS</a></code></li>
+<li><code><a title="treeOps.graph.graph.DFS" href="#treeOps.graph.graph.DFS">DFS</a></code></li>
+<li><code><a title="treeOps.graph.graph.add_edge" href="#treeOps.graph.graph.add_edge">add_edge</a></code></li>
+<li><code><a title="treeOps.graph.graph.add_vertex" href="#treeOps.graph.graph.add_vertex">add_vertex</a></code></li>
+<li><code><a title="treeOps.graph.graph.graphNode" href="#treeOps.graph.graph.graphNode">graphNode</a></code></li>
+<li><code><a title="treeOps.graph.graph.reset" href="#treeOps.graph.graph.reset">reset</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="graph.node_status" href="#graph.node_status">node_status</a></code></h4>
+<h4><code><a title="treeOps.graph.node_status" href="#treeOps.graph.node_status">node_status</a></code></h4>
 <ul class="">
-<li><code><a title="graph.node_status.UNVISITED" href="#graph.node_status.UNVISITED">UNVISITED</a></code></li>
-<li><code><a title="graph.node_status.VISITED" href="#graph.node_status.VISITED">VISITED</a></code></li>
-<li><code><a title="graph.node_status.VISITING" href="#graph.node_status.VISITING">VISITING</a></code></li>
+<li><code><a title="treeOps.graph.node_status.UNVISITED" href="#treeOps.graph.node_status.UNVISITED">UNVISITED</a></code></li>
+<li><code><a title="treeOps.graph.node_status.VISITED" href="#treeOps.graph.node_status.VISITED">VISITED</a></code></li>
+<li><code><a title="treeOps.graph.node_status.VISITING" href="#treeOps.graph.node_status.VISITING">VISITING</a></code></li>
 </ul>
 </li>
 </ul>
