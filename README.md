@@ -1,5 +1,5 @@
 ## Data Processing Using Trees and Graphs
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![docs: latest](https://img.shields.io/badge/docs-latest-blue)](https://seyedb.github.io/tree-ops/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![docs: latest](https://img.shields.io/badge/docs-latest-blue)](https://seyedb.github.io/tree-ops/) [![coverage: 94%](https://img.shields.io/badge/coverage-94%25-green)](./tests/)
 
 Use trees and graphs to: 
 * search for a given word in a text;
